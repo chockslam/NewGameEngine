@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Graphics">
+      <UniqueIdentifier>{55bdf225-966f-4a5f-8596-409083fd2b6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Common">
+      <UniqueIdentifier>{278996e9-c97e-4259-ae86-f55fc879b519}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Win32">
+      <UniqueIdentifier>{e0e0dde7-32b0-4473-9114-e2ecd0d639f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Common\Classes">
+      <UniqueIdentifier>{44ed9694-6f76-46a9-a673-5c5d3c0a4e37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Common\Private">
+      <UniqueIdentifier>{c2222fd1-7ebd-4b82-8e76-f8327aab5554}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Common\Public">
+      <UniqueIdentifier>{5dabb159-4d79-4fe5-96c9-bf4da32eba7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Win32\Classes">
+      <UniqueIdentifier>{9f987d71-b0d2-401a-bf2d-10fb578629a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Win32\Public">
+      <UniqueIdentifier>{3c7d7df3-187b-4400-9d1b-2c6f534eb8b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Win32\Private">
+      <UniqueIdentifier>{8b8f4d8e-8051-46aa-920b-46e32246bb4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics\Classes">
+      <UniqueIdentifier>{9e906959-3fc4-44e1-a1ef-79b5472ee3d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics\Public">
+      <UniqueIdentifier>{3f54d165-3a1d-4e5f-9284-20c08010de7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics\Private">
+      <UniqueIdentifier>{cbd3c194-a724-48c1-9d2f-d9d70ef43af4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shaders">
+      <UniqueIdentifier>{9a83ce9e-446a-4a9b-9cd5-693a48f38d29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shaders\PS">
+      <UniqueIdentifier>{414e1a1b-c334-4503-8f80-d500e28b3a73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shaders\VS">
+      <UniqueIdentifier>{754904a3-da33-44f6-a7f1-5dd9f9d71181}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Window\Window.cpp">
+      <Filter>Source Files\Win32\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Window\SubObject.cpp">
+      <Filter>Source Files\Win32\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Common\Time.cpp">
+      <Filter>Source Files\Common\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Application.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\WinMain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Camera.cpp">
+      <Filter>Source Files\Graphics\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Graphics.cpp">
+      <Filter>Source Files\Graphics\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Drawable\Box.cpp">
+      <Filter>Source Files\Graphics\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Drawable\Drawable.cpp">
+      <Filter>Source Files\Graphics\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Bindable\Bindable.cpp">
+      <Filter>Source Files\Graphics\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Bindable\IndexBuffer.cpp">
+      <Filter>Source Files\Graphics\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Bindable\InputLayout.cpp">
+      <Filter>Source Files\Graphics\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Bindable\PixelShader.cpp">
+      <Filter>Source Files\Graphics\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Bindable\Topology.cpp">
+      <Filter>Source Files\Graphics\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Bindable\TransformCbuf.cpp">
+      <Filter>Source Files\Graphics\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Bindable\VertexBuffer.cpp">
+      <Filter>Source Files\Graphics\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Bindable\VertexShader.cpp">
+      <Filter>Source Files\Graphics\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Window\Keyboard.cpp">
+      <Filter>Source Files\Win32\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Window\Mouse.cpp">
+      <Filter>Source Files\Win32\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\NewCamera.cpp">
+      <Filter>Source Files\Graphics\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\PointLight.cpp">
+      <Filter>Source Files\Graphics\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Drawable\SolidSphere.cpp">
+      <Filter>Source Files\Graphics\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Drawable\AssTest.cpp">
+      <Filter>Source Files\Graphics\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Model.cpp">
+      <Filter>Source Files\Graphics\Private</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\Window\SubObject.h">
+      <Filter>Source Files\Win32\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Window\Window.h">
+      <Filter>Source Files\Win32\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Common\Time.h">
+      <Filter>Source Files\Common\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Common\EWin.h">
+      <Filter>Source Files\Common\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Application.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Bindable\Bindable.h">
+      <Filter>Source Files\Graphics\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Drawable\Box.h">
+      <Filter>Source Files\Graphics\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Camera.h">
+      <Filter>Source Files\Graphics\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Bindable\ConstantBuffer.h">
+      <Filter>Source Files\Graphics\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Drawable\Drawable.h">
+      <Filter>Source Files\Graphics\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Drawable\DrawableBase.h">
+      <Filter>Source Files\Graphics\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Graphics.h">
+      <Filter>Source Files\Graphics\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Bindable\IndexBuffer.h">
+      <Filter>Source Files\Graphics\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h">
+      <Filter>Source Files\Graphics\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Bindable\InputLayout.h">
+      <Filter>Source Files\Graphics\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Bindable\PixelShader.h">
+      <Filter>Source Files\Graphics\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Bindable\Topology.h">
+      <Filter>Source Files\Graphics\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Bindable\TransformCbuf.h">
+      <Filter>Source Files\Graphics\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Bindable\VertexBuffer.h">
+      <Filter>Source Files\Graphics\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Bindable\VertexShader.h">
+      <Filter>Source Files\Graphics\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\EMaths.h">
+      <Filter>Source Files\Graphics\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Drawable\Cube.h">
+      <Filter>Source Files\Graphics\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Bindable\BindableBase.h">
+      <Filter>Source Files\Graphics\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Window\Mouse.h">
+      <Filter>Source Files\Win32\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Window\Keyboard.h">
+      <Filter>Source Files\Win32\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\NewCamera.h">
+      <Filter>Source Files\Graphics\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\PointLight.h">
+      <Filter>Source Files\Graphics\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Drawable\SolidSphere.h">
+      <Filter>Source Files\Graphics\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Drawable\Sphere.h">
+      <Filter>Source Files\Graphics\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Drawable\TestBody.h">
+      <Filter>Source Files\Graphics\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Drawable\AssTest.h">
+      <Filter>Source Files\Graphics\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Vertex.h">
+      <Filter>Source Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Model.h">
+      <Filter>Source Files\Graphics\Classes</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Source\Graphics\Shaders\VS\SolidVS.hlsl">
+      <Filter>Source Files\Shaders\VS</Filter>
+    </FxCompile>
+    <FxCompile Include="Source\Graphics\Shaders\PS\SolidPS.hlsl">
+      <Filter>Source Files\Shaders\PS</Filter>
+    </FxCompile>
+    <FxCompile Include="Source\Graphics\Shaders\PS\PhongPS.hlsl">
+      <Filter>Source Files\Shaders\PS</Filter>
+    </FxCompile>
+    <FxCompile Include="Source\Graphics\Shaders\VS\PhongVS.hlsl">
+      <Filter>Source Files\Shaders\VS</Filter>
+    </FxCompile>
+  </ItemGroup>
+</Project>
