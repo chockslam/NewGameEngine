@@ -162,6 +162,7 @@ void Graphics::initImgui(HWND hwnd) noexcept
 {
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
+	
 	ImGui_ImplWin32_Init(hwnd);
 	ImGui_ImplDX11_Init(pDevice.Get(), pContext.Get());
 	ImGui::StyleColorsDark();

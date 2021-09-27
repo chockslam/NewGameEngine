@@ -77,9 +77,6 @@
     <ClCompile Include="Source\Graphics\Graphics.cpp">
       <Filter>Source Files\Graphics\Private</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Graphics\Drawable\Box.cpp">
-      <Filter>Source Files\Graphics\Private</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Graphics\Drawable\Drawable.cpp">
       <Filter>Source Files\Graphics\Private</Filter>
     </ClCompile>
@@ -122,10 +119,25 @@
     <ClCompile Include="Source\Graphics\Drawable\SolidSphere.cpp">
       <Filter>Source Files\Graphics\Private</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Graphics\Drawable\AssTest.cpp">
+    <ClCompile Include="Source\Graphics\Model.cpp">
       <Filter>Source Files\Graphics\Private</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Graphics\Model.cpp">
+    <ClCompile Include="Source\Graphics\Bindable\Sampler.cpp">
+      <Filter>Source Files\Graphics\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Bindable\Texture.cpp">
+      <Filter>Source Files\Graphics\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Surface.cpp">
+      <Filter>Source Files\Graphics\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Common\GDIPlusManager.cpp">
+      <Filter>Source Files\Common\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Drawable\TestPlane.cpp">
+      <Filter>Source Files\Graphics\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Bindable\TransformCbufPixPVec.cpp">
       <Filter>Source Files\Graphics\Private</Filter>
     </ClCompile>
   </ItemGroup>
@@ -148,9 +160,6 @@
     <ClInclude Include="Source\Graphics\Bindable\Bindable.h">
       <Filter>Source Files\Graphics\Classes</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Graphics\Drawable\Box.h">
-      <Filter>Source Files\Graphics\Classes</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Graphics\Camera.h">
       <Filter>Source Files\Graphics\Classes</Filter>
     </ClInclude>
@@ -158,9 +167,6 @@
       <Filter>Source Files\Graphics\Classes</Filter>
     </ClInclude>
     <ClInclude Include="Source\Graphics\Drawable\Drawable.h">
-      <Filter>Source Files\Graphics\Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Graphics\Drawable\DrawableBase.h">
       <Filter>Source Files\Graphics\Classes</Filter>
     </ClInclude>
     <ClInclude Include="Source\Graphics\Graphics.h">
@@ -217,18 +223,46 @@
     <ClInclude Include="Source\Graphics\Drawable\Sphere.h">
       <Filter>Source Files\Graphics\Public</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Graphics\Drawable\TestBody.h">
-      <Filter>Source Files\Graphics\Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Graphics\Drawable\AssTest.h">
-      <Filter>Source Files\Graphics\Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Graphics\Vertex.h">
-      <Filter>Source Files\Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Graphics\Model.h">
       <Filter>Source Files\Graphics\Classes</Filter>
     </ClInclude>
+    <ClInclude Include="Source\conversion.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Bindable\Sampler.h">
+      <Filter>Source Files\Graphics\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Bindable\Texture.h">
+      <Filter>Source Files\Graphics\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Vertex.h">
+      <Filter>Source Files\Graphics\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Surface.h">
+      <Filter>Source Files\Graphics\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Common\GDIPlusManager.h">
+      <Filter>Source Files\Common\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Bindable\BindableCodex.h">
+      <Filter>Source Files\Graphics\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Drawable\TestPlane.h">
+      <Filter>Source Files\Graphics\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Bindable\TransformCbufPixPVec.h">
+      <Filter>Source Files\Graphics\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Bindable\IndexedTriangleList.h">
+      <Filter>Source Files\Graphics\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h">
+      <Filter>Source Files\Graphics\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Drawable\Plane.h">
+      <Filter>Source Files\Graphics\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Source\Graphics\Shaders\VS\SolidVS.hlsl">
@@ -241,6 +275,21 @@
       <Filter>Source Files\Shaders\PS</Filter>
     </FxCompile>
     <FxCompile Include="Source\Graphics\Shaders\VS\PhongVS.hlsl">
+      <Filter>Source Files\Shaders\VS</Filter>
+    </FxCompile>
+    <FxCompile Include="Source\Graphics\Shaders\PS\PhongPSNormalMap.hlsl">
+      <Filter>Source Files\Shaders\PS</Filter>
+    </FxCompile>
+    <FxCompile Include="Source\Graphics\Shaders\PS\PhongPSNormalMapObject.hlsl">
+      <Filter>Source Files\Shaders\PS</Filter>
+    </FxCompile>
+    <FxCompile Include="Source\Graphics\Shaders\PS\PhongPSSpecMap.hlsl">
+      <Filter>Source Files\Shaders\PS</Filter>
+    </FxCompile>
+    <FxCompile Include="Source\Graphics\Shaders\PS\PhongPSSpecNormalMap.hlsl">
+      <Filter>Source Files\Shaders\PS</Filter>
+    </FxCompile>
+    <FxCompile Include="Source\Graphics\Shaders\VS\PhongVSNormalMap.hlsl">
       <Filter>Source Files\Shaders\VS</Filter>
     </FxCompile>
   </ItemGroup>

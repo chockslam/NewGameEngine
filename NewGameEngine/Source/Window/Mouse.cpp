@@ -20,6 +20,7 @@
  ******************************************************************************************/
 #include "../Common/EWin.h"
 #include "Mouse.h"
+#include <string>
 
 std::pair<int, int> Mouse::GetPos() const noexcept
 {
@@ -36,15 +37,33 @@ int Mouse::GetPosY() const noexcept
 	return y;
 }
 
-int Mouse::GetRelPosX() const noexcept
+void Mouse::EnableRaw() noexcept
 {
-	return xR;
+	rawEnabled = true;
 }
 
-int Mouse::GetRelPosY() const noexcept
+void Mouse::DisableRaw() noexcept
 {
-	return yR;
+	rawEnabled = false;
 }
+
+bool Mouse::RawEnabled() const noexcept
+{
+	return rawEnabled;
+}
+
+
+std::optional<Mouse::RawDelta> Mouse::ReadRawDelta() noexcept
+{
+	if (rawDeltaBuffer.empty())
+	{
+		return std::nullopt;
+	}
+	const RawDelta d = rawDeltaBuffer.front();
+	rawDeltaBuffer.pop();
+	return d;
+}
+
 
 bool Mouse::IsInWindow() const noexcept
 {
@@ -79,9 +98,7 @@ void Mouse::Flush() noexcept
 
 void Mouse::OnMouseMove(int newx, int newy) noexcept
 {
-	xR = newx - x;
-	yR = newy - y;
-
+	
 	x = newx;
 	y = newy;
 
@@ -91,9 +108,8 @@ void Mouse::OnMouseMove(int newx, int newy) noexcept
 
 void Mouse::OnMouseMoveRaw(int xR, int yR) noexcept
 {
-	this->xR = xR;
-	this->yR = yR;
-	buffer.push(Mouse::Event(Mouse::Event::Type::MoveRaw, *this));
+	rawDeltaBuffer.push({ xR,yR });
+	TrimRawInputBuffer();
 }
 
 void Mouse::OnMouseLeave() noexcept
@@ -159,6 +175,14 @@ void Mouse::TrimBuffer() noexcept
 	while (buffer.size() > bufferSize)
 	{
 		buffer.pop();
+	}
+}
+
+void Mouse::TrimRawInputBuffer() noexcept
+{
+	while (rawDeltaBuffer.size() > bufferSize)
+	{
+		rawDeltaBuffer.pop();
 	}
 }
 

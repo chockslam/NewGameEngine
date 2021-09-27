@@ -9,6 +9,7 @@ public:
 	PointLight(Graphics& gfx, float radius = 0.2f);
 	void Reset() noexcept;
 	void Draw(Graphics& gfx) const noexcept;
+	void SpawnControlWindow() noexcept;
 	void Bind(Graphics& gfx, DirectX::FXMMATRIX view) const noexcept;
 private:
 	struct PointLightCBuf
