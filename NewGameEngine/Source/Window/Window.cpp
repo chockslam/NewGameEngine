@@ -32,7 +32,10 @@ VOID Window::Initialize(UINT type)
 		MessageBox(0, "Failed to Create Window!", 0, 0);
 		PostQuitMessage(0); //close window
 	}
-		ShowWindow(m_Handle, SW_SHOW);
+		
+	ShowWindow(m_Handle, SW_SHOW);
+	
+
 		
 
 }

@@ -3,6 +3,8 @@
 #include <memory>
 #include <algorithm>
 #include <iterator>
+#include <implot.h>
+
 
 #include "Common/GDIPlusManager.h"
 
@@ -13,12 +15,17 @@ namespace dx = DirectX;
 
 Application::Application()
 	:wnd("Demo", 0, 1360, 720),
-	light(wnd.Gfx(), 0.2f)
+	sph1(wnd.Gfx(), 0.4f,"SolidVS.cso", "CustomSolidPS.cso",new float[3]{0.5f, 0.0f, 5.0f}),
+	sph2(wnd.Gfx(), 0.4f, "SolidVS.cso","SolidPS.cso", new float[3]{ -0.5f, 0.0f, 5.0f })
 {
-	//wnd.DisableCursor();
-	wall.SetRootTransform(dx::XMMatrixTranslation(-1.5f, 0.0f, 0.0f));
-	tp.SetPos({ 1.5f,0.0f,0.0f });
 	wnd.Gfx().SetProjection(dx::XMMatrixPerspectiveLH(1.0f, 9.0f / 16.0f, 0.5f, 40.0f));
+
+	if (audio->OpenFile("wavSamples\\swth.wav")) {
+		audio->PlayAudio();
+	}
+	else {
+		MessageBox(0, "Failed to Load Audio", 0, 0);
+	}
 }
 
 int Application::Go()
@@ -41,12 +48,15 @@ Application::~Application()
 
 
 
+
+
 void Application::DoFrame()
 {
 	const auto dt = timer.Mark() * speed_factor;
 
 	wnd.Gfx().BeginFrame(0.07f, 0.0f, 0.12f);
-	light.Bind(wnd.Gfx(), cam.GetViewMatrix());
+	sph1.Bind(wnd.Gfx(), cam.GetViewMatrix(), musParams);
+	sph2.Bind(wnd.Gfx(), cam.GetViewMatrix(), musParams);
 
 	
 	
@@ -55,18 +65,14 @@ void Application::DoFrame()
 	ToggleCursor();
 	
 	
-	wall.Draw(wnd.Gfx());
-	light.Draw(wnd.Gfx());
-	tp.Draw(wnd.Gfx());
+	
+	sph1.Draw(wnd.Gfx());
+	sph2.Draw(wnd.Gfx());
+	
+	ShowMusicTest();
 
-
-	wall.ShowWindow("WALL");
-	light.SpawnControlWindow();
-	tp.SpawnControlWindow(wnd.Gfx());
 	if(!wnd.CursorEnabled)
 		Control();
-	
-
 	
 	// present
 	wnd.Gfx().EndFrame();
@@ -131,6 +137,30 @@ void Application::ToggleCursor()
 		}
 	}
 }
+
+void Application::ShowMusicTest()
+{
+	musParams[0] = audio->audio->averageB;
+	musParams[1] = audio->audio->averageM*7;
+	musParams[2] = audio->audio->averageT*30;
+
+	ImGui::Begin("Plot Full");
+	if (ImPlot::BeginPlot("My Plot Full", "Frequency", "Magnitude")) {
+		//ImPlot::PlotBars("Bars", audio->audio->freq, audio->audio->magn, 5000, 10);
+		ImPlot::PlotLine("My Line Plot Full", audio->audio->freq, audio->audio->magn, 1024);
+		ImPlot::EndPlot();
+	}
+
+	std::string bass = "Bass: " + std::to_string(musParams[0]);
+	std::string Mid = "Mid: " + std::to_string(musParams[1]);
+	std::string Treble = "Bass: " + std::to_string(musParams[2]);
+
+	ImGui::BulletText(bass.c_str());
+	ImGui::BulletText(Mid.c_str());
+	ImGui::BulletText(Treble.c_str());
+	ImGui::End();
+}
+
 
 
 

@@ -3,7 +3,7 @@
 
 PointLight::PointLight(Graphics& gfx, float radius)
 	:
-	mesh(gfx, radius),
+	mesh(gfx, radius,"SolidVS.cso", "SolidPS.cso"),
 	cbuf(gfx)
 {
 	Reset();
@@ -13,8 +13,8 @@ PointLight::PointLight(Graphics& gfx, float radius)
 void PointLight::Reset() noexcept
 {
 	cbData = {
-		{ 0.0f,4.0f,-4.5f },
-		{ 0.05f,0.05f,0.05f },
+		{ 2.0f,9.0f,-17.0f },
+		{ 0.4f,0.4f,0.4f },
 		{ 1.0f,1.0f,1.0f },
 		1.0f,
 		1.0f,

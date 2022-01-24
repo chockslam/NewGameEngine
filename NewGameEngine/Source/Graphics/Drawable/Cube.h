@@ -7,7 +7,7 @@ class Cube
 {
 public:
 	template<class V>
-	static IndexedTriangleList<V> Make()
+	static IndexedTriangleList Make()
 	{
 		namespace dx = DirectX;
 
@@ -35,7 +35,7 @@ public:
 		};
 	}
 	template<class V>
-	static IndexedTriangleList<V> MakeSkinned()
+	static IndexedTriangleList MakeSkinned()
 	{
 		namespace dx = DirectX;
 
@@ -84,7 +84,7 @@ public:
 		};
 	}
 	template<class V>
-	static IndexedTriangleList<V> MakeIndependent()
+	static IndexedTriangleList MakeIndependent()
 	{
 		constexpr float side = 1.0f / 2.0f;
 

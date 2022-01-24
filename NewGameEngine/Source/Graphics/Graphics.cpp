@@ -6,6 +6,7 @@
 #include <imgui.h>
 #include <imgui_impl_win32.h>
 #include <imgui_impl_dx11.h>
+#include <implot.h>
 
 namespace wrl = Microsoft::WRL;
 namespace dx = DirectX;
@@ -103,6 +104,7 @@ Graphics::Graphics(HWND hWnd)
 
 	initImgui(hWnd);
 	
+	
 
 }
 
@@ -162,6 +164,7 @@ void Graphics::initImgui(HWND hwnd) noexcept
 {
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
+	ImPlot::CreateContext();
 	
 	ImGui_ImplWin32_Init(hwnd);
 	ImGui_ImplDX11_Init(pDevice.Get(), pContext.Get());

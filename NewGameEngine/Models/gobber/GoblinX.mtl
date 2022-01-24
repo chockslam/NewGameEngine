@@ -2,7 +2,7 @@
 # Material Count: 4
 
 newmtl GoblinEye
-Ns 70.000000
+Ns 20.000000
 Ka 1.000000 1.000000 1.000000
 Kd 0.850000 0.850000 0.850000
 Ks 0.200000 0.200000 0.200000
@@ -10,6 +10,7 @@ Ke 0.0 0.0 0.0
 Ni 1.000000
 d 1.000000
 illum 2
+map_Kd Textures\\GoblinEye.jpg
 
 newmtl GoblinIris
 Ns 80.000000
@@ -33,7 +34,7 @@ d 1.000000
 illum 3
 
 newmtl SkinGoblinA
-Ns 1.000000
+Ns 3.000000
 Ka 1.000000 1.000000 1.000000
 Kd 0.208109 0.208109 0.208109
 Ks 0.734974 0.734974 0.734974

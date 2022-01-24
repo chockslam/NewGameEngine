@@ -17,6 +17,21 @@ public:
 		memcpy(msr.pData, &consts, sizeof(consts));
 		GetContext(gfx)->Unmap(pConstantBuffer.Get(), 0u);
 	}
+	ConstantBuffer()
+	{
+	}
+	ConstantBuffer(Graphics& gfx, UINT slot = 0u)
+		:slot(slot)
+	{
+		D3D11_BUFFER_DESC cbd;
+		cbd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+		cbd.Usage = D3D11_USAGE_DYNAMIC;
+		cbd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+		cbd.MiscFlags = 0u;
+		cbd.ByteWidth = sizeof(C);
+		cbd.StructureByteStride = 0u;
+		GetDevice(gfx)->CreateBuffer(&cbd, nullptr, &pConstantBuffer);
+	}
 	ConstantBuffer(Graphics& gfx, const C& consts, UINT slot = 0u)
 		:slot(slot)
 	{
@@ -33,19 +48,7 @@ public:
 		csd.pSysMem = &consts;
 		GetDevice(gfx)->CreateBuffer(&cbd, &csd, &pConstantBuffer);
 	}
-	ConstantBuffer(Graphics& gfx, UINT slot = 0u)
-		:slot(slot)
-	{
-		
-		D3D11_BUFFER_DESC cbd;
-		cbd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
-		cbd.Usage = D3D11_USAGE_DYNAMIC;
-		cbd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
-		cbd.MiscFlags = 0u;
-		cbd.ByteWidth = sizeof(C);
-		cbd.StructureByteStride = 0u;
-		GetDevice(gfx)->CreateBuffer(&cbd, nullptr, &pConstantBuffer);
-	}
+	
 
 protected:
 	Microsoft::WRL::ComPtr<ID3D11Buffer> pConstantBuffer;
@@ -99,5 +102,26 @@ public:
 	void Bind(Graphics& gfx) noexcept override
 	{
 		GetContext(gfx)->PSSetConstantBuffers(slot, 1u, pConstantBuffer.GetAddressOf());
+	}
+	static std::shared_ptr<PixelConstantBuffer> Resolve(Graphics& gfx, const C& consts, UINT slot = 0)
+	{
+		return Codex::Resolve<PixelConstantBuffer>(gfx, consts, slot);
+	}
+	static std::shared_ptr<PixelConstantBuffer> Resolve(Graphics& gfx, UINT slot = 0)
+	{
+		return Codex::Resolve<PixelConstantBuffer>(gfx, slot);
+	}
+	static std::string GenerateUID(const C&, UINT slot)
+	{
+		return GenerateUID(slot);
+	}
+	static std::string GenerateUID(UINT slot = 0)
+	{
+		using namespace std::string_literals;
+		return typeid(PixelConstantBuffer).name() + "#"s + std::to_string(slot);
+	}
+	std::string GetUID() const noexcept override
+	{
+		return GenerateUID(slot);
 	}
 };

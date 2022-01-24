@@ -1,9 +1,10 @@
 cbuffer CBuf
 {
-	float4 color;
+	float3 color;
 };
 
 float4 main() : SV_Target
 {
-	return color;
+    
+    return float4(normalize(color), 1.0f);
 }

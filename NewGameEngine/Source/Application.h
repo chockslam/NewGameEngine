@@ -1,11 +1,14 @@
 #pragma once
 #include "Window/Window.h"
-//#include "conversion.h"
 #include "Graphics/NewCamera.h"
 #include "Common/Time.h"
 #include "Graphics/PointLight.h"
 #include "Graphics/Drawable/TestPlane.h"
-#include "Graphics/Model.h"
+#include "Graphics/Drawable/WrapperSolidSphere.h"
+#include "Window/AudioIO.h"
+#include "../resource.h"
+
+
 
 
 class Application
@@ -21,14 +24,21 @@ private:
 	void LookAround();
 	void Control();
 	void ToggleCursor();
+	void ShowMusicTest();
+
+	
 
 private:
 	bool showDemoWindow = false;
 	Window wnd;
 	Timer timer;
 	float speed_factor = 0.2f;
-	PointLight light;
+	//PointLight light;
 	Camera cam;
-	Model wall{ wnd.Gfx(),"Models\\brick_wall\\brick_wall.obj" };
-	TestPlane tp{ wnd.Gfx(),1.0 };
+
+	AudioIO* audio = new AudioIO();
+	double musParams[3];
+
+	WrapperSolidSphere sph1;
+	WrapperSolidSphere sph2;
 };

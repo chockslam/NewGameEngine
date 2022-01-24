@@ -1,7 +1,7 @@
 #pragma once
 
 #include <optional>
-#include "../Vertex.h"
+//#include "../Vertex.h"
 #include "IndexedTriangleList.h"
 #include <DirectXMath.h>
 #include "../EMaths.h"

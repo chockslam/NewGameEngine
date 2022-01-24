@@ -7,6 +7,7 @@
 #include <memory>
 #include "../Graphics/Graphics.h"
 #include <imgui_impl_win32.h>
+#include "AudioIO.h"
 
 class Window : public SubObject {
 

@@ -7,7 +7,6 @@
 #include <memory>
 #include <random>
 
-
 class Graphics
 {
 	friend class Bindable;
@@ -34,4 +33,7 @@ private:
 	Microsoft::WRL::ComPtr<ID3D11DeviceContext> pContext;
 	Microsoft::WRL::ComPtr<ID3D11RenderTargetView> pTarget;
 	Microsoft::WRL::ComPtr<ID3D11DepthStencilView> pDSV;
+
+
+
 };
