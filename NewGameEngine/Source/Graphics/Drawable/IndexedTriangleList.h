@@ -2,12 +2,16 @@
 #include <vector>
 #include <DirectXMath.h>
 
-template<class T>
+//struct Vertex
+//{
+//	DirectX::XMFLOAT3 pos;
+//};
+
 class IndexedTriangleList
 {
 public:
 	IndexedTriangleList() = default;
-	IndexedTriangleList(std::vector<T> verts_in, std::vector<unsigned short> indices_in)
+	IndexedTriangleList(std::vector<Vertex> verts_in, std::vector<unsigned short> indices_in)
 		:
 		vertices(std::move(verts_in)),
 		indices(std::move(indices_in))
@@ -27,7 +31,7 @@ public:
 		}
 	}
 	// asserts face-independent vertices w/ normals cleared to zero
-	void SetNormalsIndependentFlat() noexcept
+	void SetNormalsIndependentFlat()
 	{
 		using namespace DirectX;
 		assert(indices.size() % 3 == 0 && indices.size() > 0);
@@ -49,6 +53,6 @@ public:
 	}
 
 public:
-	std::vector<T> vertices;
+	std::vector<Vertex> vertices;
 	std::vector<unsigned short> indices;
 };

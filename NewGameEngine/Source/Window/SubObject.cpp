@@ -1,6 +1,6 @@
 #include "SubObject.h"
 
-SubObject::SubObject(std::wstring className, std::wstring classTitle, HICON icon)
+SubObject::SubObject(std::string className, std::string classTitle, HICON icon)
 	: m_Class(className), m_Title(classTitle), m_Hicon(icon), m_Inst(GetModuleHandle(nullptr))
 {
 

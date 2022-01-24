@@ -3,6 +3,12 @@
 #include "Graphics/NewCamera.h"
 #include "Common/Time.h"
 #include "Graphics/PointLight.h"
+#include "Graphics/Drawable/TestPlane.h"
+#include "Graphics/Drawable/WrapperSolidSphere.h"
+#include "Window/AudioIO.h"
+#include "../resource.h"
+
+
 
 
 class Application
@@ -17,14 +23,22 @@ private:
 	void MoveAround();
 	void LookAround();
 	void Control();
-	void SpawnSimulationWindow() noexcept;
+	void ToggleCursor();
+	void ShowMusicTest();
+
+	
 
 private:
+	bool showDemoWindow = false;
 	Window wnd;
 	Timer timer;
-	std::vector<std::unique_ptr<class Drawable>> drawables;
 	float speed_factor = 0.2f;
-	PointLight light;
+	//PointLight light;
 	Camera cam;
-	static constexpr size_t nDrawables = 20;
+
+	AudioIO* audio = new AudioIO();
+	double musParams[3];
+
+	WrapperSolidSphere sph1;
+	WrapperSolidSphere sph2;
 };

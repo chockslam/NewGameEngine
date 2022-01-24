@@ -7,7 +7,7 @@
 class SubObject {
 
 public:
-	SubObject(std::wstring className, std::wstring classTitle, HICON icon);
+	SubObject(std::string className, std::string classTitle, HICON icon);
 	~SubObject();
 
 	
@@ -25,8 +25,8 @@ protected:
 private:
 	virtual VOID Initialize(UINT type) = 0;
 protected:
-	std::wstring m_Class;
-	std::wstring m_Title;
+	std::string m_Class;
+	std::string m_Title;
 
 	HICON m_Hicon;
 

@@ -5,10 +5,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Source Files\Graphics">
       <UniqueIdentifier>{55bdf225-966f-4a5f-8596-409083fd2b6c}</UniqueIdentifier>
     </Filter>
@@ -54,6 +50,10 @@
     <Filter Include="Source Files\Shaders\VS">
       <UniqueIdentifier>{754904a3-da33-44f6-a7f1-5dd9f9d71181}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Window\Window.cpp">
@@ -75,9 +75,6 @@
       <Filter>Source Files\Graphics\Private</Filter>
     </ClCompile>
     <ClCompile Include="Source\Graphics\Graphics.cpp">
-      <Filter>Source Files\Graphics\Private</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Graphics\Drawable\Box.cpp">
       <Filter>Source Files\Graphics\Private</Filter>
     </ClCompile>
     <ClCompile Include="Source\Graphics\Drawable\Drawable.cpp">
@@ -122,10 +119,25 @@
     <ClCompile Include="Source\Graphics\Drawable\SolidSphere.cpp">
       <Filter>Source Files\Graphics\Private</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Graphics\Drawable\AssTest.cpp">
+    <ClCompile Include="Source\Graphics\Bindable\Sampler.cpp">
       <Filter>Source Files\Graphics\Private</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Graphics\Model.cpp">
+    <ClCompile Include="Source\Graphics\Bindable\Texture.cpp">
+      <Filter>Source Files\Graphics\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Surface.cpp">
+      <Filter>Source Files\Graphics\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Common\GDIPlusManager.cpp">
+      <Filter>Source Files\Common\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Bindable\TransformCbufPixPVec.cpp">
+      <Filter>Source Files\Graphics\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Window\AudioIO.cpp">
+      <Filter>Source Files\Win32\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Drawable\WrapperSolidSphere.cpp">
       <Filter>Source Files\Graphics\Private</Filter>
     </ClCompile>
   </ItemGroup>
@@ -148,9 +160,6 @@
     <ClInclude Include="Source\Graphics\Bindable\Bindable.h">
       <Filter>Source Files\Graphics\Classes</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Graphics\Drawable\Box.h">
-      <Filter>Source Files\Graphics\Classes</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Graphics\Camera.h">
       <Filter>Source Files\Graphics\Classes</Filter>
     </ClInclude>
@@ -158,9 +167,6 @@
       <Filter>Source Files\Graphics\Classes</Filter>
     </ClInclude>
     <ClInclude Include="Source\Graphics\Drawable\Drawable.h">
-      <Filter>Source Files\Graphics\Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Graphics\Drawable\DrawableBase.h">
       <Filter>Source Files\Graphics\Classes</Filter>
     </ClInclude>
     <ClInclude Include="Source\Graphics\Graphics.h">
@@ -217,18 +223,60 @@
     <ClInclude Include="Source\Graphics\Drawable\Sphere.h">
       <Filter>Source Files\Graphics\Public</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Graphics\Drawable\TestBody.h">
+    <ClInclude Include="Source\conversion.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Bindable\Sampler.h">
       <Filter>Source Files\Graphics\Classes</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Graphics\Drawable\AssTest.h">
+    <ClInclude Include="Source\Graphics\Surface.h">
       <Filter>Source Files\Graphics\Classes</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Graphics\Vertex.h">
-      <Filter>Source Files\Graphics</Filter>
+    <ClInclude Include="Source\Common\GDIPlusManager.h">
+      <Filter>Source Files\Common\Classes</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Graphics\Model.h">
+    <ClInclude Include="Source\Graphics\Bindable\BindableCodex.h">
       <Filter>Source Files\Graphics\Classes</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Graphics\Bindable\TransformCbufPixPVec.h">
+      <Filter>Source Files\Graphics\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Bindable\IndexedTriangleList.h">
+      <Filter>Source Files\Graphics\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h">
+      <Filter>Source Files\Graphics\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Drawable\Plane.h">
+      <Filter>Source Files\Graphics\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
+    <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
+    <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
+    <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
+    <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
+    <ClInclude Include="Source\Graphics\Shaders\PointLight.hlsl">
+      <Filter>Source Files\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Shaders\ShaderOps.hlsl">
+      <Filter>Source Files\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
+    <ClInclude Include="Source\Window\AudioIO.h">
+      <Filter>Source Files\Win32\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
+    <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
+    <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
+    <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
+    <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
+    <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
+    <ClInclude Include="Source\Graphics\Drawable\WrapperSolidSphere.h">
+      <Filter>Source Files\Graphics\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Source\Graphics\Shaders\VS\SolidVS.hlsl">
@@ -243,5 +291,34 @@
     <FxCompile Include="Source\Graphics\Shaders\VS\PhongVS.hlsl">
       <Filter>Source Files\Shaders\VS</Filter>
     </FxCompile>
+    <FxCompile Include="Source\Graphics\Shaders\PS\PhongPSNormalMap.hlsl">
+      <Filter>Source Files\Shaders\PS</Filter>
+    </FxCompile>
+    <FxCompile Include="Source\Graphics\Shaders\PS\PhongPSNormalMapObject.hlsl">
+      <Filter>Source Files\Shaders\PS</Filter>
+    </FxCompile>
+    <FxCompile Include="Source\Graphics\Shaders\PS\PhongPSSpecMap.hlsl">
+      <Filter>Source Files\Shaders\PS</Filter>
+    </FxCompile>
+    <FxCompile Include="Source\Graphics\Shaders\PS\PhongPSSpecNormalMap.hlsl">
+      <Filter>Source Files\Shaders\PS</Filter>
+    </FxCompile>
+    <FxCompile Include="Source\Graphics\Shaders\VS\PhongVSNormalMap.hlsl">
+      <Filter>Source Files\Shaders\VS</Filter>
+    </FxCompile>
+    <FxCompile Include="Source\Graphics\Shaders\PS\PhongPSNotex.hlsl">
+      <Filter>Source Files\Shaders\PS</Filter>
+    </FxCompile>
+    <FxCompile Include="Source\Graphics\Shaders\VS\PhongVSNotex.hlsl">
+      <Filter>Source Files\Shaders\VS</Filter>
+    </FxCompile>
+    <FxCompile Include="Source\Graphics\Shaders\PS\CustomSolidPS.hlsl">
+      <Filter>Source Files\Shaders\PS</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ICP.rc">
+      <Filter>Source Files\Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

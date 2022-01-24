@@ -1,4 +1,5 @@
 #pragma once
+
 #include "IndexedTriangleList.h"
 #include <DirectXMath.h>
 #include "../EMaths.h"
@@ -6,8 +7,7 @@
 class Sphere
 {
 public:
-	template<class V>
-	static IndexedTriangleList<V> MakeTesselated(int latDiv, int longDiv)
+	static IndexedTriangleList MakeTesselated(int latDiv, int longDiv)
 	{
 		namespace dx = DirectX;
 		assert(latDiv >= 3);
@@ -18,7 +18,7 @@ public:
 		const float lattitudeAngle = PI / latDiv;
 		const float longitudeAngle = 2.0f * PI / longDiv;
 
-		std::vector<V> vertices;
+		std::vector<Vertex> vertices;
 		for (int iLat = 1; iLat < latDiv; iLat++)
 		{
 			const auto latBase = dx::XMVector3Transform(
@@ -91,9 +91,8 @@ public:
 
 		return { std::move(vertices),std::move(indices) };
 	}
-	template<class V>
-	static IndexedTriangleList<V> Make()
+	static IndexedTriangleList Make()
 	{
-		return MakeTesselated<V>(12, 24);
+		return MakeTesselated(12, 24);
 	}
 };

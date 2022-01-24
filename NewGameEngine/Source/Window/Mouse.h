@@ -26,6 +26,10 @@ class Mouse
 {
 	friend class Window;
 public:
+	struct RawDelta
+	{
+		int x, y;
+	};
 	class Event
 	{
 	public:
@@ -89,8 +93,7 @@ public:
 	std::pair<int, int> GetPos() const noexcept;
 	int GetPosX() const noexcept;
 	int GetPosY() const noexcept;
-	int GetRelPosX() const noexcept;
-	int GetRelPosY() const noexcept;
+	std::optional<RawDelta> ReadRawDelta() noexcept;
 	bool IsInWindow() const noexcept;
 	bool LeftIsPressed() const noexcept;
 	bool RightIsPressed() const noexcept;
@@ -99,7 +102,15 @@ public:
 	{
 		return buffer.empty();
 	}
+	bool IsRawEmpty() const noexcept
+	{
+		return rawDeltaBuffer.empty();
+	}
 	void Flush() noexcept;
+
+	void EnableRaw() noexcept;
+	void DisableRaw() noexcept;
+	bool RawEnabled() const noexcept;
 private:
 	void OnMouseMove(int x, int y) noexcept;
 	void OnMouseMoveRaw(int xR, int yR) noexcept;
@@ -112,16 +123,18 @@ private:
 	void OnWheelUp(int x, int y) noexcept;
 	void OnWheelDown(int x, int y) noexcept;
 	void TrimBuffer() noexcept;
+
+	void TrimRawInputBuffer() noexcept;
 	void OnWheelDelta(int x, int y, int delta) noexcept;
 private:
-	static constexpr unsigned int bufferSize = 16u;
+	static constexpr unsigned int bufferSize = 32u;
 	int x;
 	int y;
-	int xR;
-	int yR;
 	bool leftIsPressed = false;
 	bool rightIsPressed = false;
 	bool isInWindow = false;
 	int wheelDeltaCarry = 0;
+	bool rawEnabled = false;
 	std::queue<Event> buffer;
+	std::queue<RawDelta> rawDeltaBuffer;	
 };

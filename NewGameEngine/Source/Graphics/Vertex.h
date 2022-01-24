@@ -22,6 +22,8 @@ namespace hw3dexp
 			Position3D,
 			Texture2D,
 			Normal,
+			Tangent,
+			Bitangent,
 			Float3Color,
 			Float4Color,
 			BGRAColor,
@@ -33,42 +35,63 @@ namespace hw3dexp
 			using SysType = DirectX::XMFLOAT2;
 			static constexpr DXGI_FORMAT dxgiFormat = DXGI_FORMAT_R32G32_FLOAT;
 			static constexpr const char* semantic = "Position";
+			static constexpr const char* code = "P2";
 		};
 		template<> struct Map<Position3D>
 		{
 			using SysType = DirectX::XMFLOAT3;
 			static constexpr DXGI_FORMAT dxgiFormat = DXGI_FORMAT_R32G32B32_FLOAT;
 			static constexpr const char* semantic = "Position";
+			static constexpr const char* code = "P3";
 		};
 		template<> struct Map<Texture2D>
 		{
 			using SysType = DirectX::XMFLOAT2;
 			static constexpr DXGI_FORMAT dxgiFormat = DXGI_FORMAT_R32G32_FLOAT;
 			static constexpr const char* semantic = "Texcoord";
+			static constexpr const char* code = "T2";
 		};
 		template<> struct Map<Normal>
 		{
 			using SysType = DirectX::XMFLOAT3;
 			static constexpr DXGI_FORMAT dxgiFormat = DXGI_FORMAT_R32G32B32_FLOAT;
 			static constexpr const char* semantic = "Normal";
+			static constexpr const char* code = "N";
+		};
+		template<> struct Map<Tangent>
+		{
+			using SysType = DirectX::XMFLOAT3;
+			static constexpr DXGI_FORMAT dxgiFormat = DXGI_FORMAT_R32G32B32_FLOAT;
+			static constexpr const char* semantic = "Tangent";
+			static constexpr const char* code = "Nt";
+		};
+		template<> struct Map<Bitangent>
+		{
+			using SysType = DirectX::XMFLOAT3;
+			static constexpr DXGI_FORMAT dxgiFormat = DXGI_FORMAT_R32G32B32_FLOAT;
+			static constexpr const char* semantic = "Bitangent";
+			static constexpr const char* code = "Nb";
 		};
 		template<> struct Map<Float3Color>
 		{
 			using SysType = DirectX::XMFLOAT3;
 			static constexpr DXGI_FORMAT dxgiFormat = DXGI_FORMAT_R32G32B32_FLOAT;
 			static constexpr const char* semantic = "Color";
+			static constexpr const char* code = "C3";
 		};
 		template<> struct Map<Float4Color>
 		{
 			using SysType = DirectX::XMFLOAT4;
 			static constexpr DXGI_FORMAT dxgiFormat = DXGI_FORMAT_R32G32B32A32_FLOAT;
 			static constexpr const char* semantic = "Color";
+			static constexpr const char* code = "C4";
 		};
 		template<> struct Map<BGRAColor>
 		{
 			using SysType = hw3dexp::BGRAColor;
 			static constexpr DXGI_FORMAT dxgiFormat = DXGI_FORMAT_R8G8B8A8_UNORM;
 			static constexpr const char* semantic = "Color";
+			static constexpr const char* code = "C8";
 		};
 
 		class Element
@@ -103,6 +126,10 @@ namespace hw3dexp
 					return sizeof(Map<Texture2D>::SysType);
 				case Normal:
 					return sizeof(Map<Normal>::SysType);
+				case Tangent:
+					return sizeof(Map<Tangent>::SysType);
+				case Bitangent:
+					return sizeof(Map<Bitangent>::SysType);
 				case Float3Color:
 					return sizeof(Map<Float3Color>::SysType);
 				case Float4Color:
@@ -117,6 +144,7 @@ namespace hw3dexp
 			{
 				return type;
 			}
+			
 			D3D11_INPUT_ELEMENT_DESC GetDesc() const noexcept
 			{
 				switch (type)
@@ -129,6 +157,10 @@ namespace hw3dexp
 					return GenerateDesc<Texture2D>(GetOffset());
 				case Normal:
 					return GenerateDesc<Normal>(GetOffset());
+				case Tangent:
+					return GenerateDesc<Tangent>(GetOffset());
+				case Bitangent:
+					return GenerateDesc<Bitangent>(GetOffset());
 				case Float3Color:
 					return GenerateDesc<Float3Color>(GetOffset());
 				case Float4Color:
@@ -138,6 +170,31 @@ namespace hw3dexp
 				}
 				assert("Invalid element type" && false);
 				return { "INVALID",0,DXGI_FORMAT_UNKNOWN,0,0,D3D11_INPUT_PER_VERTEX_DATA,0 };
+			}
+			
+			const char* GetCode() const noexcept
+			{
+				switch (type)
+				{
+				case Position2D:
+					return Map<Position2D>::code;
+				case Position3D:
+					return Map<Position3D>::code;
+				case Texture2D:
+					return Map<Texture2D>::code;
+				case Normal:
+					return Map<Normal>::code;
+				case Tangent:
+					return Map<Tangent>::code;
+				case Bitangent:
+					return Map<Bitangent>::code;
+				case Float3Color:
+					return Map<Float3Color>::code;
+				case Float4Color:
+					return Map<Float4Color>::code;
+				case BGRAColor:
+					return Map<BGRAColor>::code;
+				}
 			}
 		private:
 			template<ElementType type>
@@ -149,6 +206,16 @@ namespace hw3dexp
 			ElementType type;
 			size_t offset;
 		};
+		std::string GetCode() const
+		{
+			std::string code;
+			for (const auto& e : elements)
+			{
+				code += e.GetCode();
+			}
+			return code;
+		}
+			
 	public:
 		template<ElementType Type>
 		const Element& Resolve() const noexcept
@@ -222,6 +289,12 @@ namespace hw3dexp
 				break;
 			case VertexLayout::Normal:
 				SetAttribute<VertexLayout::Normal>(pAttribute, std::forward<T>(val));
+				break;
+			case VertexLayout::Tangent:
+				SetAttribute<VertexLayout::Tangent>( pAttribute,std::forward<T>( val ) );
+				break;
+			case VertexLayout::Bitangent:
+				SetAttribute<VertexLayout::Bitangent>( pAttribute,std::forward<T>( val ) );
 				break;
 			case VertexLayout::Float3Color:
 				SetAttribute<VertexLayout::Float3Color>(pAttribute, std::forward<T>(val));

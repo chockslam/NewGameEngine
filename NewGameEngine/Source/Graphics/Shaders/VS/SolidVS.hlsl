@@ -4,7 +4,21 @@ cbuffer CBuf
 	matrix modelViewProj;
 };
 
-float4 main(float3 pos : Position) : SV_Position
+//cbuffer musData
+//{
+//    float3 musparams;
+//};
+
+struct VSOut
 {
-	return mul(float4(pos,1.0f),modelViewProj);
+    float4 viewPos : SV_Position;
+   // float3 musParams : MusParams;
+};
+
+VSOut main(float3 pos : Position)
+{
+    VSOut vso;
+    vso.viewPos = mul(float4(pos, 1.0f), modelViewProj);
+   // vso.musParams = musparams;
+	return vso;
 }
