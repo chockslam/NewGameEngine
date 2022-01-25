@@ -277,12 +277,13 @@
       <Filter>Source Files\Graphics\Classes</Filter>
     </ClInclude>
     <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
+    <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Source\Graphics\Shaders\VS\SolidVS.hlsl">
       <Filter>Source Files\Shaders\VS</Filter>
     </FxCompile>
-    <FxCompile Include="Source\Graphics\Shaders\PS\SolidPS.hlsl">
+    <FxCompile Include="Source\Graphics\Shaders\PS\Solid_RGBeqBMT_PS.hlsl">
       <Filter>Source Files\Shaders\PS</Filter>
     </FxCompile>
     <FxCompile Include="Source\Graphics\Shaders\PS\PhongPS.hlsl">
@@ -312,7 +313,7 @@
     <FxCompile Include="Source\Graphics\Shaders\VS\PhongVSNotex.hlsl">
       <Filter>Source Files\Shaders\VS</Filter>
     </FxCompile>
-    <FxCompile Include="Source\Graphics\Shaders\PS\CustomSolidPS.hlsl">
+    <FxCompile Include="Source\Graphics\Shaders\PS\Solid_RGBeqTMB_PS.hlsl">
       <Filter>Source Files\Shaders\PS</Filter>
     </FxCompile>
   </ItemGroup>

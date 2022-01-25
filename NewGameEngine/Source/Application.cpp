@@ -141,8 +141,8 @@ void Application::ToggleCursor()
 void Application::ShowMusicTest()
 {
 	musParams[0] = audio->audio->averageB;
-	musParams[1] = audio->audio->averageM*7;
-	musParams[2] = audio->audio->averageT*30;
+	musParams[1] = audio->audio->averageM*2;
+	musParams[2] = audio->audio->averageT*6;
 
 	ImGui::Begin("Plot Full");
 	if (ImPlot::BeginPlot("My Plot Full", "Frequency", "Magnitude")) {
