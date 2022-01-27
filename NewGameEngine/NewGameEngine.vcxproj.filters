@@ -54,6 +54,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Shaders\GS">
+      <UniqueIdentifier>{837a8069-a283-4edf-a17c-f4d0f0d46c77}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Window\Window.cpp">
@@ -277,12 +280,17 @@
       <Filter>Source Files\Graphics\Classes</Filter>
     </ClInclude>
     <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
+    <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
+    <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
+    <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
+    <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
+    <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Source\Graphics\Shaders\VS\SolidVS.hlsl">
       <Filter>Source Files\Shaders\VS</Filter>
     </FxCompile>
-    <FxCompile Include="Source\Graphics\Shaders\PS\SolidPS.hlsl">
+    <FxCompile Include="Source\Graphics\Shaders\PS\Solid_RGBeqBMT_PS.hlsl">
       <Filter>Source Files\Shaders\PS</Filter>
     </FxCompile>
     <FxCompile Include="Source\Graphics\Shaders\PS\PhongPS.hlsl">
@@ -312,7 +320,19 @@
     <FxCompile Include="Source\Graphics\Shaders\VS\PhongVSNotex.hlsl">
       <Filter>Source Files\Shaders\VS</Filter>
     </FxCompile>
-    <FxCompile Include="Source\Graphics\Shaders\PS\CustomSolidPS.hlsl">
+    <FxCompile Include="Source\Graphics\Shaders\PS\Solid_RGBeqTMB_PS.hlsl">
+      <Filter>Source Files\Shaders\PS</Filter>
+    </FxCompile>
+    <FxCompile Include="Source\Graphics\Shaders\PS\Solid_RGBeqBTM_PS.hlsl">
+      <Filter>Source Files\Shaders\PS</Filter>
+    </FxCompile>
+    <FxCompile Include="Source\Graphics\Shaders\PS\Solid_RGBeqMBT_PS.hlsl">
+      <Filter>Source Files\Shaders\PS</Filter>
+    </FxCompile>
+    <FxCompile Include="Source\Graphics\Shaders\PS\Solid_RGBeqMTB_PS.hlsl">
+      <Filter>Source Files\Shaders\PS</Filter>
+    </FxCompile>
+    <FxCompile Include="Source\Graphics\Shaders\PS\Solid_RGBeqTBM_PS.hlsl">
       <Filter>Source Files\Shaders\PS</Filter>
     </FxCompile>
   </ItemGroup>

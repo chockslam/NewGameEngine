@@ -88,7 +88,8 @@ public:
 	{
 		constexpr float side = 1.0f / 2.0f;
 
-		std::vector<V> vertices(24);
+		
+		<V> vertices(24);
 		vertices[0].pos = { -side,-side,-side };// 0 near side
 		vertices[1].pos = { side,-side,-side };// 1
 		vertices[2].pos = { -side,side,-side };// 2
