@@ -23,10 +23,6 @@ SolidSphere::SolidSphere(Graphics& gfx, float radius, const char* vs, const char
 	//AddBind(std::make_shared<PixelShader>(gfx, L"SolidPS.cso"));
 	AddBind(PixelShader::Resolve(gfx, ps));
 
-	
-	//AddBind(std::make_shared<PixelConstantBuffer<PSColorConstant>>(gfx, colorConst));
-	//AddBind(PixelConstantBuffer<PSColorConstant>::Resolve(gfx, colorConst));
-
 	const std::vector<D3D11_INPUT_ELEMENT_DESC> ied =
 	{
 		{ "Position",0,DXGI_FORMAT_R32G32B32_FLOAT,0,0,D3D11_INPUT_PER_VERTEX_DATA,0 },

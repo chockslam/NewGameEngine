@@ -4,8 +4,25 @@
 #include <vector>
 #include <complex>
 #include <fftw3.h>
-#include <thread>
-#include <semaphore>
+#include <memory>
+
+
+#define SAMPLE_RATE 44100
+#define SAMPLE_NUM 2048
+
+#define BASS_START 40.0f
+#define BASS_END 250.0f
+
+
+#define MID_START 250.0f
+#define MID_END 4000.0f
+
+
+#define TREBLE_START 4000.0f
+
+
+
+
 
 //namespace plt = matplotlibcpp;
 
@@ -28,16 +45,8 @@ public:
 		fftw_complex* in;
 		fftw_complex* out;
 
-		//double freqB[13];
-		//double freqM[172];
-		//double freqT[838];
-		//
-		//double magnB[13];
-		//double magnM[172];
-		//double magnT[838];
-		//
-		double freq[1024];
-		double magn[1024];
+		double freq[SAMPLE_NUM/2];
+		double magn[SAMPLE_NUM/2];
 
 		double averageB;
 		double averageM;
@@ -70,6 +79,9 @@ private:
 
 	struct AudioData* audio = (struct AudioData*)malloc(sizeof(struct AudioData));
 
+	//does not work with smart pointers
+	//std::shared_ptr<AudioData> audio = std::make_shared<AudioData>();
+
 
 	const char* m_fileName;
 	bool m_haveData;
@@ -82,5 +94,3 @@ private:
 
 
 };
-static int m_SamplesNum;
-static int sampleRate = 44100;

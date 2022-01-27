@@ -7,7 +7,6 @@ AudioIO::AudioIO()
 	/// Default parameters
 	/// </summary>
 	SDL_Init(SDL_INIT_AUDIO);
-	m_SamplesNum = 2048;
 }
 
 AudioIO::~AudioIO()
@@ -32,14 +31,14 @@ bool AudioIO::OpenFile(const char* fileName)
 		m_dataFormat = m_dataType.format;
 		
 		//m_dataType.freq = sampleRate;
-		m_dataType.samples = m_SamplesNum;
+		m_dataType.samples = SAMPLE_NUM;
 
 
-		audio->in = (fftw_complex*)fftw_malloc(sizeof(fftw_complex) * m_SamplesNum);
-		audio->out = (fftw_complex*)fftw_malloc(sizeof(fftw_complex) * m_SamplesNum);
+		audio->in = (fftw_complex*)fftw_malloc(sizeof(fftw_complex) * SAMPLE_NUM);
+		audio->out = (fftw_complex*)fftw_malloc(sizeof(fftw_complex) * SAMPLE_NUM);
 
 
-		audio->plan = fftw_plan_dft_1d(m_SamplesNum, audio->in, audio->out, FFTW_FORWARD, FFTW_MEASURE);
+		audio->plan = fftw_plan_dft_1d(SAMPLE_NUM, audio->in, audio->out, FFTW_FORWARD, FFTW_MEASURE);
 		m_dataType.userdata = audio;
 		m_dataType.callback = myCallback;
 		
@@ -116,11 +115,11 @@ void AudioIO::output(struct wrapper arg)
 	//smphSignalCallBackToThread.acquire();
 	struct wrapper wrap = arg;
 	
-	for (int i = 0; i < m_SamplesNum; i++)
+	for (int i = 0; i < SAMPLE_NUM; i++)
 	{
 
 		//getting values from stream and applying hann windowing function
-		double multiplier = 0.5 * (1 - cos(2 * 3.14 * i / m_SamplesNum));
+		double multiplier = 0.5 * (1 - cos(2 * 3.14 * i / SAMPLE_NUM));
 		
 		wrap.audio->in[i][0] = Get16bitAudioSample(
 			wrap.stream,
@@ -134,44 +133,53 @@ void AudioIO::output(struct wrapper arg)
 	fftw_execute(wrap.audio->plan);
 
 	
-	int countB = 0, 
-		countM = 0, 
-		countT = 0;
+	int countB = 1, 
+		countM = 1, 
+		countT = 1;
 
 	float cumB = 0,
 	      cumM = 0,
 		  cumT = 0;
 	
-	for (int i = 0; i < m_SamplesNum / 2; i++) {
+	for (int i = 0; i < SAMPLE_NUM / 2; i++) {
 		double re = wrap.audio->out[i][0];
 		double im = wrap.audio->out[i][1];
-		double freq = ((double)i) * sampleRate / ((double)m_SamplesNum);
+		double freq = ((double)i) * SAMPLE_RATE / ((double)SAMPLE_NUM);
 		double magn = sqrt(re * re + im * im);
 
-		if (freq > 50.0 && freq < 250.0) {
-			cumB += magn;
-			countB++;
+		if (magn > 3.5f) {
+			if (freq > BASS_START && freq < BASS_END) {
+				cumB += magn;
+				countB++;
+			}
+			if (freq > MID_START && freq < MID_END) {
+				cumM += magn;
+				countM++;
+			}
+			if (freq > TREBLE_START) {
+				cumT += magn;
+				countT++;
+			}
 		}
-		if (freq > 250.0 && freq < 4000.0) {
-			cumM += magn;
-			countM++;
-		}
-		if (freq > 4000.0) {
-			cumT += magn;
-			countT++;
-		}
+		
 		
 		wrap.audio->freq[i] = freq;
 		wrap.audio->magn[i] = magn;
 
 	}
 
-	wrap.audio->averageB = cumB / countB;
-	wrap.audio->averageM = cumM / countM;
-	wrap.audio->averageT = cumT / countT;
+	float avB = cumB / countB,
+		  avM = cumM / countM,
+		  avT = cumT / countT;
+	
+	if (avB == 0 && avM == 0 && avT == 0) {
+		avB = 0.75;
+		avM = 0.5;
+		avT = 0.1;
+	}
 
-
-
-	printf("");
+	wrap.audio->averageB = avB;
+	wrap.audio->averageM = avM;
+	wrap.audio->averageT = avT;
 
 }
