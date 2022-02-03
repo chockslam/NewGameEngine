@@ -2,14 +2,15 @@
 #include "Window/Window.h"
 #include "Graphics/NewCamera.h"
 #include "Common/Time.h"
+#include "Common/GUIconst.h"
 #include "Graphics/PointLight.h"
 #include "Graphics/Drawable/TestPlane.h"
 #include "Graphics/Drawable/WrapperSolidSphere.h"
 #include "Window/AudioIO.h"
+#include "GUI/GUIwrap.h"
 #include "../resource.h"
 
 
-#define WAV_FILE "wavSamples\\trinity.wav"
 
 
 class Application
@@ -26,7 +27,7 @@ private:
 	void LookAround();
 	void Control();
 	void ToggleCursor();
-	void ShowMusicTest();
+	void playNewFile();
 
 	
 
@@ -38,13 +39,19 @@ private:
 	//PointLight light;
 	Camera cam;
 
-	AudioIO* audio = new AudioIO();
-	double musParams[3];
+	GUIwrap& gui = GUIwrap::getInstance();
+
+
+	std::unique_ptr<AudioIO> audio = std::make_unique<AudioIO>();
+
+
+	float musParams[3];
+	float weightOfParams[3]{ 1.0f,1.0f,1.0f };
 
 	std::vector<WrapperSolidSphere*> spheresWsolidPS_R;
 	std::vector<WrapperSolidSphere*> spheresWsolidPS_G;
 	std::vector<WrapperSolidSphere*> spheresWsolidPS_B;
 
-
+	std::string wavFileName;
 
 };

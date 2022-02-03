@@ -45,7 +45,7 @@ void WrapperSolidSphere::SpawnTestFreqPlot() noexcept
 }
 
 
-void WrapperSolidSphere::Bind(Graphics& gfx, DirectX::FXMMATRIX view, double musParams[3]) const noexcept
+void WrapperSolidSphere::Bind(Graphics& gfx, DirectX::FXMMATRIX view, float musParams[3]) const noexcept
 {
 	auto dataCopy = cbData;
 	DirectX::XMVECTOR color = { musParams[0], musParams[1], musParams[2] };
