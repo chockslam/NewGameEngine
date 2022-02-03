@@ -1,33 +1,42 @@
 #include "AudioIO.h"
 #include <implot.h>
 
+
 AudioIO::AudioIO()
 {
-	/// <summary>
-	/// Default parameters
-	/// </summary>
 	SDL_Init(SDL_INIT_AUDIO);
 }
 
 AudioIO::~AudioIO()
 {
-	if (m_haveData) {
+	// Stop Audio Thread before cleaning up memory
+	SDL_LockAudioDevice(m_deviceId);
+
+	if (audio->m_haveData) {
 		SDL_FreeWAV(m_buffer);
+
+		audio->m_haveData = false;
+		fftw_destroy_plan(audio->plan);
+		fftw_cleanup();
+
+		delete audio;
+		audio = nullptr;
 	}
+
 }
 
 
 
-bool AudioIO::OpenFile(const char* fileName)
+bool AudioIO::OpenFile(std::string fileName)
 {
-	m_fileName = fileName;
+	m_fileName = fileName.c_str();
 
 	if (SDL_LoadWAV(m_fileName, &m_dataType, &m_buffer, &m_length) == nullptr) {
 		return false;
 
 	}
 	else {
-		m_haveData = true;
+		audio->m_haveData = true;
 		m_dataFormat = m_dataType.format;
 		
 		//m_dataType.freq = sampleRate;
@@ -57,9 +66,30 @@ bool AudioIO::OpenFile(const char* fileName)
 void AudioIO::PlayAudio()
 {
 	m_deviceId = SDL_OpenAudioDevice(NULL, 0, &m_dataType, NULL, 0);
-	//auto error = SDL_GetError();
 	int success = SDL_QueueAudio(m_deviceId, m_buffer, m_length);
 	SDL_PauseAudioDevice(m_deviceId, 0);
+}
+
+void AudioIO::SwitchAudioFile(std::string filename)
+{
+	SDL_CloseAudioDevice(m_deviceId);
+	SDL_FreeWAV(m_buffer);
+
+
+	audio->m_haveData = false;
+
+	//MEMORY LEAKED SOLVED
+	if (audio->in) {
+		fftw_free(audio->in);
+		audio->in = nullptr;
+	}
+	if (audio->out) {
+		fftw_free(audio->out);
+		audio->out = nullptr;
+	}
+
+	OpenFile(filename);
+	PlayAudio();
 }
 
 
@@ -82,23 +112,18 @@ void AudioIO::myCallback(void* userData, Uint8* stream, int len)
 {
 	
 	
-	struct AudioData* audio = (struct AudioData*)userData;
-	//pthread_t th;
+	auto audio = reinterpret_cast<AudioData*>(userData);
 	struct wrapper wrap;
 
 	if (audio->length == 0)
 		return;
 
 
-	//SDL_memset(stream, 0, len);
-	SDL_MixAudio(stream, audio->position, len, SDL_MIX_MAXVOLUME/20);
-
-	//stream = audio->position;
-
 	wrap.stream = stream;
 	wrap.audio = audio;
 
-	output(wrap);
+	if(audio->m_haveData)
+		output(wrap);
 
 	Uint32 length = (Uint32)len;
 	length = (length > audio->length ? audio->length : length);
@@ -107,14 +132,13 @@ void AudioIO::myCallback(void* userData, Uint8* stream, int len)
 
 	audio->position += length;
 	audio->length -= length;
+	
 }
 
 void AudioIO::output(struct wrapper arg)
 {
 
-	//smphSignalCallBackToThread.acquire();
 	struct wrapper wrap = arg;
-	
 	for (int i = 0; i < SAMPLE_NUM; i++)
 	{
 
@@ -137,9 +161,9 @@ void AudioIO::output(struct wrapper arg)
 		countM = 1, 
 		countT = 1;
 
-	float cumB = 0,
-	      cumM = 0,
-		  cumT = 0;
+	double cumB = 0,
+	       cumM = 0,
+		   cumT = 0;
 	
 	for (int i = 0; i < SAMPLE_NUM / 2; i++) {
 		double re = wrap.audio->out[i][0];

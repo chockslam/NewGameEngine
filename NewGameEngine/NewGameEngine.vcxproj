@@ -94,6 +94,7 @@
     <ClCompile Include="Source\Application.cpp" />
     <ClCompile Include="Source\Common\GDIPlusManager.cpp" />
     <ClCompile Include="Source\Common\Time.cpp" />
+    <ClCompile Include="Source\FileDialog\ImGuiFileDialog.cpp" />
     <ClCompile Include="Source\Graphics\Bindable\Bindable.cpp" />
     <ClCompile Include="Source\Graphics\Bindable\IndexBuffer.cpp" />
     <ClCompile Include="Source\Graphics\Bindable\InputLayout.cpp" />
@@ -113,6 +114,7 @@
     <ClCompile Include="Source\Graphics\NewCamera.cpp" />
     <ClCompile Include="Source\Graphics\PointLight.cpp" />
     <ClCompile Include="Source\Graphics\Surface.cpp" />
+    <ClCompile Include="Source\GUI\GUIwrap.cpp" />
     <ClCompile Include="Source\Window\AudioIO.cpp" />
     <ClCompile Include="Source\Window\Keyboard.cpp" />
     <ClCompile Include="Source\Window\Mouse.cpp" />
@@ -123,10 +125,15 @@
   <ItemGroup>
     <ClInclude Include="resource.h" />
     <ClInclude Include="Source\Application.h" />
+    <ClInclude Include="Source\Common\AudioConst.h" />
     <ClInclude Include="Source\Common\EWin.h" />
     <ClInclude Include="Source\Common\GDIPlusManager.h" />
+    <ClInclude Include="Source\Common\GUIconst.h" />
     <ClInclude Include="Source\Common\Time.h" />
     <ClInclude Include="Source\conversion.h" />
+    <ClInclude Include="Source\FileDialog\dirent\dirent.h" />
+    <ClInclude Include="Source\FileDialog\ImGuiFileDialog.h" />
+    <ClInclude Include="Source\FileDialog\ImGuiFileDialogConfig.h" />
     <ClInclude Include="Source\Graphics\Bindable\Bindable.h" />
     <ClInclude Include="Source\Graphics\Bindable\BindableBase.h" />
     <ClInclude Include="Source\Graphics\Bindable\BindableCodex.h" />
@@ -155,6 +162,7 @@
     <ClInclude Include="Source\Graphics\NewCamera.h" />
     <ClInclude Include="Source\Graphics\PointLight.h" />
     <ClInclude Include="Source\Graphics\Surface.h" />
+    <ClInclude Include="Source\GUI\GUIwrap.h" />
     <ClInclude Include="Source\Window\AudioIO.h" />
     <ClInclude Include="Source\Window\Keyboard.h" />
     <ClInclude Include="Source\Window\Mouse.h" />

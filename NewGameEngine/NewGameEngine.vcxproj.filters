@@ -57,6 +57,18 @@
     <Filter Include="Source Files\Shaders\GS">
       <UniqueIdentifier>{837a8069-a283-4edf-a17c-f4d0f0d46c77}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GUIwrap">
+      <UniqueIdentifier>{8ec49f7e-f0be-48ec-8a6d-b10c65482753}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GUIwrap\Public">
+      <UniqueIdentifier>{ac907d9c-211d-4062-8430-5771ac9c5e34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GUIwrap\Private">
+      <UniqueIdentifier>{f046538c-7816-4597-8130-fad2e6d78cd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GUIwrap\Classes">
+      <UniqueIdentifier>{eeba612c-f73b-4021-bbf9-cd1010ac6fe8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Window\Window.cpp">
@@ -142,6 +154,12 @@
     </ClCompile>
     <ClCompile Include="Source\Graphics\Drawable\WrapperSolidSphere.cpp">
       <Filter>Source Files\Graphics\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GUI\GUIwrap.cpp">
+      <Filter>Source Files\GUIwrap\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FileDialog\ImGuiFileDialog.cpp">
+      <Filter>Source Files\GUIwrap\Private</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -285,6 +303,25 @@
     <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
     <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
     <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
+    <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
+    <ClInclude Include="Source\GUI\GUIwrap.h">
+      <Filter>Source Files\GUIwrap\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\FileDialog\dirent\dirent.h">
+      <Filter>Source Files\GUIwrap\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\FileDialog\ImGuiFileDialog.h">
+      <Filter>Source Files\GUIwrap\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\FileDialog\ImGuiFileDialogConfig.h">
+      <Filter>Source Files\GUIwrap\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Common\GUIconst.h">
+      <Filter>Source Files\Common\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Common\AudioConst.h">
+      <Filter>Source Files\Common\Public</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Source\Graphics\Shaders\VS\SolidVS.hlsl">

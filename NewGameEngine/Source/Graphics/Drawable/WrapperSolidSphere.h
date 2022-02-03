@@ -13,7 +13,7 @@ public:
 	void SetColor(DirectX::XMFLOAT3 color) noexcept;
 	void SpawnControlWindow() noexcept;
 	void SpawnTestFreqPlot() noexcept;
-	void Bind(Graphics& gfx, DirectX::FXMMATRIX view, double musParams[3]) const noexcept;
+	void Bind(Graphics& gfx, DirectX::FXMMATRIX view, float musParams[3]) const noexcept;
 private:
 	struct SolidSphereCBuf
 	{

@@ -3,24 +3,21 @@
 #include <memory>
 #include <algorithm>
 #include <iterator>
-#include <implot.h>
 
 
 namespace dx = DirectX;
 
 Application::Application()
-	:wnd("Demo", 0, 1360, 720)
+	:wnd("Demo", 0, 1360, 720),
+	wavFileName(WAV_FILE)
 {
-	wnd.Gfx().SetProjection(dx::XMMatrixPerspectiveLH(1.0f, 9.0f / 16.0f, 0.5f, 40.0f));
+	wnd.Gfx().SetProjection(dx::XMMatrixPerspectiveLH(1.0f, 9.0f / 16.0f, 0.5f, 100.0f));
 
-	FillSpheresAlgorithm( new float[]{0.0f, 0.0f, 5.0f}, 10, "Solid_RGBeqBMT_PS.cso", "Solid_RGBeqBTM_PS.cso", spheresWsolidPS_R);
-	FillSpheresAlgorithm( new float[]{10.0f, 0.0f, 5.0f}, 10, "Solid_RGBeqMBT_PS.cso", "Solid_RGBeqTBM_PS.cso", spheresWsolidPS_G);
-	FillSpheresAlgorithm( new float[]{20.0f, 0.0f, 5.0f}, 10, "Solid_RGBeqMTB_PS.cso", "Solid_RGBeqTMB_PS.cso", spheresWsolidPS_B);
-	//FillSpheres();
-
+	FillSpheresAlgorithm( new float[]{-30.0f, -15.0f, 25.0f}, 30, "Solid_RGBeqBMT_PS.cso", "Solid_RGBeqBTM_PS.cso", spheresWsolidPS_R);
+	FillSpheresAlgorithm( new float[]{-0.0f, -15.0f, 25.0f}, 30, "Solid_RGBeqMBT_PS.cso", "Solid_RGBeqTBM_PS.cso", spheresWsolidPS_G);
+	FillSpheresAlgorithm( new float[]{30.0f, -15.0f, 25.0f}, 30, "Solid_RGBeqMTB_PS.cso", "Solid_RGBeqTMB_PS.cso", spheresWsolidPS_B);
+	
 	if (audio->OpenFile(WAV_FILE)) {
-
-		
 		audio->PlayAudio();
 	}
 	else {
@@ -44,23 +41,28 @@ int Application::Go()
 
 Application::~Application()
 {
+
 }
-
-
-
-
 
 void Application::DoFrame()
 {
 	const auto dt = timer.Mark() * speed_factor;
 
 	wnd.Gfx().BeginFrame(0.07f, 0.0f, 0.12f);
-
-
-		
+	
 		wnd.Gfx().SetCamera(cam.GetViewMatrix());
 		ToggleCursor();
 
+		musParams[0] = static_cast<float>(audio->audio->averageB) * weightOfParams[0];
+		musParams[1] = static_cast<float>(audio->audio->averageM) * weightOfParams[1];
+		musParams[2] = static_cast<float>(audio->audio->averageT) * weightOfParams[2];
+
+
+
+
+		gui.showFFT(audio->audio->freq, audio->audio->magn, musParams);
+		gui.FileDialog();
+		gui.makeSliders(weightOfParams);
 
 		for (auto sph : spheresWsolidPS_R) {
 			sph->Bind(wnd.Gfx(), cam.GetViewMatrix(), musParams);
@@ -76,8 +78,10 @@ void Application::DoFrame()
 			sph->Bind(wnd.Gfx(), cam.GetViewMatrix(), musParams);
 			sph->Draw(wnd.Gfx());
 		}
-	
-		ShowMusicTest();
+
+		if (!gui.getUpdatedWavFile().empty() && gui.getUpdatedWavFile() != wavFileName) {
+			playNewFile();
+		}
 
 		if(!wnd.CursorEnabled)
 			Control();
@@ -173,28 +177,10 @@ void Application::ToggleCursor()
 	}
 }
 
-void Application::ShowMusicTest()
+void Application::playNewFile()
 {
-	musParams[0] = audio->audio->averageB;
-	musParams[1] = audio->audio->averageM;
-	musParams[2] = audio->audio->averageT;
-
-
-	ImGui::Begin("Plot Full");
-	if (ImPlot::BeginPlot("My Plot Full", "Frequency", "Magnitude")) {
-		//ImPlot::PlotBars("Bars", audio->audio->freq, audio->audio->magn, 5000, 10);
-		ImPlot::PlotLine("My Line Plot Full", audio->audio->freq, audio->audio->magn, 1024);
-		ImPlot::EndPlot();
-	}
-
-	std::string bass = "Bass: " + std::to_string(musParams[0]);
-	std::string Mid = "Mid: " + std::to_string(musParams[1]);
-	std::string Treble = "Bass: " + std::to_string(musParams[2]);
-
-	ImGui::BulletText(bass.c_str());
-	ImGui::BulletText(Mid.c_str());
-	ImGui::BulletText(Treble.c_str());
-	ImGui::End();
+	wavFileName = gui.getUpdatedWavFile();
+	audio->SwitchAudioFile(wavFileName);
 }
 
 

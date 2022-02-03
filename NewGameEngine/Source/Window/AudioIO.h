@@ -52,6 +52,9 @@ public:
 		double averageM;
 		double averageT;
 
+
+		bool m_haveData;
+
 	};
 
 	struct wrapper {
@@ -60,9 +63,9 @@ public:
 	};
 
 
-
-	bool OpenFile(const char* fileName);
+	bool OpenFile(std::string fileName);
 	void PlayAudio();
+	void SwitchAudioFile(std::string filename);
 
 
 	static double Get16bitAudioSample(Uint8* bytebuffer, SDL_AudioFormat format);
@@ -77,19 +80,11 @@ private:
 	Uint32 m_length;
 	Uint8* m_buffer;
 
-	struct AudioData* audio = (struct AudioData*)malloc(sizeof(struct AudioData));
-
-	//does not work with smart pointers
-	//std::shared_ptr<AudioData> audio = std::make_shared<AudioData>();
+	AudioData* audio = new AudioData();
 
 
 	const char* m_fileName;
-	bool m_haveData;
-	fftw_plan plan;
-	int m_chunkSize;
-	int m_chunkOverlap;
-	int m_currentChunkIndex;
-	int m_prevEnd;
+	
 
 
 
