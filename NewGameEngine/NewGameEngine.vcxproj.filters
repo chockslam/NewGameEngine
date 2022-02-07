@@ -161,6 +161,9 @@
     <ClCompile Include="Source\FileDialog\ImGuiFileDialog.cpp">
       <Filter>Source Files\GUIwrap\Private</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Graphics\Bindable\GeometryShader.cpp">
+      <Filter>Source Files\Graphics\Private</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Window\SubObject.h">
@@ -259,9 +262,6 @@
     <ClInclude Include="Source\Graphics\Bindable\BindableCodex.h">
       <Filter>Source Files\Graphics\Classes</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Graphics\Bindable\TransformCbufPixPVec.h">
-      <Filter>Source Files\Graphics\Classes</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Graphics\Bindable\IndexedTriangleList.h">
       <Filter>Source Files\Graphics\Classes</Filter>
     </ClInclude>
@@ -322,6 +322,11 @@
     <ClInclude Include="Source\Common\AudioConst.h">
       <Filter>Source Files\Common\Public</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
+    <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
+    <ClInclude Include="Source\Graphics\Bindable\GeometryShader.h">
+      <Filter>Source Files\Graphics\Classes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Source\Graphics\Shaders\VS\SolidVS.hlsl">
@@ -371,6 +376,12 @@
     </FxCompile>
     <FxCompile Include="Source\Graphics\Shaders\PS\Solid_RGBeqTBM_PS.hlsl">
       <Filter>Source Files\Shaders\PS</Filter>
+    </FxCompile>
+    <FxCompile Include="Source\Graphics\Shaders\GS\TestGS.hlsl">
+      <Filter>Source Files\Shaders\GS</Filter>
+    </FxCompile>
+    <FxCompile Include="Source\Graphics\Shaders\GS\DummyGS.hlsl">
+      <Filter>Source Files\Shaders\GS</Filter>
     </FxCompile>
   </ItemGroup>
   <ItemGroup>

@@ -5,8 +5,8 @@
 struct Vertex
 {
 	DirectX::XMFLOAT3 pos;
-	DirectX::XMFLOAT3 n;
-	DirectX::XMFLOAT3 color;
+	/*DirectX::XMFLOAT3 n;
+	DirectX::XMFLOAT3 color;*/
 };
 
 class VertexBuffer : public Bindable

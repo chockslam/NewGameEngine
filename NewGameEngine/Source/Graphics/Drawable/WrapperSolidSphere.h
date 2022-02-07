@@ -7,7 +7,7 @@
 class WrapperSolidSphere
 {
 public:
-	WrapperSolidSphere(Graphics& gfx, float radius, const char* vs, const char* ps, float pos[3]);
+	WrapperSolidSphere(Graphics& gfx, float radius, const char* vs, const char* ps, float pos[3], const char* gs = nullptr);
 	void Reset() noexcept;
 	void Draw(Graphics& gfx) const noexcept;
 	void SetColor(DirectX::XMFLOAT3 color) noexcept;
@@ -19,7 +19,10 @@ private:
 	{
 		alignas(16) DirectX::XMFLOAT3 color;
 	};
-
+	struct GeometrySphereCBuf
+	{
+		alignas(16) DirectX::XMFLOAT3 color;
+	};
 private:
 	float initPos[3];
 
@@ -27,5 +30,5 @@ private:
 	SolidSphereCBuf cbData;
 	mutable SolidSphere mesh;
 	mutable PixelConstantBuffer<SolidSphereCBuf> cbuf;
-	mutable PixelConstantBuffer<SolidSphereCBuf> cbufV;
+	mutable GeometryConstantBuffer<SolidSphereCBuf> cbufG;
 };

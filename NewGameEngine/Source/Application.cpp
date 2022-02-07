@@ -13,9 +13,9 @@ Application::Application()
 {
 	wnd.Gfx().SetProjection(dx::XMMatrixPerspectiveLH(1.0f, 9.0f / 16.0f, 0.5f, 100.0f));
 
-	FillSpheresAlgorithm( new float[]{-30.0f, -15.0f, 25.0f}, 30, "Solid_RGBeqBMT_PS.cso", "Solid_RGBeqBTM_PS.cso", spheresWsolidPS_R);
-	FillSpheresAlgorithm( new float[]{-0.0f, -15.0f, 25.0f}, 30, "Solid_RGBeqMBT_PS.cso", "Solid_RGBeqTBM_PS.cso", spheresWsolidPS_G);
-	FillSpheresAlgorithm( new float[]{30.0f, -15.0f, 25.0f}, 30, "Solid_RGBeqMTB_PS.cso", "Solid_RGBeqTMB_PS.cso", spheresWsolidPS_B);
+	FillSpheresAlgorithm( new float[]{-30.0f, -15.0f, 25.0f}, 25, "Solid_RGBeqBMT_PS.cso", "Solid_RGBeqBTM_PS.cso", spheresWsolidPS_R, "TestGS.cso");
+	FillSpheresAlgorithm( new float[]{-0.0f, -15.0f, 25.0f}, 25, "Solid_RGBeqMBT_PS.cso", "Solid_RGBeqTBM_PS.cso", spheresWsolidPS_G, "");
+	FillSpheresAlgorithm( new float[]{30.0f, -15.0f, 25.0f}, 25, "Solid_RGBeqMTB_PS.cso", "Solid_RGBeqTMB_PS.cso", spheresWsolidPS_B, "");
 	
 	if (audio->OpenFile(WAV_FILE)) {
 		audio->PlayAudio();
@@ -89,10 +89,13 @@ void Application::DoFrame()
 	wnd.Gfx().EndFrame();
 }
 
-void Application::FillSpheresAlgorithm(float offset[3], int size, std::string shader_1, std::string shader_2, std::vector<WrapperSolidSphere*>& dest)
+void Application::FillSpheresAlgorithm(float offset[3], int size, std::string shader_1, std::string shader_2, std::vector<WrapperSolidSphere*>& dest , std::string gs)
 {
 	int start = 1;
 	int max = size;
+	const char* gs_c = nullptr;
+	if (!gs.empty())
+		gs_c = gs.c_str();
 	while (start <= max) {
 		std::string shader;
 		if (start%2==0) {
@@ -104,11 +107,20 @@ void Application::FillSpheresAlgorithm(float offset[3], int size, std::string sh
 		}
 		for (int i = start; i <= max; i++) {
 			for (int j = start; j <= max; j++) {
-				if (i == start || i == max)
-					spheresWsolidPS_G.push_back(new WrapperSolidSphere(wnd.Gfx(), 0.4f, "SolidVS.cso", shader.c_str(), new float[3]{ offset[0] + 1.0f * j, offset[1] + 1.0f * i, offset[2] }));
-				else {
-					if (j == start || j == max)
-						spheresWsolidPS_G.push_back(new WrapperSolidSphere(wnd.Gfx(), 0.4f, "SolidVS.cso", shader.c_str(), new float[3]{ offset[0] + 1.0f * j, offset[1] + 1.0f * i, offset[2] }));
+				if (i == start || i == max) {
+					if(gs_c)
+						dest.push_back(new WrapperSolidSphere(wnd.Gfx(), 0.4f, "SolidVS.cso", shader.c_str(), new float[3]{ offset[0] + 1.0f * j, offset[1] + 1.0f * i, offset[2] }, gs_c));
+					else
+						dest.push_back(new WrapperSolidSphere(wnd.Gfx(), 0.4f, "SolidVS.cso", shader.c_str(), new float[3]{ offset[0] + 1.0f * j, offset[1] + 1.0f * i, offset[2] }));
+				}else {
+					if (j == start || j == max) {
+						if (gs_c)
+							dest.push_back(new WrapperSolidSphere(wnd.Gfx(), 0.4f, "SolidVS.cso", shader.c_str(), new float[3]{ offset[0] + 1.0f * j, offset[1] + 1.0f * i, offset[2] }, gs_c));
+						else
+							dest.push_back(new WrapperSolidSphere(wnd.Gfx(), 0.4f, "SolidVS.cso", shader.c_str(), new float[3]{ offset[0] + 1.0f * j, offset[1] + 1.0f * i, offset[2] }));
+
+						//spheresWsolidPS_G.push_back(new WrapperSolidSphere(wnd.Gfx(), 0.4f, "SolidVS.cso", shader.c_str(), new float[3]{ offset[0] + 1.0f * j, offset[1] + 1.0f * i, offset[2] }, gs_c));
+					}
 				}
 			}
 		}

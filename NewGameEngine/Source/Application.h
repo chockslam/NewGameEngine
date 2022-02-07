@@ -22,7 +22,7 @@ public:
 	~Application();
 private:
 	void DoFrame();
-	void FillSpheresAlgorithm(float offset[3], int size, std::string shader_1, std::string shader_2, std::vector<WrapperSolidSphere*>& dest);
+	void FillSpheresAlgorithm(float offset[3], int size, std::string shader_1, std::string shader_2, std::vector<WrapperSolidSphere*>& dest, std::string gs = nullptr);
 	void MoveAround();
 	void LookAround();
 	void Control();
