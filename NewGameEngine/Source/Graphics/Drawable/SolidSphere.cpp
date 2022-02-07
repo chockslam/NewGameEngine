@@ -3,7 +3,7 @@
 #include "Sphere.h"
 
 
-SolidSphere::SolidSphere(Graphics& gfx, float radius, const char* vs, const char* ps)
+SolidSphere::SolidSphere(Graphics& gfx, float radius, const char* vs, const char* ps, const char* gs)
 {
 	
 	namespace dx = DirectX;
@@ -20,7 +20,13 @@ SolidSphere::SolidSphere(Graphics& gfx, float radius, const char* vs, const char
 	auto pvsbc = static_cast<VertexShader&>(*pvs).GetBytecode();
 	AddBind(std::move(pvs));
 
-	//AddBind(std::make_shared<PixelShader>(gfx, L"SolidPS.cso"));
+	if(gs){
+		AddBind(GeometryShader::Resolve(gfx, gs));
+	}
+	else {
+		AddBind(GeometryShader::Resolve(gfx, "DummyGS.cso"));
+	}
+
 	AddBind(PixelShader::Resolve(gfx, ps));
 
 	const std::vector<D3D11_INPUT_ELEMENT_DESC> ied =

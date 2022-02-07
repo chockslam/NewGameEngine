@@ -59,9 +59,9 @@ void GUIwrap::makeSliders(float weightOfParams[3])
 {
 	ImGui::Begin("Adjust Weight");
 
-		ImGui::SliderFloat("Bass", &weightOfParams[0], 0.1f, 15.0f );
+		ImGui::SliderFloat("Bass", &weightOfParams[0], 0.0f, 15.0f );
 		ImGui::SliderFloat("Mid", &weightOfParams[1], 0.0f, 15.0f );
-		ImGui::SliderFloat("Treble", &weightOfParams[2], 1.0f, 15.0f );
+		ImGui::SliderFloat("Treble", &weightOfParams[2], 0.0f, 15.0f );
 
 	ImGui::End();
 }

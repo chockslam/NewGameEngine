@@ -11,14 +11,14 @@
 #define SAMPLE_NUM 2048
 
 #define BASS_START 40.0f
-#define BASS_END 250.0f
+#define BASS_END 150.0f
 
 
-#define MID_START 250.0f
-#define MID_END 4000.0f
+#define MID_START 150.0f
+#define MID_END 1500.0f
 
 
-#define TREBLE_START 4000.0f
+#define TREBLE_START 1500.0f
 
 
 

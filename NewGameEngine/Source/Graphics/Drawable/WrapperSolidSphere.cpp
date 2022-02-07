@@ -2,10 +2,11 @@
 #include <imgui.h>
 #include <implot.h>
 
-WrapperSolidSphere::WrapperSolidSphere(Graphics& gfx, float radius, const char* vs, const char* ps, float pos[3])
+WrapperSolidSphere::WrapperSolidSphere(Graphics& gfx, float radius, const char* vs, const char* ps, float pos[3], const char* gs)
 	:
-	mesh(gfx, radius, vs, ps),
-	cbuf(gfx)
+	mesh(gfx, radius, vs, ps, gs),
+	cbuf(gfx),
+	cbufG(gfx)
 {
 	this->initPos[0] = pos[0];
 	this->initPos[1] = pos[1];
@@ -53,6 +54,8 @@ void WrapperSolidSphere::Bind(Graphics& gfx, DirectX::FXMMATRIX view, float musP
 	DirectX::XMStoreFloat3(&dataCopy.color, color);
 	//DirectX::XMStoreFloat3(&dataCopy.pos, DirectX::XMVector3Transform(pos, view));
 	cbuf.Update(gfx, dataCopy);
+	cbufG.Update(gfx, dataCopy);
 
 	cbuf.Bind(gfx);
+	cbufG.Bind(gfx);
 }
