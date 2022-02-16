@@ -18,6 +18,6 @@ protected:
 	void UpdateBindImpl(Graphics& gfx, const Transforms& tf) noexcept;
 	Transforms GetTransforms(Graphics& gfx) noexcept;
 private:
-	static std::unique_ptr<VertexConstantBuffer<Transforms>> pVcbuf;
+	static std::unique_ptr<GeometryConstantBuffer<Transforms>> pGcbuf;
 	const Drawable& parent;
 };

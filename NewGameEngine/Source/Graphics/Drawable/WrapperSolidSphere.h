@@ -22,6 +22,7 @@ private:
 	struct GeometrySphereCBuf
 	{
 		alignas(16) DirectX::XMFLOAT3 color;
+		float padding;
 	};
 private:
 	float initPos[3];

@@ -34,7 +34,7 @@ public:
 	void SetNormalsIndependentFlat()
 	{
 
-		/*using namespace DirectX;
+		using namespace DirectX;
 		assert(indices.size() % 3 == 0 && indices.size() > 0);
 		for (size_t i = 0; i < indices.size(); i += 3)
 		{
@@ -50,7 +50,7 @@ public:
 			XMStoreFloat3(&v0.n, n);
 			XMStoreFloat3(&v1.n, n);
 			XMStoreFloat3(&v2.n, n);
-		}*/
+		}
 	}
 
 public:

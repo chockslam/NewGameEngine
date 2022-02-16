@@ -10,15 +10,15 @@
 #define SAMPLE_RATE 44100
 #define SAMPLE_NUM 2048
 
-#define BASS_START 40.0f
-#define BASS_END 150.0f
+#define BASS_START 20.0f
+#define BASS_END 200.0f
 
 
-#define MID_START 150.0f
-#define MID_END 1500.0f
+#define MID_START 200.0f
+#define MID_END 2500.0f
 
 
-#define TREBLE_START 1500.0f
+#define TREBLE_START 2500.0f
 
 
 
@@ -28,13 +28,30 @@
 
 class AudioIO {
 	friend class Application;
-public:
-	AudioIO();
-	~AudioIO();
 
-	struct RGB {
-		double r, g, b;
-	};
+public:
+	static AudioIO& getInstance()
+	{
+		static AudioIO instance; // Guaranteed to be destroyed.
+							  // Instantiated on first use.
+		return instance;
+	}
+private:
+	AudioIO();                    // Constructor? (the {} brackets) are needed here.
+	~AudioIO();                    // Constructor? (the {} brackets) are needed here.
+	// C++ 11
+	// =======
+	// We can use the better technique of deleting the methods
+	// we don't want.
+public:
+	AudioIO(AudioIO const&) = delete;
+	void operator=(AudioIO const&) = delete;
+
+	// Note: Scott Meyers mentions in his Effective Modern
+	//       C++ book, that deleted functions should generally
+	//       be public as it results in better error messages
+	//       due to the compilers behavior to check accessibility
+	//       before deleted status
 
 	struct AudioData {
 		Uint8* position;

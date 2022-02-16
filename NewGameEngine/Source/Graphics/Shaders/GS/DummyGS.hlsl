@@ -1,3 +1,9 @@
+cbuffer CBuf
+{
+    matrix modelView;
+    matrix modelViewProj;
+};
+
 struct GSOut
 {
     float4 pos : SV_POSITION;
@@ -10,11 +16,10 @@ void main(triangle GSOut input[3] : SV_POSITION, inout TriangleStream<GSOut> Out
     
     for (int i = 0; i < 3; i++)
     {
-        gsout.pos = float4(input[i].pos.x, input[i].pos.y, input[i].pos.z, input[i].pos.w);
+        gsout.pos = mul(float4(input[i].pos.x, input[i].pos.y, input[i].pos.z, input[i].pos.w),modelViewProj);
         OutputStream.Append(gsout);
     }
     
-    
-    
+    OutputStream.RestartStrip();
     
 }

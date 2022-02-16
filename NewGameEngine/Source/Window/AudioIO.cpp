@@ -49,6 +49,7 @@ bool AudioIO::OpenFile(std::string fileName)
 
 		audio->plan = fftw_plan_dft_1d(SAMPLE_NUM, audio->in, audio->out, FFTW_FORWARD, FFTW_MEASURE);
 		m_dataType.userdata = audio;
+		//m_dataType.channels = 1;
 		m_dataType.callback = myCallback;
 		
 		audio->position = m_buffer;
