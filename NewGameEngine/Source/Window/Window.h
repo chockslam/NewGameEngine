@@ -35,9 +35,7 @@ public:
 	Mouse mouse;
 	bool CursorEnabled;
 protected:
-
 	INT	m_Width;
 	INT	m_Height;
 	std::unique_ptr<Graphics> pGfx;
-	std::vector<BYTE> rawBuffer;
 };

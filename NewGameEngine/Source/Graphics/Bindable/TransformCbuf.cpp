@@ -4,9 +4,9 @@
 TransformCbuf::TransformCbuf(Graphics& gfx, const Drawable& parent, UINT slot)
 	:parent(parent)
 {
-	if (!pVcbuf)
+	if (!pGcbuf)
 	{
-		pVcbuf = std::make_unique<VertexConstantBuffer<Transforms>>(gfx);
+		pGcbuf = std::make_unique<GeometryConstantBuffer<Transforms>>(gfx);
 	}
 }
 
@@ -17,8 +17,8 @@ void TransformCbuf::Bind(Graphics& gfx) noexcept
 
 void TransformCbuf::UpdateBindImpl(Graphics& gfx, const Transforms& tf) noexcept
 {
-	pVcbuf->Update(gfx, tf);
-	pVcbuf->Bind(gfx);
+	pGcbuf->Update(gfx, tf);
+	pGcbuf->Bind(gfx);
 }
 
 TransformCbuf::Transforms TransformCbuf::GetTransforms(Graphics& gfx) noexcept
@@ -34,4 +34,4 @@ TransformCbuf::Transforms TransformCbuf::GetTransforms(Graphics& gfx) noexcept
 }
 
 
-std::unique_ptr<VertexConstantBuffer<TransformCbuf::Transforms>> TransformCbuf::pVcbuf;
+std::unique_ptr<GeometryConstantBuffer<TransformCbuf::Transforms>> TransformCbuf::pGcbuf;

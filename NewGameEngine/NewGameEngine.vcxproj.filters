@@ -146,9 +146,6 @@
     <ClCompile Include="Source\Common\GDIPlusManager.cpp">
       <Filter>Source Files\Common\Private</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Graphics\Bindable\TransformCbufPixPVec.cpp">
-      <Filter>Source Files\Graphics\Private</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Window\AudioIO.cpp">
       <Filter>Source Files\Win32\Private</Filter>
     </ClCompile>
@@ -327,6 +324,9 @@
     <ClInclude Include="Source\Graphics\Bindable\GeometryShader.h">
       <Filter>Source Files\Graphics\Classes</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
+    <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
+    <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Source\Graphics\Shaders\VS\SolidVS.hlsl">
@@ -381,6 +381,12 @@
       <Filter>Source Files\Shaders\GS</Filter>
     </FxCompile>
     <FxCompile Include="Source\Graphics\Shaders\GS\DummyGS.hlsl">
+      <Filter>Source Files\Shaders\GS</Filter>
+    </FxCompile>
+    <FxCompile Include="Source\Graphics\Shaders\GS\ExplodeGS.hlsl">
+      <Filter>Source Files\Shaders\GS</Filter>
+    </FxCompile>
+    <FxCompile Include="Source\Graphics\Shaders\GS\PrettyExplodeGS.hlsl">
       <Filter>Source Files\Shaders\GS</Filter>
     </FxCompile>
   </ItemGroup>

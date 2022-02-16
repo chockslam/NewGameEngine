@@ -6,8 +6,9 @@ WrapperSolidSphere::WrapperSolidSphere(Graphics& gfx, float radius, const char* 
 	:
 	mesh(gfx, radius, vs, ps, gs),
 	cbuf(gfx),
-	cbufG(gfx)
+	cbufG(gfx, 1u)
 {
+	//cbufG = GeometryConstantBuffer::Reso
 	this->initPos[0] = pos[0];
 	this->initPos[1] = pos[1];
 	this->initPos[2] = pos[2];

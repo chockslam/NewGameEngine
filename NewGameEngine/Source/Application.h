@@ -22,7 +22,7 @@ public:
 	~Application();
 private:
 	void DoFrame();
-	void FillSpheresAlgorithm(float offset[3], int size, std::string shader_1, std::string shader_2, std::vector<WrapperSolidSphere*>& dest, std::string gs = nullptr);
+	void FillSpheresAlgorithm(float offset[3], int size, std::string shader_1, std::string shader_2, std::vector<std::unique_ptr<WrapperSolidSphere>>& dest, std::string gs = nullptr );
 	void MoveAround();
 	void LookAround();
 	void Control();
@@ -32,26 +32,24 @@ private:
 	
 
 private:
-	bool showDemoWindow = false;
 	Window wnd;
-	Timer timer;
-	float speed_factor = 0.2f;
-	//PointLight light;
+
+	float speed_factor;
 	Camera cam;
 
-	GUIwrap& gui = GUIwrap::getInstance();
-
-
-	std::unique_ptr<AudioIO> audio = std::make_unique<AudioIO>();
-
+	GUIwrap& gui;
+	AudioIO& audio;
+	std::string wavFileName;
 
 	float musParams[3];
 	float weightOfParams[3]{ 1.0f,1.0f,1.0f };
 
-	std::vector<WrapperSolidSphere*> spheresWsolidPS_R;
-	std::vector<WrapperSolidSphere*> spheresWsolidPS_G;
-	std::vector<WrapperSolidSphere*> spheresWsolidPS_B;
 
-	std::string wavFileName;
+	std::unique_ptr<WrapperSolidSphere> sphereSolidGS;
+
+	std::vector<std::unique_ptr<WrapperSolidSphere>> spheresWsolidPS_R;
+	std::vector<std::unique_ptr<WrapperSolidSphere>> spheresWsolidPS_G;
+	std::vector<std::unique_ptr<WrapperSolidSphere>> spheresWsolidPS_B;
+
 
 };

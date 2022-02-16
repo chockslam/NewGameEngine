@@ -47,7 +47,7 @@ void GUIwrap::showFFT(double freq[], double magn[], float musParams[3])
 
 	std::string bass = "Bass: " + std::to_string(musParams[0]);
 	std::string Mid = "Mid: " + std::to_string(musParams[1]);
-	std::string Treble = "Bass: " + std::to_string(musParams[2]);
+	std::string Treble = "Treble: " + std::to_string(musParams[2]);
 
 	ImGui::BulletText(bass.c_str());
 	ImGui::BulletText(Mid.c_str());

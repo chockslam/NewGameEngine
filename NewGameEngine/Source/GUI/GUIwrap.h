@@ -33,5 +33,5 @@ public:
 	void makeSliders(float weightOfParams[3]);
 
 private:
-    std::string filename = "";
+    std::string filename;
 };
