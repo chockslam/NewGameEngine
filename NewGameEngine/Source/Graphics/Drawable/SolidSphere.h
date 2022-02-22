@@ -4,7 +4,7 @@
 class SolidSphere : public Drawable
 {
 public:
-	SolidSphere(Graphics& gfx, float radius, const char* vs, const char* ps, const char* gs = nullptr);
+	SolidSphere(Graphics& gfx, float radius, int latDiv, int longDiv, const char* vs, const char* ps, const char* gs = nullptr);
 	void SetPos(DirectX::XMFLOAT3 pos) noexcept;
 	DirectX::XMMATRIX GetTransformXM() const noexcept override;
 private:

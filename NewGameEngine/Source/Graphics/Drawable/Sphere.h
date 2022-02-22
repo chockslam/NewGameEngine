@@ -91,8 +91,8 @@ public:
 
 		return { std::move(vertices),std::move(indices) };
 	}
-	static IndexedTriangleList Make()
+	static IndexedTriangleList Make(int latDiv, int longDiv)
 	{
-		return MakeTesselated(12, 24);
+		return MakeTesselated(latDiv, longDiv);
 	}
 };

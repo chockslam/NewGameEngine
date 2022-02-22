@@ -7,7 +7,7 @@
 class WrapperSolidSphere
 {
 public:
-	WrapperSolidSphere(Graphics& gfx, float radius, const char* vs, const char* ps, float pos[3], const char* gs = nullptr);
+	WrapperSolidSphere(Graphics& gfx, float radius,int latDiv,int longDiv, const char* vs, const char* ps, float pos[3], const char* gs = nullptr);
 	void Reset() noexcept;
 	void Draw(Graphics& gfx) const noexcept;
 	void SetColor(DirectX::XMFLOAT3 color) noexcept;

@@ -128,9 +128,6 @@
     <ClCompile Include="Source\Graphics\NewCamera.cpp">
       <Filter>Source Files\Graphics\Private</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Graphics\PointLight.cpp">
-      <Filter>Source Files\Graphics\Private</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Graphics\Drawable\SolidSphere.cpp">
       <Filter>Source Files\Graphics\Private</Filter>
     </ClCompile>
@@ -235,9 +232,6 @@
     <ClInclude Include="Source\Graphics\NewCamera.h">
       <Filter>Source Files\Graphics\Classes</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Graphics\PointLight.h">
-      <Filter>Source Files\Graphics\Classes</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Graphics\Drawable\SolidSphere.h">
       <Filter>Source Files\Graphics\Classes</Filter>
     </ClInclude>
@@ -324,6 +318,7 @@
     <ClInclude Include="Source\Graphics\Bindable\GeometryShader.h">
       <Filter>Source Files\Graphics\Classes</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
     <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
     <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
     <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />

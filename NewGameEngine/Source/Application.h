@@ -28,6 +28,7 @@ private:
 	void Control();
 	void ToggleCursor();
 	void playNewFile();
+	bool AudioToggled();
 
 	
 
@@ -43,6 +44,10 @@ private:
 
 	float musParams[3];
 	float weightOfParams[3]{ 1.0f,1.0f,1.0f };
+
+
+	bool AudioIsPlaying;
+	bool AudioWasPlaying;
 
 
 	std::unique_ptr<WrapperSolidSphere> sphereSolidGS;
