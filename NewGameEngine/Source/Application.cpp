@@ -13,6 +13,7 @@ Application::Application()
 	wavFileName(WAV_FILE),
 	audio(AudioIO::getInstance()),
 	gui(GUIwrap::getInstance()),
+	AudioIsPlaying(true),
 	speed_factor(0.2f)
 {
 	
@@ -23,7 +24,7 @@ Application::Application()
 	FillSpheresAlgorithm( new float[]{-0.0f, -15.0f, 25.0f}, 25, "Solid_RGBeqMBT_PS.cso", "Solid_RGBeqTBM_PS.cso", spheresWsolidPS_G, "");
 	FillSpheresAlgorithm( new float[]{30.0f, -15.0f, 25.0f}, 25, "Solid_RGBeqMTB_PS.cso", "Solid_RGBeqTMB_PS.cso", spheresWsolidPS_B, "");
 	
-	sphereSolidGS = std::make_unique<WrapperSolidSphere>(wnd.Gfx(), 4.0f, "SolidVS.cso", "Solid_RGBeqBMT_PS.cso", new float[3]{ -65.0f, 0.0f, 15.0f }, "PrettyExplodeGS.cso");
+	sphereSolidGS = std::make_unique<WrapperSolidSphere>(wnd.Gfx(), 4.0f, 4,8, "SolidVS.cso", "Solid_RGBeqBMT_PS.cso", new float[3]{ -65.0f, 0.0f, 15.0f }, "PrettyExplodeGS.cso");
 
 
 	if (audio.OpenFile(WAV_FILE)) {
@@ -67,15 +68,25 @@ void Application::DoFrame()
 		musParams[2] = static_cast<float>(audio.audio->averageT) * weightOfParams[2];
 
 
+		AudioWasPlaying = AudioIsPlaying;
+
+		gui.DrawStatusBar(musParams, AudioIsPlaying, true, true, true, true, true, cam.GetPositionFloat3().x, cam.GetPositionFloat3().y, cam.GetPositionFloat3().z);
+		gui.DrawSliders(weightOfParams);
+		gui.DrawFileDialog();
+
+		if (AudioToggled()) {
+			if (this->AudioIsPlaying) {
+				audio.PlayPausedAudio();
+			}
+			else {
+				audio.PauseAudio();
+			}
+		}
 
 
-		gui.showFFT(audio.audio->freq, audio.audio->magn, musParams);
-		gui.FileDialog();
-		gui.makeSliders(weightOfParams);
 
 		sphereSolidGS->Bind(wnd.Gfx(), cam.GetViewMatrix(), musParams);
 		sphereSolidGS->Draw(wnd.Gfx());
-
 
 		for (auto& sph : spheresWsolidPS_R) {
 			sph->Bind(wnd.Gfx(), cam.GetViewMatrix(), musParams);
@@ -122,15 +133,15 @@ void Application::FillSpheresAlgorithm(float offset[3], int size, std::string sh
 			for (int j = start; j <= max; j++) {
 				if (i == start || i == max) {
 					if(gs_c)
-						dest.push_back(std::make_unique<WrapperSolidSphere>(wnd.Gfx(), 0.4f, "SolidVS.cso", shader.c_str(), new float[3]{ offset[0] + 1.0f * j, offset[1] + 1.0f * i, offset[2] }, gs_c));
+						dest.push_back(std::make_unique<WrapperSolidSphere>(wnd.Gfx(), 0.4f, 12, 24, "SolidVS.cso", shader.c_str(), new float[3]{ offset[0] + 1.0f * j, offset[1] + 1.0f * i, offset[2] }, gs_c));
 					else
-						dest.push_back(std::make_unique<WrapperSolidSphere>(wnd.Gfx(), 0.4f, "SolidVS.cso", shader.c_str(), new float[3]{ offset[0] + 1.0f * j, offset[1] + 1.0f * i, offset[2] }));
+						dest.push_back(std::make_unique<WrapperSolidSphere>(wnd.Gfx(), 0.4f,12,24, "SolidVS.cso", shader.c_str(), new float[3]{ offset[0] + 1.0f * j, offset[1] + 1.0f * i, offset[2] }));
 				}else {
 					if (j == start || j == max) {
 						if (gs_c)
-							dest.push_back(std::make_unique<WrapperSolidSphere>(wnd.Gfx(), 0.4f, "SolidVS.cso", shader.c_str(), new float[3]{ offset[0] + 1.0f * j, offset[1] + 1.0f * i, offset[2] }, gs_c));
+							dest.push_back(std::make_unique<WrapperSolidSphere>(wnd.Gfx(), 0.4f, 12, 24, "SolidVS.cso", shader.c_str(), new float[3]{ offset[0] + 1.0f * j, offset[1] + 1.0f * i, offset[2] }, gs_c));
 						else
-							dest.push_back(std::make_unique<WrapperSolidSphere>(wnd.Gfx(), 0.4f, "SolidVS.cso", shader.c_str(), new float[3]{ offset[0] + 1.0f * j, offset[1] + 1.0f * i, offset[2] }));
+							dest.push_back(std::make_unique<WrapperSolidSphere>(wnd.Gfx(), 0.4f, 12, 24, "SolidVS.cso", shader.c_str(), new float[3]{ offset[0] + 1.0f * j, offset[1] + 1.0f * i, offset[2] }));
 
 					}
 				}
@@ -202,6 +213,12 @@ void Application::playNewFile()
 {
 	wavFileName = gui.getUpdatedWavFile();
 	audio.SwitchAudioFile(wavFileName);
+	AudioIsPlaying = true;
+}
+
+bool Application::AudioToggled()
+{
+	return AudioIsPlaying != AudioWasPlaying;
 }
 
 

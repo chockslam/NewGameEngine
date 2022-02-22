@@ -3,12 +3,12 @@
 #include "Sphere.h"
 
 
-SolidSphere::SolidSphere(Graphics& gfx, float radius, const char* vs, const char* ps, const char* gs)
+SolidSphere::SolidSphere(Graphics& gfx, float radius, int latDiv, int longDiv, const char* vs, const char* ps, const char* gs)
 {
 	
 	namespace dx = DirectX;
 
-	auto model = Sphere::Make();
+	auto model = Sphere::Make(latDiv,longDiv);
 	model.Transform(dx::XMMatrixScaling(radius, radius, radius));
 	//AddBind(std::make_unique<VertexBuffer>(gfx, model.vertices));
 	AddBind(VertexBuffer::Resolve(gfx, "sphere_vertices" , model.vertices));

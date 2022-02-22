@@ -2,9 +2,9 @@
 #include <imgui.h>
 #include <implot.h>
 
-WrapperSolidSphere::WrapperSolidSphere(Graphics& gfx, float radius, const char* vs, const char* ps, float pos[3], const char* gs)
+WrapperSolidSphere::WrapperSolidSphere(Graphics& gfx, float radius, int latDiv, int longDiv, const char* vs, const char* ps, float pos[3], const char* gs)
 	:
-	mesh(gfx, radius, vs, ps, gs),
+	mesh(gfx, radius,latDiv,longDiv, vs, ps, gs),
 	cbuf(gfx),
 	cbufG(gfx, 1u)
 {

@@ -54,7 +54,7 @@ void main(triangle GSOut input[3] : SV_POSITION, inout TriangleStream<GSOut> Out
         {
             gsout1.pos = input[i].pos;
             float len = sqrt(input[i].pos.x * input[i].pos.x + input[i].pos.z * input[i].pos.z);
-            float scale = 2.0 + 1.0 * 5 * cos(5+(1 / MusParams.x) * 0.1 + len*2);
+            float scale = 2.0 + 7 * cos(3+(MusParams.x*6.28) * 0.1 + len*2);
             gsout1.pos = float4(gsout1.pos + (surfaceNormal * length(surfaceNormal) * scale)) + float4(float3(surfaceNormal.x, surfaceNormal.y, surfaceNormal.z) * float3(0.05, 0.05, 0.05), 1.0);
             gsout1.pos = mul(gsout1.pos, modelViewProj);
             gsout1.vNormal = input[i].vNormal;
@@ -67,9 +67,9 @@ void main(triangle GSOut input[3] : SV_POSITION, inout TriangleStream<GSOut> Out
         
         for (i = 0; i < 3; i++)
         {
-            gsout1.pos = input[i].pos + float4(15.0,0.0,0.0,0.0);
+            gsout1.pos = input[i].pos + float4(7.5,0.0,0.0,0.0);
             float len = sqrt(input[i].pos.x * input[i].pos.x + input[i].pos.z * input[i].pos.z);
-            float scale = 2.0 + 1.0 * 5 * cos(5+(1 / MusParams.y) * 0.1 + len*2);
+            float scale = 2.0 + 7 * cos(3 + (MusParams.y * 6.28) * 0.1 + len * 2);
             gsout1.pos = float4(gsout1.pos + (surfaceNormal * length(surfaceNormal) * scale)) + float4(float3(surfaceNormal.x, surfaceNormal.y, surfaceNormal.z) * float3(0.05, 0.05, 0.05), 1.0);
             gsout1.pos = mul(gsout1.pos, modelViewProj);
             gsout1.vNormal = input[i].vNormal;
@@ -80,12 +80,13 @@ void main(triangle GSOut input[3] : SV_POSITION, inout TriangleStream<GSOut> Out
         OutputStream.RestartStrip();
         for (i = 0; i < 3; i++)
         {
-            gsout1.pos = input[i].pos + float4(5.0,-15.0,0.0,0.0);
+            gsout1.pos = input[i].pos + float4(3.75,-10.5,0.0,0.0);
             float len = sqrt(input[i].pos.x * input[i].pos.x + input[i].pos.z * input[i].pos.z);
             
-            float scale = 2.0 + 1.0 * 5 * cos(5 + (1 / MusParams.z) * 0.1 + len * 2);
-           
+            float scale = 2.0 + 7 * cos(3 + (MusParams.z * 6.28) * 0.1 + len * 2);
+        
             gsout1.pos = float4(gsout1.pos + (surfaceNormal * length(surfaceNormal) * scale)) + float4(float3(surfaceNormal.x, surfaceNormal.y, surfaceNormal.z) * float3(0.05, 0.05, 0.05), 1.0);
+           
             gsout1.pos = mul(gsout1.pos, modelViewProj);
             gsout1.vNormal = input[i].vNormal;
             OutputStream.Append(gsout1);

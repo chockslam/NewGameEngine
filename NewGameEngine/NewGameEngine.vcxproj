@@ -112,7 +112,6 @@
     <ClCompile Include="Source\Graphics\Drawable\WrapperSolidSphere.cpp" />
     <ClCompile Include="Source\Graphics\Graphics.cpp" />
     <ClCompile Include="Source\Graphics\NewCamera.cpp" />
-    <ClCompile Include="Source\Graphics\PointLight.cpp" />
     <ClCompile Include="Source\Graphics\Surface.cpp" />
     <ClCompile Include="Source\GUI\GUIwrap.cpp" />
     <ClCompile Include="Source\Window\AudioIO.cpp" />
@@ -160,7 +159,6 @@
     <ClInclude Include="Source\Graphics\EMaths.h" />
     <ClInclude Include="Source\Graphics\Graphics.h" />
     <ClInclude Include="Source\Graphics\NewCamera.h" />
-    <ClInclude Include="Source\Graphics\PointLight.h" />
     <ClInclude Include="Source\Graphics\Surface.h" />
     <ClInclude Include="Source\GUI\GUIwrap.h" />
     <ClInclude Include="Source\Window\AudioIO.h" />

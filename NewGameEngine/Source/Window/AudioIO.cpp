@@ -3,6 +3,8 @@
 
 
 AudioIO::AudioIO()
+	//:
+	//playing(false)
 {
 	SDL_Init(SDL_INIT_AUDIO);
 }
@@ -69,6 +71,19 @@ void AudioIO::PlayAudio()
 	m_deviceId = SDL_OpenAudioDevice(NULL, 0, &m_dataType, NULL, 0);
 	int success = SDL_QueueAudio(m_deviceId, m_buffer, m_length);
 	SDL_PauseAudioDevice(m_deviceId, 0);
+	//this->playing = true;
+}
+
+void AudioIO::PlayPausedAudio()
+{
+	SDL_PauseAudioDevice(m_deviceId, 0);
+	//this->playing = true;
+}
+
+void AudioIO::PauseAudio()
+{
+	SDL_PauseAudioDevice(m_deviceId, 1);
+	//this->playing = false;
 }
 
 void AudioIO::SwitchAudioFile(std::string filename)
