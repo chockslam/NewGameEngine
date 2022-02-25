@@ -322,6 +322,10 @@
     <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
     <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
     <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
+    <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
+    <ClInclude Include="Source\Graphics\Bindable\Texture.h">
+      <Filter>Source Files\Graphics\Classes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Source\Graphics\Shaders\VS\SolidVS.hlsl">
