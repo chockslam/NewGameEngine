@@ -34,26 +34,37 @@ public:
 	//void showFFT(double freq[], double magn[], float musParams[3]);
     void DrawStatusBar(float params[3],
         bool& playing,
+        const int& viewIndicator,
         bool displayPlay = false,
         bool fileDialogActive = false,
         bool slidersActive = false,
         bool displayRatio = false,
+        bool displayIndicators = false,
         bool displayCamPos = false,
         float x = 0.0f,
         float y = 0.0f,
-        float z = 0.0f);
+        float z = 0.0f,
+        float yaw = 0.0f,
+        float pitch = 0.0f,
+        float roll = 0.0f);
 	void DrawFileDialog();
 	void DrawSliders(float weightOfParams[3]);
+    bool isSlidersActive();
+    bool isFileDialogActive();
+    void setSlidersActive(bool status);
+    void setFileDialogActive(bool status);
 
 private:
     void makeStyle();
     void FileDialogButton();
     void makeSliderButton();
     void makePauseButton(bool& playing);
-    void DisplayCamPos(float x,float y, float z);
+    void DisplayCamPos(float x,float y, float z, float yaw, float pitch, float roll);
     void DisplayRation(float params[3]);
+    void ViewIndicator(const int &indicator);
 
     std::string filename;
     bool slidersActive;
+    bool FileDialogActive;
     
 };

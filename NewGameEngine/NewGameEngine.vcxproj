@@ -143,6 +143,7 @@
     <ClInclude Include="Source\Graphics\Bindable\InputLayout.h" />
     <ClInclude Include="Source\Graphics\Bindable\PixelShader.h" />
     <ClInclude Include="Source\Graphics\Bindable\Sampler.h" />
+    <ClInclude Include="Source\Graphics\Bindable\Texture.h" />
     <ClInclude Include="Source\Graphics\Bindable\Topology.h" />
     <ClInclude Include="Source\Graphics\Bindable\TransformCbuf.h" />
     <ClInclude Include="Source\Graphics\Bindable\VertexBuffer.h" />
