@@ -1,5 +1,7 @@
 #include "GUIwrap.h"
+#include "../Common/GUIconst.h"
 #include "../FileDialog/ImGuiFileDialog.h"
+#include "../Graphics/Bindable/Texture.h"
 #include <implot.h>
 #include <imgui.h>
 
@@ -15,6 +17,17 @@ std::string GUIwrap::getUpdatedWavFile()
 	return filename;
 }
 
+void GUIwrap::CreateTexture(Graphics& gfx)
+{
+
+	this->playTexture = Texture::Resolve(gfx, PLAY_IMAGE);
+	this->pauseTexture = Texture::Resolve(gfx, PAUSE_IMAGE);
+
+	this->BassTexture = Texture::Resolve(gfx, BASS_IMAGE);
+	this->MidTexture = Texture::Resolve(gfx, MID_IMAGE);
+	this->TrebleTexture = Texture::Resolve(gfx, TREBLE_IMAGE);
+}
+
 void GUIwrap::FileDialogButton()
 
 {
@@ -23,9 +36,13 @@ void GUIwrap::FileDialogButton()
 	if (this->FileDialogActive) {
 
 		style->Colors[ImGuiCol_Button] = ImVec4(0.2f, 0.8f, 0.2f, 1.0f);
+		style->Colors[ImGuiCol_ButtonHovered] = ImVec4(0.1f, 0.9f, 0.1f, 1.00f);
+		style->Colors[ImGuiCol_ButtonActive] = ImVec4(0.4f, 0.8f, 0.4f, 1.00f);
 	}
 	else {
 		style->Colors[ImGuiCol_Button] = ImVec4(0.8f, 0.8f, 0.2f, 1.0f);
+		style->Colors[ImGuiCol_ButtonHovered] = ImVec4(0.9f, 0.9f, 0.1f, 1.00f);
+		style->Colors[ImGuiCol_ButtonActive] = ImVec4(0.8f, 0.8f, 0.4f, 1.00f);
 	}
 
 	
@@ -34,7 +51,10 @@ void GUIwrap::FileDialogButton()
 	}
 
 	style->Colors[ImGuiCol_Button] = ImVec4(0.1f, 0.09f, 0.12f, 1.00f);
+	style->Colors[ImGuiCol_ButtonHovered] = ImVec4(0.24f, 0.23f, 0.29f, 1.00f);
+	style->Colors[ImGuiCol_ButtonActive] = ImVec4(0.56f, 0.56f, 0.58f, 1.00f);
 	style->Colors[ImGuiCol_Text] = ImVec4(0.80f, 0.80f, 0.9f, 1.00f);
+
 		
 	ImGui::SameLine(0.0f,100.0f);
 }
@@ -57,10 +77,11 @@ void GUIwrap::ViewIndicator(const int& indicator)
 
 	auto* style = &ImGui::GetStyle();
 	style->FrameRounding = 10.0f;
-
 	style->Colors[ImGuiCol_Button] = ImVec4(0.2f, 0.2f, 0.8f, 1.0f);
+	style->Colors[ImGuiCol_ButtonHovered] = ImVec4(0.1f, 0.1f, 0.9f, 1.00f);
+	style->Colors[ImGuiCol_ButtonActive] = ImVec4(0.4f, 0.4f, 0.8f, 1.00f);
 	if (indicator == 1) {
-		ImGui::Button("Both View"); 
+		ImGui::Button("Both View");
 	}
 	else if (indicator == 2) {
 		ImGui::Button("First View");
@@ -71,6 +92,8 @@ void GUIwrap::ViewIndicator(const int& indicator)
 	else if (indicator == 0) {
 		style->Colors[ImGuiCol_Text] = ImVec4(0.2f, 0.2f, 0.3f, 1.0f);
 		style->Colors[ImGuiCol_Button] = ImVec4(0.8f, 0.8f, 0.2f, 1.0f);
+		style->Colors[ImGuiCol_ButtonHovered] = ImVec4(0.9f, 0.9f, 0.1f, 1.00f);
+		style->Colors[ImGuiCol_ButtonActive] = ImVec4(0.8f, 0.8f, 0.4f, 1.00f);
 		ImGui::Button("Custom View");
 
 	}
@@ -78,6 +101,8 @@ void GUIwrap::ViewIndicator(const int& indicator)
 	ImGui::SameLine(0.0f, 100.0f);
 	style->FrameRounding = 40.0f;
 	style->Colors[ImGuiCol_Button] = ImVec4(0.1f, 0.09f, 0.12f, 1.00f);
+	style->Colors[ImGuiCol_ButtonHovered] = ImVec4(0.24f, 0.23f, 0.29f, 1.00f);
+	style->Colors[ImGuiCol_ButtonActive] = ImVec4(0.56f, 0.56f, 0.58f, 1.00f);
 	style->Colors[ImGuiCol_Text] = ImVec4(0.80f, 0.80f, 0.9f, 1.00f);
 }
 
@@ -183,9 +208,17 @@ void GUIwrap::DrawSliders(float weightOfParams[3])
 			ImGuiWindowFlags_NoCollapse +
 			ImGuiWindowFlags_NoScrollbar);
 
-			ImGui::SliderFloat("Bass", &weightOfParams[0], 0.0f, 1.0f);
-			ImGui::SliderFloat("Mid", &weightOfParams[1], 0.0f, 1.0f);
-			ImGui::SliderFloat("Treble", &weightOfParams[2], 0.0f, 1.0f);
+			ImGui::SliderFloat(" ", &weightOfParams[0], 0.0f, 1.0f);
+			ImGui::SameLine();
+			ImGui::Image(BassTexture->GetTexture().Get(), ImVec2(72, 36));
+			
+			ImGui::SliderFloat("  ", &weightOfParams[1], 0.0f, 1.0f);
+			ImGui::SameLine();
+			ImGui::Image(MidTexture->GetTexture().Get(), ImVec2(72, 36));
+
+			ImGui::SliderFloat("   ", &weightOfParams[2], 0.0f, 1.0f);
+			ImGui::SameLine(0.0f, 25.0f);
+			ImGui::Image(TrebleTexture->GetTexture().Get(), ImVec2(36, 36));
 
 		ImGui::End();
 	}
@@ -218,10 +251,14 @@ void GUIwrap::makeSliderButton()
 	auto* style = &ImGui::GetStyle();
 	style->Colors[ImGuiCol_Text] = ImVec4(0.2f, 0.2f, 0.3f, 1.0f);
 	if (this->slidersActive) {
-
+		style->Colors[ImGuiCol_ButtonHovered] = ImVec4(0.1f, 0.9f, 0.1f, 1.00f);
+		style->Colors[ImGuiCol_ButtonActive] = ImVec4(0.4f, 0.8f, 0.4f, 1.00f);
 		style->Colors[ImGuiCol_Button] = ImVec4(0.2f, 0.8f, 0.2f, 1.0f);
 	}
 	else {
+
+		style->Colors[ImGuiCol_ButtonHovered] = ImVec4(0.9f, 0.9f, 0.1f, 1.00f);
+		style->Colors[ImGuiCol_ButtonActive] = ImVec4(0.8f, 0.8f, 0.4f, 1.00f);
 		style->Colors[ImGuiCol_Button] = ImVec4(0.8f, 0.8f, 0.2f, 1.0f);
 	}
 
@@ -230,6 +267,8 @@ void GUIwrap::makeSliderButton()
 	}
 	
 	style->Colors[ImGuiCol_Button] = ImVec4(0.1f, 0.09f, 0.12f, 1.00f);
+	style->Colors[ImGuiCol_ButtonHovered] = ImVec4(0.24f, 0.23f, 0.29f, 1.00f);
+	style->Colors[ImGuiCol_ButtonActive] = ImVec4(0.56f, 0.56f, 0.58f, 1.00f);
 	style->Colors[ImGuiCol_Text] = ImVec4(0.80f, 0.80f, 0.9f, 1.00f);
 	ImGui::SameLine(0.0f, 420.0f);
 }
@@ -240,20 +279,30 @@ void GUIwrap::makePauseButton(bool& playing)
 
 	auto* style = &ImGui::GetStyle();
 	if (playing) {
+		style->Colors[ImGuiCol_ButtonHovered] = ImVec4(0.1f, 0.9f, 0.1f, 1.00f);
+		style->Colors[ImGuiCol_ButtonActive] = ImVec4(0.4f, 0.8f, 0.4f, 1.00f);
 		style->Colors[ImGuiCol_Button] = ImVec4(0.2f, 0.8f, 0.2f, 1.0f);
 	}
 	else {
+		style->Colors[ImGuiCol_ButtonHovered] = ImVec4(0.9f, 0.9f, 0.1f, 1.00f);
+		style->Colors[ImGuiCol_ButtonActive] = ImVec4(0.8f, 0.8f, 0.4f, 1.00f);
 		style->Colors[ImGuiCol_Button] = ImVec4(0.8f, 0.8f, 0.2f, 1.0f);
 	}
 	style->Colors[ImGuiCol_Text] = ImVec4(0.2f, 0.2f, 0.3f, 1.0f);
-
-	bool trigg = ImGui::Button(bText.c_str());
+	bool trigg=false;
+	if (playing) {
+		trigg = ImGui::ImageButton(pauseTexture->GetTexture().Get(), ImVec2(24, 24));
+	}
+	else {
+		trigg = ImGui::ImageButton(playTexture->GetTexture().Get(), ImVec2(24, 24));
+	}
 	if (trigg) {
 		playing = !playing;
-
 	}
 	style->Colors[ImGuiCol_Text] = ImVec4(0.80f, 0.80f, 0.9f, 1.00f);
 	style->Colors[ImGuiCol_Button] = ImVec4(0.1f, 0.09f, 0.12f, 1.00f);
+	style->Colors[ImGuiCol_ButtonHovered] = ImVec4(0.24f, 0.23f, 0.29f, 1.00f);
+	style->Colors[ImGuiCol_ButtonActive] = ImVec4(0.56f, 0.56f, 0.58f, 1.00f);
 	ImGui::SameLine(0.0f, 450.0f);
 }
 

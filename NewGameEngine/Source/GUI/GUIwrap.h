@@ -1,7 +1,9 @@
 #pragma once 
 
 #include <string>
-
+#include <memory>
+class Texture;
+class Graphics;
 class GUIwrap {
 
 public:
@@ -31,6 +33,7 @@ public:
     //       before deleted status
 
     std::string getUpdatedWavFile();
+    void CreateTexture(Graphics& gfx);
 	//void showFFT(double freq[], double magn[], float musParams[3]);
     void DrawStatusBar(float params[3],
         bool& playing,
@@ -62,9 +65,15 @@ private:
     void DisplayCamPos(float x,float y, float z, float yaw, float pitch, float roll);
     void DisplayRation(float params[3]);
     void ViewIndicator(const int &indicator);
-
+    
     std::string filename;
     bool slidersActive;
     bool FileDialogActive;
+
+    std::shared_ptr<Texture> playTexture;
+    std::shared_ptr<Texture> pauseTexture;
+    std::shared_ptr<Texture> BassTexture;
+    std::shared_ptr<Texture> MidTexture;
+    std::shared_ptr<Texture> TrebleTexture;
     
 };

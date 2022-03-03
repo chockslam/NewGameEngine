@@ -70,3 +70,8 @@ bool Texture::HasAlpha() const noexcept
 {
 	return hasAlpha;
 }
+
+Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> Texture::GetTexture() const noexcept
+{
+	return pTextureView;
+}

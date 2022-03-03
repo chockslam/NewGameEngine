@@ -3,13 +3,15 @@
 #include <memory>
 #include <algorithm>
 #include <iterator>
+#include "Common/GDIPlusManager.h"
 
+GDIPlusManager gdipm;
 
 namespace dx = DirectX;
 
 Application::Application()
 	:
-	wnd("Demo", 0, 1360, 720),
+	wnd("Entropy", 0, 1360, 720),
 	wavFileName(WAV_FILE),
 	audio(AudioIO::getInstance()),
 	gui(GUIwrap::getInstance()),
@@ -30,6 +32,7 @@ Application::Application()
 	
 	sphereSolidGS = std::make_unique<WrapperSolidSphere>(wnd.Gfx(), 4.0f, 4,8, "SolidVS.cso", "Solid_RGBeqBMT_PS.cso", new float[3]{ -70.0f, -2.0f, 15.0f }, "PrettyExplodeGS.cso");
 
+	gui.CreateTexture(wnd.Gfx());
 	
 	if (audio.OpenFile(WAV_FILE)) {
 		audio.PlayAudio();

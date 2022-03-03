@@ -267,12 +267,6 @@
     <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
     <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
     <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
-    <ClInclude Include="Source\Graphics\Shaders\PointLight.hlsl">
-      <Filter>Source Files\Shaders</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Graphics\Shaders\ShaderOps.hlsl">
-      <Filter>Source Files\Shaders</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
     <ClInclude Include="Source\Window\AudioIO.h">
       <Filter>Source Files\Win32\Classes</Filter>
@@ -326,6 +320,7 @@
     <ClInclude Include="Source\Graphics\Bindable\Texture.h">
       <Filter>Source Files\Graphics\Classes</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Source\Graphics\Shaders\VS\SolidVS.hlsl">
@@ -334,29 +329,11 @@
     <FxCompile Include="Source\Graphics\Shaders\PS\Solid_RGBeqBMT_PS.hlsl">
       <Filter>Source Files\Shaders\PS</Filter>
     </FxCompile>
-    <FxCompile Include="Source\Graphics\Shaders\PS\PhongPS.hlsl">
-      <Filter>Source Files\Shaders\PS</Filter>
-    </FxCompile>
     <FxCompile Include="Source\Graphics\Shaders\VS\PhongVS.hlsl">
       <Filter>Source Files\Shaders\VS</Filter>
     </FxCompile>
-    <FxCompile Include="Source\Graphics\Shaders\PS\PhongPSNormalMap.hlsl">
-      <Filter>Source Files\Shaders\PS</Filter>
-    </FxCompile>
-    <FxCompile Include="Source\Graphics\Shaders\PS\PhongPSNormalMapObject.hlsl">
-      <Filter>Source Files\Shaders\PS</Filter>
-    </FxCompile>
-    <FxCompile Include="Source\Graphics\Shaders\PS\PhongPSSpecMap.hlsl">
-      <Filter>Source Files\Shaders\PS</Filter>
-    </FxCompile>
-    <FxCompile Include="Source\Graphics\Shaders\PS\PhongPSSpecNormalMap.hlsl">
-      <Filter>Source Files\Shaders\PS</Filter>
-    </FxCompile>
     <FxCompile Include="Source\Graphics\Shaders\VS\PhongVSNormalMap.hlsl">
       <Filter>Source Files\Shaders\VS</Filter>
-    </FxCompile>
-    <FxCompile Include="Source\Graphics\Shaders\PS\PhongPSNotex.hlsl">
-      <Filter>Source Files\Shaders\PS</Filter>
     </FxCompile>
     <FxCompile Include="Source\Graphics\Shaders\VS\PhongVSNotex.hlsl">
       <Filter>Source Files\Shaders\VS</Filter>
@@ -376,13 +353,7 @@
     <FxCompile Include="Source\Graphics\Shaders\PS\Solid_RGBeqTBM_PS.hlsl">
       <Filter>Source Files\Shaders\PS</Filter>
     </FxCompile>
-    <FxCompile Include="Source\Graphics\Shaders\GS\TestGS.hlsl">
-      <Filter>Source Files\Shaders\GS</Filter>
-    </FxCompile>
     <FxCompile Include="Source\Graphics\Shaders\GS\DummyGS.hlsl">
-      <Filter>Source Files\Shaders\GS</Filter>
-    </FxCompile>
-    <FxCompile Include="Source\Graphics\Shaders\GS\ExplodeGS.hlsl">
       <Filter>Source Files\Shaders\GS</Filter>
     </FxCompile>
     <FxCompile Include="Source\Graphics\Shaders\GS\PrettyExplodeGS.hlsl">
