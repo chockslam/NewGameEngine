@@ -7,6 +7,7 @@
 #include <imgui_impl_win32.h>
 #include <imgui_impl_dx11.h>
 #include <implot.h>
+#include "../Common/WNDconst.h"
 
 namespace wrl = Microsoft::WRL;
 namespace dx = DirectX;
@@ -70,8 +71,8 @@ Graphics::Graphics(HWND hWnd)
 	// create depth stensil texture
 	wrl::ComPtr<ID3D11Texture2D> pDepthStencil;
 	D3D11_TEXTURE2D_DESC descDepth = {};
-	descDepth.Width = 1360u;
-	descDepth.Height = 720u;
+	descDepth.Width = W_WIDTH;
+	descDepth.Height = W_HEIGHT;
 	descDepth.MipLevels = 1u;
 	descDepth.ArraySize = 1u;
 	descDepth.Format = DXGI_FORMAT_D32_FLOAT;
@@ -94,8 +95,8 @@ Graphics::Graphics(HWND hWnd)
 	pContext->OMSetRenderTargets(1u, pTarget.GetAddressOf(), pDSV.Get());
 	// configure viewport
 	D3D11_VIEWPORT vp;
-	vp.Width = 1360.0f;
-	vp.Height = 720.0f;
+	vp.Width = W_WIDTH;
+	vp.Height = W_HEIGHT;
 	vp.MinDepth = 0.0f;
 	vp.MaxDepth = 1.0f;
 	vp.TopLeftX = 0.0f;

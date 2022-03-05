@@ -14,8 +14,7 @@ public:
         return instance;
     }
 private:
-    GUIwrap();// {
-       // style.Colors[ImGuiCol_Border] = ImVec4(0.70f, 0.70f, 0.70f, 0.65f);
+    GUIwrap();
 
     //};            // Constructor? (the {} brackets) are needed here.
     // C++ 11
@@ -26,16 +25,10 @@ public:
     GUIwrap(GUIwrap const&) = delete;
     void operator=(GUIwrap const&) = delete;
 
-    // Note: Scott Meyers mentions in his Effective Modern
-    //       C++ book, that deleted functions should generally
-    //       be public as it results in better error messages
-    //       due to the compilers behavior to check accessibility
-    //       before deleted status
 
-    std::string getUpdatedWavFile();
-    void CreateTexture(Graphics& gfx);
-	//void showFFT(double freq[], double magn[], float musParams[3]);
-    void DrawStatusBar(float params[3],
+    std::string getUpdatedWavFile();        // getter for filename
+    void CreateTexture(Graphics& gfx);      // Initialize textures to be rendered in the GUI
+    void DrawStatusBar(float params[3],   
         bool& playing,
         const int& viewIndicator,
         bool displayPlay = false,
@@ -50,26 +43,30 @@ public:
         float yaw = 0.0f,
         float pitch = 0.0f,
         float roll = 0.0f);
-	void DrawFileDialog();
-	void DrawSliders(float weightOfParams[3]);
+	void DrawFileDialog();                          // Draw file dialog (ImGuiFileDialog.h)
+	void DrawSliders(float weightOfParams[3]);      // Draw interactive sliders that determine the weight of parameters
     bool isSlidersActive();
     bool isFileDialogActive();
     void setSlidersActive(bool status);
     void setFileDialogActive(bool status);
+    void showFFT(double freq[], double magn[], float musParams[3]);     // Show fft graph (For development purposes)
 
 private:
-    void makeStyle();
+    void makeStyle();                                                   // general make style 
     void FileDialogButton();
     void makeSliderButton();
     void makePauseButton(bool& playing);
     void DisplayCamPos(float x,float y, float z, float yaw, float pitch, float roll);
-    void DisplayRation(float params[3]);
+    void DisplayRation(float params[3]);                                 // Display ration of frequency domains (For development purposes)
     void ViewIndicator(const int &indicator);
     
-    std::string filename;
+    std::string filename;                                                // Filename string (chosen from file dialog)
+
+    // Checks whether to draw sliders or file dialog windows.
     bool slidersActive;
     bool FileDialogActive;
 
+    // Images to be rendered to Imgui interface
     std::shared_ptr<Texture> playTexture;
     std::shared_ptr<Texture> pauseTexture;
     std::shared_ptr<Texture> BassTexture;

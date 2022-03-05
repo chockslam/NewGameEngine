@@ -1,23 +1,6 @@
-/******************************************************************************************
- *	Chili DirectX Framework Version 16.07.20											  *
- *	Mouse.cpp																			  *
- *	Copyright 2016 PlanetChili <http://www.planetchili.net>								  *
- *																						  *
- *	This file is part of The Chili DirectX Framework.									  *
- *																						  *
- *	The Chili DirectX Framework is free software: you can redistribute it and/or modify	  *
- *	it under the terms of the GNU General Public License as published by				  *
- *	the Free Software Foundation, either version 3 of the License, or					  *
- *	(at your option) any later version.													  *
- *																						  *
- *	The Chili DirectX Framework is distributed in the hope that it will be useful,		  *
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of						  *
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the						  *
- *	GNU General Public License for more details.										  *
- *																						  *
- *	You should have received a copy of the GNU General Public License					  *
- *	along with The Chili DirectX Framework.  If not, see <http://www.gnu.org/licenses/>.  *
- ******************************************************************************************/
+/// CODE was written with help by ChiliTomatoNoodle (https://www.youtube.com/c/ChiliTomatoNoodle)
+
+
 #include "../Common/EWin.h"
 #include "Mouse.h"
 #include <string>
@@ -55,10 +38,12 @@ bool Mouse::RawEnabled() const noexcept
 
 std::optional<Mouse::RawDelta> Mouse::ReadRawDelta() noexcept
 {
+	// if delta not registered, return nullopt 
 	if (rawDeltaBuffer.empty())
 	{
 		return std::nullopt;
 	}
+	// return RawDelta struct instance from the buffer
 	const RawDelta d = rawDeltaBuffer.front();
 	rawDeltaBuffer.pop();
 	return d;
@@ -82,6 +67,7 @@ bool Mouse::RightIsPressed() const noexcept
 
 std::optional<Mouse::Event> Mouse::Read() noexcept
 {
+	// Read buffer if it has members
 	if (buffer.size() > 0u)
 	{
 		Mouse::Event e = buffer.front();

@@ -1,3 +1,6 @@
+/// CODE was written with help by OlympusMonsTutorial (https://www.youtube.com/c/OlympusMonsTutorials) and ChiliTomatoNoodle (https://www.youtube.com/c/ChiliTomatoNoodle)
+
+
 #pragma once
 
 #include "SubObject.h"
@@ -9,33 +12,33 @@
 #include <imgui_impl_win32.h>
 #include "AudioIO.h"
 
+/// <summary>
+/// Class that represent the Window. Child class of SubObject, which represents any window-like object, for example Splash Screen.
+/// </summary>
 class Window : public SubObject {
-
 public:
 	Window(std::string WindowName,HICON icon , INT width, INT height);
-	~Window();
-
-	virtual VOID Initialize(UINT type) override;
-
-	virtual LRESULT			 MessageHandler(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) override;
-	Graphics& Gfx();
+	~Window();	
+	virtual VOID Initialize(UINT type) override;																// Initialize window.
+	virtual LRESULT			 MessageHandler(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) override;	// Message Loop.
+	Graphics& Gfx();																							// Returns pointer to graphics object.
 	static std::optional<int> ProcessMessages() noexcept;
 	void EnableCursor();
 	void DisableCursor();
 private:
-	void SetupRawInput();
-	void HideCursor();
-	void ShowCursor();
+	void SetupRawInput();		// Set-up Raw mouse input, which needed for "Look - Around" functionality implemented for camera movement. 
+	void HideCursor();			
+	void ShowCursor();			
 	void DisableImGuiMouse();
 	void EnableImGuiMouse();
 	void ConfineCursor();
 	void FreeCursor();
 public:
-	Keyboard kbd;
-	Mouse mouse;
-	bool CursorEnabled;
+	Keyboard kbd;					// Represents Keyboard
+	Mouse mouse;					// Represents Mouse
+	bool CursorEnabled;			
 protected:
-	INT	m_Width;
-	INT	m_Height;
-	std::unique_ptr<Graphics> pGfx;
+	INT	m_Width;					// width of the window
+	INT	m_Height;					// height of the window
+	std::unique_ptr<Graphics> pGfx; // Pointer to Graphics object that handles DirectX11 initialization.
 };

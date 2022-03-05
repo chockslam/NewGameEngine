@@ -106,18 +106,18 @@ void GUIwrap::ViewIndicator(const int& indicator)
 	style->Colors[ImGuiCol_Text] = ImVec4(0.80f, 0.80f, 0.9f, 1.00f);
 }
 
-//void GUIwrap::showFFT(double freq[], double magn[], float musParams[3])
-//{
-//	
-//	ImGui::Begin("Plot Full");
-//	if (ImPlot::BeginPlot("My Plot Full", "Frequency", "Magnitude")) {
-//		ImPlot::PlotLine("My Line Plot Full", freq, magn, 1024);
-//		ImPlot::EndPlot();
-//	}
-//
-//
-//	ImGui::End();
-//}
+void GUIwrap::showFFT(double freq[], double magn[], float musParams[3])
+{
+	
+	ImGui::Begin("Plot Full");
+	if (ImPlot::BeginPlot("My Plot Full", "Frequency", "Magnitude")) {
+		ImPlot::PlotLine("My Line Plot Full", freq, magn, 1024);
+		ImPlot::EndPlot();
+	}
+
+
+	ImGui::End();
+}
 
 void GUIwrap::DrawStatusBar(float params[3],
 	bool& playing,
@@ -136,10 +136,11 @@ void GUIwrap::DrawStatusBar(float params[3],
 	float roll)
 {
 	ImGui::Begin("Status Bar", nullptr,
-		//ImGuiWindowFlags_NoResize +
+		ImGuiWindowFlags_NoMove +
+		ImGuiWindowFlags_NoResize +
 		ImGuiWindowFlags_NoCollapse +
 		ImGuiWindowFlags_NoScrollbar);
-		//);
+		
 	ImGui::SameLine(0.0f);	
 		if (displayPlay)
 			this->makePauseButton(playing);
@@ -175,7 +176,7 @@ void GUIwrap::DrawFileDialog()
 			1,
 			nullptr,
 			ImGuiFileDialogFlags_HideColumnType +								// hide column file type
-			ImGuiFileDialogFlags_HideColumnSize +							// hide column file size
+			ImGuiFileDialogFlags_HideColumnSize +								// hide column file size
 			ImGuiFileDialogFlags_HideColumnDate +
 			ImGuiFileDialogFlags_DisableCreateDirectoryButton);					// hide column file date);
 	}
@@ -222,7 +223,6 @@ void GUIwrap::DrawSliders(float weightOfParams[3])
 
 		ImGui::End();
 	}
-	
 	
 }
 
@@ -291,10 +291,10 @@ void GUIwrap::makePauseButton(bool& playing)
 	style->Colors[ImGuiCol_Text] = ImVec4(0.2f, 0.2f, 0.3f, 1.0f);
 	bool trigg=false;
 	if (playing) {
-		trigg = ImGui::ImageButton(pauseTexture->GetTexture().Get(), ImVec2(24, 24));
+		trigg = ImGui::ImageButton(pauseTexture->GetTexture().Get(), ImVec2(24, 16));
 	}
 	else {
-		trigg = ImGui::ImageButton(playTexture->GetTexture().Get(), ImVec2(24, 24));
+		trigg = ImGui::ImageButton(playTexture->GetTexture().Get(), ImVec2(24, 16));
 	}
 	if (trigg) {
 		playing = !playing;
@@ -328,11 +328,17 @@ void GUIwrap::DisplayCamPos(float x, float y, float z, float yaw, float pitch, f
 void GUIwrap::makeStyle()
 {
 
+
+	// Font taken from https://fonts.google.com/specimen/ZCOOL+QingKe+HuangYou
 	ImGui::GetIO().Fonts->AddFontFromFileTTF("Fonts\\ZCOOLQingKeHuangYou-Regular.ttf", 15.0f);;
+
+
 
 	auto* style = &ImGui::GetStyle();
 
-	
+	/// <summary>
+	/// Visual interface (colors and etc) inspired by https://www.unknowncheats.me/forum/c-and-c-/189635-imgui-style-settings.html
+	/// </summary>
 	style->WindowPadding = ImVec2(15, 15);
 	style->WindowRounding = 5.0f;
 	style->FramePadding = ImVec2(10, 10);

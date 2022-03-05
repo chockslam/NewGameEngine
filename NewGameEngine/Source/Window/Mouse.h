@@ -1,38 +1,28 @@
-/******************************************************************************************
- *	Chili DirectX Framework Version 16.07.20											  *
- *	Mouse.h																				  *
- *	Copyright 2016 PlanetChili <http://www.planetchili.net>								  *
- *																						  *
- *	This file is part of The Chili DirectX Framework.									  *
- *																						  *
- *	The Chili DirectX Framework is free software: you can redistribute it and/or modify	  *
- *	it under the terms of the GNU General Public License as published by				  *
- *	the Free Software Foundation, either version 3 of the License, or					  *
- *	(at your option) any later version.													  *
- *																						  *
- *	The Chili DirectX Framework is distributed in the hope that it will be useful,		  *
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of						  *
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the						  *
- *	GNU General Public License for more details.										  *
- *																						  *
- *	You should have received a copy of the GNU General Public License					  *
- *	along with The Chili DirectX Framework.  If not, see <http://www.gnu.org/licenses/>.  *
- ******************************************************************************************/
+/// CODE was written with help by ChiliTomatoNoodle (https://www.youtube.com/c/ChiliTomatoNoodle)
 #pragma once
 #include <queue>
 #include <optional>
 
 class Mouse
 {
-	friend class Window;
+	friend class Window; // window can access its private member
 public:
+	/// <summary>
+	/// Struct that stores x,y of delta mouse input.
+	/// </summary>
 	struct RawDelta
 	{
 		int x, y;
 	};
+	/// <summary>
+	/// Class that represents event
+	/// </summary>
 	class Event
 	{
 	public:
+		/// <summary>
+		/// Type of Mouse event
+		/// </summary>
 		enum class Type
 		{
 			LPress,
@@ -90,13 +80,17 @@ public:
 	Mouse() = default;
 	Mouse(const Mouse&) = delete;
 	Mouse& operator=(const Mouse&) = delete;
+	// Get position of the mouse in the windows
 	std::pair<int, int> GetPos() const noexcept;
 	int GetPosX() const noexcept;
 	int GetPosY() const noexcept;
+	// Get Delta position
 	std::optional<RawDelta> ReadRawDelta() noexcept;
+	// Check whether the mouse in the window
 	bool IsInWindow() const noexcept;
 	bool LeftIsPressed() const noexcept;
 	bool RightIsPressed() const noexcept;
+	// Read event and delete it from the queue
 	std::optional<Mouse::Event> Read() noexcept;
 	bool IsEmpty() const noexcept
 	{
@@ -107,11 +101,12 @@ public:
 		return rawDeltaBuffer.empty();
 	}
 	void Flush() noexcept;
-
+	// Enable/Disable delta mouse
 	void EnableRaw() noexcept;
 	void DisableRaw() noexcept;
 	bool RawEnabled() const noexcept;
 private:
+	// Actions on mouse eventss
 	void OnMouseMove(int x, int y) noexcept;
 	void OnMouseMoveRaw(int xR, int yR) noexcept;
 	void OnMouseLeave() noexcept;
@@ -123,7 +118,7 @@ private:
 	void OnWheelUp(int x, int y) noexcept;
 	void OnWheelDown(int x, int y) noexcept;
 	void TrimBuffer() noexcept;
-
+	// If buffer overflow happens, trim it.
 	void TrimRawInputBuffer() noexcept;
 	void OnWheelDelta(int x, int y, int delta) noexcept;
 private:

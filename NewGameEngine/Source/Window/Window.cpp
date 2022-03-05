@@ -1,3 +1,5 @@
+/// CODE was written with help by OlympusMonsTutorial (https://www.youtube.com/c/OlympusMonsTutorials) and ChiliTomatoNoodle (https://www.youtube.com/c/ChiliTomatoNoodle)
+
 #include "Window.h"
 Window::Window(std::string WindowName,HICON icon, INT width, INT height)
 	: SubObject("EngineContainer", WindowName, icon), m_Width(width), m_Height(height)
@@ -24,10 +26,10 @@ VOID Window::Initialize(UINT type)
 	AdjustWindowRect(&R, WS_OVERLAPPEDWINDOW, false);
 	int width = R.right - R.left;
 	int height = R.bottom - R.top;
-
+	
 	m_Handle = CreateWindow(m_Class.c_str(), m_Title.c_str(), type,
 		((desktop.right/2) - (m_Width/2)), ((desktop.bottom / 2) - (m_Height / 2)), m_Width, m_Height, nullptr, nullptr, m_Inst, (void*)this);
-
+	
 	if (!m_Handle) {
 		MessageBox(0, "Failed to Create Window!", 0, 0);
 		PostQuitMessage(0); //close window

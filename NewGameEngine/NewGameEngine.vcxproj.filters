@@ -77,17 +77,11 @@
     <ClCompile Include="Source\Window\SubObject.cpp">
       <Filter>Source Files\Win32\Private</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Common\Time.cpp">
-      <Filter>Source Files\Common\Private</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\WinMain.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Graphics\Camera.cpp">
-      <Filter>Source Files\Graphics\Private</Filter>
     </ClCompile>
     <ClCompile Include="Source\Graphics\Graphics.cpp">
       <Filter>Source Files\Graphics\Private</Filter>
@@ -131,9 +125,6 @@
     <ClCompile Include="Source\Graphics\Drawable\SolidSphere.cpp">
       <Filter>Source Files\Graphics\Private</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Graphics\Bindable\Sampler.cpp">
-      <Filter>Source Files\Graphics\Private</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Graphics\Bindable\Texture.cpp">
       <Filter>Source Files\Graphics\Private</Filter>
     </ClCompile>
@@ -166,9 +157,6 @@
     <ClInclude Include="Source\Window\Window.h">
       <Filter>Source Files\Win32\Classes</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Common\Time.h">
-      <Filter>Source Files\Common\Public</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Common\EWin.h">
       <Filter>Source Files\Common\Public</Filter>
     </ClInclude>
@@ -176,9 +164,6 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Graphics\Bindable\Bindable.h">
-      <Filter>Source Files\Graphics\Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Graphics\Camera.h">
       <Filter>Source Files\Graphics\Classes</Filter>
     </ClInclude>
     <ClInclude Include="Source\Graphics\Bindable\ConstantBuffer.h">
@@ -217,9 +202,6 @@
     <ClInclude Include="Source\Graphics\EMaths.h">
       <Filter>Source Files\Graphics\Public</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Graphics\Drawable\Cube.h">
-      <Filter>Source Files\Graphics\Public</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Graphics\Bindable\BindableBase.h">
       <Filter>Source Files\Graphics\Public</Filter>
     </ClInclude>
@@ -241,9 +223,6 @@
     <ClInclude Include="Source\conversion.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Graphics\Bindable\Sampler.h">
-      <Filter>Source Files\Graphics\Classes</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Graphics\Surface.h">
       <Filter>Source Files\Graphics\Classes</Filter>
     </ClInclude>
@@ -253,14 +232,8 @@
     <ClInclude Include="Source\Graphics\Bindable\BindableCodex.h">
       <Filter>Source Files\Graphics\Classes</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Graphics\Bindable\IndexedTriangleList.h">
-      <Filter>Source Files\Graphics\Classes</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h">
       <Filter>Source Files\Graphics\Public</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Graphics\Drawable\Plane.h">
-      <Filter>Source Files\Graphics\Classes</Filter>
     </ClInclude>
     <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
     <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
@@ -321,6 +294,10 @@
       <Filter>Source Files\Graphics\Classes</Filter>
     </ClInclude>
     <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
+    <ClInclude Include="Source\Common\WNDconst.h">
+      <Filter>Source Files\Common\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Source\Graphics\Shaders\VS\SolidVS.hlsl">
@@ -328,15 +305,6 @@
     </FxCompile>
     <FxCompile Include="Source\Graphics\Shaders\PS\Solid_RGBeqBMT_PS.hlsl">
       <Filter>Source Files\Shaders\PS</Filter>
-    </FxCompile>
-    <FxCompile Include="Source\Graphics\Shaders\VS\PhongVS.hlsl">
-      <Filter>Source Files\Shaders\VS</Filter>
-    </FxCompile>
-    <FxCompile Include="Source\Graphics\Shaders\VS\PhongVSNormalMap.hlsl">
-      <Filter>Source Files\Shaders\VS</Filter>
-    </FxCompile>
-    <FxCompile Include="Source\Graphics\Shaders\VS\PhongVSNotex.hlsl">
-      <Filter>Source Files\Shaders\VS</Filter>
     </FxCompile>
     <FxCompile Include="Source\Graphics\Shaders\PS\Solid_RGBeqTMB_PS.hlsl">
       <Filter>Source Files\Shaders\PS</Filter>
@@ -364,5 +332,19 @@
     <ResourceCompile Include="ICP.rc">
       <Filter>Source Files\Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="C:\Users\glebs\OneDrive\Desktop\Back_Shelf\Entropy\LOGOS\white_logo_transparent_background.png">
+      <Filter>Source Files\Resource Files</Filter>
+    </Image>
+    <Image Include="icon1.ico">
+      <Filter>Source Files\Resource Files</Filter>
+    </Image>
+    <Image Include="icon2.ico">
+      <Filter>Source Files\Resource Files</Filter>
+    </Image>
+    <Image Include="Images\AppICO.ico">
+      <Filter>Source Files\Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

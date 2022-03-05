@@ -1,3 +1,4 @@
+/// CODE was written with help by OlympusMonsTutorial (https://www.youtube.com/c/OlympusMonsTutorials)
 #include "SubObject.h"
 
 SubObject::SubObject(std::string className, std::string classTitle, HICON icon)
