@@ -8,8 +8,12 @@ int CALLBACK WinMain(
 	LPSTR     lpCmdLine,
 	int       nCmdShow)
 {
-
-	Application{}.Go(); // start Application
+	try {
+		Application{}.Go(); // start Application }
+	}
+	catch (const std::exception& e) { 
+		MessageBox(0, "Something Went Horribly Wrong", 0, 0);
+	}
 
 	
 	return -1;

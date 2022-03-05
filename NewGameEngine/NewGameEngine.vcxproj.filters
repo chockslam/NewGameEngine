@@ -77,9 +77,6 @@
     <ClCompile Include="Source\Window\SubObject.cpp">
       <Filter>Source Files\Win32\Private</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Application.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\WinMain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -148,6 +145,9 @@
     </ClCompile>
     <ClCompile Include="Source\Graphics\Bindable\GeometryShader.cpp">
       <Filter>Source Files\Graphics\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Application.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -219,9 +219,6 @@
     </ClInclude>
     <ClInclude Include="Source\Graphics\Drawable\Sphere.h">
       <Filter>Source Files\Graphics\Public</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\conversion.h">
-      <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Graphics\Surface.h">
       <Filter>Source Files\Graphics\Classes</Filter>

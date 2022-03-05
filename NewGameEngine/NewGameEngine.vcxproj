@@ -126,7 +126,6 @@
     <ClInclude Include="Source\Common\GDIPlusManager.h" />
     <ClInclude Include="Source\Common\GUIconst.h" />
     <ClInclude Include="Source\Common\WNDconst.h" />
-    <ClInclude Include="Source\conversion.h" />
     <ClInclude Include="Source\FileDialog\dirent\dirent.h" />
     <ClInclude Include="Source\FileDialog\ImGuiFileDialog.h" />
     <ClInclude Include="Source\FileDialog\ImGuiFileDialogConfig.h" />

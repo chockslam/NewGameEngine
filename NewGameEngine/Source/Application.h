@@ -1,10 +1,7 @@
 #pragma once
 #include "Window/Window.h"
 #include "Graphics/NewCamera.h"
-#include "Common/Time.h"
 #include "Common/GUIconst.h"
-#include "Graphics/PointLight.h"
-#include "Graphics/Drawable/TestPlane.h"
 #include "Graphics/Drawable/WrapperSolidSphere.h"
 #include "Window/AudioIO.h"
 #include "GUI/GUIwrap.h"
