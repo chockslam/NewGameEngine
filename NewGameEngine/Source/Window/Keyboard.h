@@ -1,15 +1,26 @@
+/// CODE was written with help by ChiliTomatoNoodle (https://www.youtube.com/c/ChiliTomatoNoodle)
+
 #pragma once
 #include <queue>
 #include <bitset>
 #include <optional>
 
+/// <summary>
+/// Class represent Keyboard
+/// </summary>
 class Keyboard
 {
-	friend class Window;
+	friend class Window; // window can access its private member
 public:
+	/// <summary>
+	/// Class represent Event.
+	/// </summary>
 	class Event
 	{
 	public:
+		/// <summary>
+		/// enum represent the type of the event
+		/// </summary>
 		enum class Type
 		{
 			Press,
@@ -17,7 +28,7 @@ public:
 		};
 	private:
 		Type type;
-		unsigned char code;
+		unsigned char code; // code of the pressed key.
 	public:
 		Event(Type type, unsigned char code) noexcept
 			:

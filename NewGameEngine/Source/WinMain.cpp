@@ -1,5 +1,7 @@
 #include "Application.h"
-
+/// <summary>
+/// Entry Point
+/// </summary>
 int CALLBACK WinMain(
 	HINSTANCE hInstance,
 	HINSTANCE hPrevInstance,
@@ -7,7 +9,7 @@ int CALLBACK WinMain(
 	int       nCmdShow)
 {
 
-	Application{}.Go();
+	Application{}.Go(); // start Application
 
 	
 	return -1;

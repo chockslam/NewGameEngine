@@ -3,13 +3,19 @@
 #include <memory>
 #include <algorithm>
 #include <iterator>
+#include "Common/GDIPlusManager.h"
+#include "Common/WNDconst.h"
 
+GDIPlusManager gdipm;
 
 namespace dx = DirectX;
 
 Application::Application()
 	:
-	wnd("Demo", 0, 1360, 720),
+	wnd("Entropy",
+		0,
+		W_WIDTH,
+		W_HEIGHT),
 	wavFileName(WAV_FILE),
 	audio(AudioIO::getInstance()),
 	gui(GUIwrap::getInstance()),
@@ -17,20 +23,24 @@ Application::Application()
 	speed_factor(0.2f),
 	kdTimer(0)
 {
-	
-	wnd.Gfx().SetProjection(dx::XMMatrixPerspectiveLH(1.0f, 9.0f / 16.0f, 0.5f, 100.0f));
-	wnd.EnableCursor();
+	wnd.Gfx().SetProjection(dx::XMMatrixPerspectiveLH(1.0f, 9.0f / 16.0f, 0.5f, 100.0f));	// Set initial projection matrix
+	wnd.EnableCursor(); // Enable Cursor
 
-	this->ViewOne();
+	this->ViewOne(); // Start with the first view.
 
-	
+	// Create 3 sphere-filled squares. Pixel Shader visualization.
 	FillSpheresAlgorithm( new float[]{-57.0f, -10.0f, 15.0f}, 10, "Solid_RGBeqBMT_PS.cso", "Solid_RGBeqBTM_PS.cso", spheresWsolidPS_R, "");
 	FillSpheresAlgorithm(new float[] {-47.0f, -10.0f, 15.0f}, 10, "Solid_RGBeqMTB_PS.cso", "Solid_RGBeqTMB_PS.cso", spheresWsolidPS_B, "");
 	FillSpheresAlgorithm( new float[]{-37.0f, -10.0f, 15.0f}, 10, "Solid_RGBeqMBT_PS.cso", "Solid_RGBeqTBM_PS.cso", spheresWsolidPS_G, "");
 	
+
+	// Geometry + Pixel Shader visualization
 	sphereSolidGS = std::make_unique<WrapperSolidSphere>(wnd.Gfx(), 4.0f, 4,8, "SolidVS.cso", "Solid_RGBeqBMT_PS.cso", new float[3]{ -70.0f, -2.0f, 15.0f }, "PrettyExplodeGS.cso");
 
+	// Loads Picutres in GUI.
+	gui.CreateTexture(wnd.Gfx());
 	
+	// Play Default Audio when program is started.
 	if (audio.OpenFile(WAV_FILE)) {
 		audio.PlayAudio();
 	}
@@ -39,8 +49,10 @@ Application::Application()
 	}
 }
 
+
 int Application::Go()
 {
+	//Start Message Loop/
 	while (true)
 	{
 		// process all messages pending, but to not block for new messages
@@ -49,7 +61,7 @@ int Application::Go()
 			// if return optional has value, means we're quitting so return exit code
 			return *ecode;
 		}
-		DoFrame();
+		DoFrame();// Do Frame.
 	}
 }
 
@@ -60,11 +72,13 @@ Application::~Application()
 
 void Application::DoFrame()
 {
-	//const auto dt = timer.Mark() * speed_factor;
-	
+
+	// Begin Frame with background colour = rgb(0.07,0.0,0.12)
 	wnd.Gfx().BeginFrame(0.07f, 0.0f, 0.12f);
-		kdTimer = (kdTimer==15) ? 15: kdTimer+1;
-		wnd.Gfx().SetCamera(cam.GetViewMatrix());
+
+		kdTimer = (kdTimer == COOL_DOWN) ? COOL_DOWN : kdTimer+1; // Handle "Cool Down for keyboard shortcuts" functionality.
+		wnd.Gfx().SetCamera(cam.GetViewMatrix()); // Update Projection with camera view.
+		
 		ToggleCursor();
 
 		musParams[0] = static_cast<float>(audio.audio->averageB) * weightOfParams[0];
@@ -75,15 +89,18 @@ void Application::DoFrame()
 
 		AudioWasPlaying = AudioIsPlaying;
 
-		
+		// If cursor enabled, handle GUI functionality and keyboard shortcut.
 		if (wnd.CursorEnabled) {
+			// Handle Keyboard shortcuts.
 			this->HandleViews();
 			this->HandlePauseViaKeyboard();
 			this->HandleActivatorsViaKeyboard();
+			// Draw GUI.
 			gui.DrawStatusBar(musParams, AudioIsPlaying,ViewIndicator, true,true,true,false,true);
 			gui.DrawSliders(weightOfParams);
 			gui.DrawFileDialog();
 
+			// Handle Play/Pause.
 			if (AudioToggled()) {
 				if (this->AudioIsPlaying) {
 					audio.PlayPausedAudio();
@@ -97,11 +114,11 @@ void Application::DoFrame()
 
 
 		
-
+		// Render Objects In The Scene.
 		
 		sphereSolidGS->Bind(wnd.Gfx(), cam.GetViewMatrix(), musParams);
 		sphereSolidGS->Draw(wnd.Gfx());
-
+		
 		for (auto& sph : spheresWsolidPS_R) {
 			sph->Bind(wnd.Gfx(), cam.GetViewMatrix(), musParams);
 			sph->Draw(wnd.Gfx());
@@ -117,10 +134,12 @@ void Application::DoFrame()
 			sph->Draw(wnd.Gfx());
 		}
 
+		// Play New .wav file if it was chosen from file dialog.
 		if (!gui.getUpdatedWavFile().empty() && gui.getUpdatedWavFile() != wavFileName) {
 			playNewFile();
 		}
 
+		// if cursor is enabled then control camera via keyboard.
 		if (!wnd.CursorEnabled) {
 			ViewIndicator = 0;
 			Control();
@@ -129,8 +148,17 @@ void Application::DoFrame()
 	wnd.Gfx().EndFrame();
 }
 
-void Application::FillSpheresAlgorithm(float offset[3], int size, std::string shader_1, std::string shader_2, std::vector<std::unique_ptr<WrapperSolidSphere>>& dest , std::string gs)
+void Application::FillSpheresAlgorithm(float offset[3], int size, std::string shader_1, std::string shader_2, std::list<std::unique_ptr<WrapperSolidSphere>>& dest , std::string gs)
 {
+	/// <summary>
+	/// Special way of construction music visualization that utilizes 2 pixel shaders for different types of spheres.
+	/// </summary>
+	/// <param name="offset">Position of the array of spheres</param>
+	/// <param name="size">size of the spheres (NOT WORKING PROPERLY)</param>
+	/// <param name="shader_1"> Name of the first shader </param>
+	/// <param name="shader_2"> Name of the second shader</param>
+	/// <param name="dest"> destination array, which is passed by reference, stores unique pointers to sphere objects</param>
+	/// <param name="gs">Optional geometry shader</param>
 	int start = 1;
 	int max = size;
 	const char* gs_c = nullptr;
@@ -193,7 +221,6 @@ void Application::LookAround()
 
 void Application::Control()
 {
-	
 	LookAround();
 	MoveAround();
 }
@@ -275,7 +302,7 @@ void Application::ViewThree()
 
 void Application::HandlePauseViaKeyboard()
 {
-	if (wnd.kbd.KeyIsPressed('P') && (this->kdTimer%15 == 0)) {
+	if (wnd.kbd.KeyIsPressed('P') && (this->kdTimer % COOL_DOWN == 0)) {
 		this->kdTimer = 0;
 		this->AudioIsPlaying = !this->AudioIsPlaying;
 	}
@@ -283,11 +310,11 @@ void Application::HandlePauseViaKeyboard()
 
 void Application::HandleActivatorsViaKeyboard()
 {
-	if (wnd.kbd.KeyIsPressed('A') && (this->kdTimer % 15 == 0)) {
+	if (wnd.kbd.KeyIsPressed('A') && (this->kdTimer % COOL_DOWN == 0)) {
 		this->kdTimer = 0;
 		gui.setSlidersActive(!gui.isSlidersActive());
 	}
-	if (wnd.kbd.KeyIsPressed('F') && (this->kdTimer % 15 == 0)) {
+	if (wnd.kbd.KeyIsPressed('F') && (this->kdTimer % COOL_DOWN == 0)) {
 		this->kdTimer = 0;
 		gui.setFileDialogActive(!gui.isFileDialogActive());
 	}

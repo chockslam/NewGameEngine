@@ -5,29 +5,21 @@
 #include <complex>
 #include <fftw3.h>
 #include <memory>
-
-
-#define SAMPLE_RATE 44100
-#define SAMPLE_NUM 2048
-
-#define BASS_START 20.0f
-#define BASS_END 300.0f
-
-
-#define MID_START 300.0f
-#define MID_END 4000.0f
-
-
-#define TREBLE_START 4000.0f
+#include "../Common/AudioConst.h"
 
 
 
 
 
-//namespace plt = matplotlibcpp;
 
+
+
+/// <summary>
+/// Class represents Audio driver with additional functionality that handles FFT transform.
+/// Singleton implementation written in https://stackoverflow.com/questions/1008019/c-singleton-design-pattern/1008289.
+/// </summary>
 class AudioIO {
-	friend class Application;
+	friend class Application; // Application class can access its private members
 
 public:
 	static AudioIO& getInstance()
@@ -53,46 +45,53 @@ public:
 	//       due to the compilers behavior to check accessibility
 	//       before deleted status
 
+
+	/// <summary>
+	/// Audio data struct. Passed to SDL audio as a user data. 
+	/// </summary>
 	struct AudioData {
 		Uint8* position;
 		Uint32 length;
 		SDL_AudioFormat format;
 		Uint8 silence;
 		fftw_plan plan;
-		fftw_complex* in;
-		fftw_complex* out;
+		fftw_complex* in; // Time domain
+		fftw_complex* out; // Frequency domain
 
-		double freq[SAMPLE_NUM/2];
-		double magn[SAMPLE_NUM/2];
+		double freq[SAMPLE_NUM/2]; // X-axis - frequency
+		double magn[SAMPLE_NUM/2]; // Y-axis - magnitude
 
-		double averageB;
-		double averageM;
-		double averageT;
+		double averageB; // average of bass domain
+		double averageM; // average of mid-range domain
+		double averageT; // average of treble domain
 
 
-		bool m_haveData;
+		bool m_haveData; // if buffer exists
 
 	};
-
+	/// <summary>
+	/// Wrapper around audio data.
+	/// </summary>
 	struct wrapper {
 		Uint8* stream;
 		struct AudioData* audio;
 	};
 
 
-	bool OpenFile(std::string fileName);
-	void PlayAudio();
-	void PlayPausedAudio();
-	void PauseAudio();
-	void SwitchAudioFile(std::string filename);
+	bool OpenFile(std::string fileName);			// Open .wav file
+	void PlayAudio();								// Play Audio
+	void PlayPausedAudio();							// Play if audio is paused.
+	void PauseAudio();								// Pause audio.
+	void SwitchAudioFile(std::string filename);		// Switch between files.
 
 
-	static double Get16bitAudioSample(Uint8* bytebuffer, SDL_AudioFormat format);
-	static void myCallback(void*, Uint8*, int);
-	static void output(struct wrapper arg);
+	static double Get16bitAudioSample(Uint8* bytebuffer, SDL_AudioFormat format); // 16-bit audio sample
+	static void myCallback(void*, Uint8*, int);									  // callback function passed (needed for SDL implementation)
+	static void output(struct wrapper arg);											
 	
 
 private:
+	// variables needed for implementations of SDL audio processing.
 	SDL_AudioDeviceID m_deviceId;
 	SDL_AudioSpec m_dataType;
 	SDL_AudioFormat m_dataFormat;
@@ -101,12 +100,7 @@ private:
 
 	AudioData* audio = new AudioData();
 
-
+	// name of the played .wav file.
 	const char* m_fileName;
-
-	//bool& playing;
-	
-
-
 
 };
