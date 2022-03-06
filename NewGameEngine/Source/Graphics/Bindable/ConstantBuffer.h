@@ -1,7 +1,13 @@
+/// CODE was written with help by ChiliTomatoNoodle (https://www.youtube.com/c/ChiliTomatoNoodle) (https://github.com/planetchili/hw3d)
+
 #pragma once
 #include "Bindable.h"
 #include "BindableCodex.h"
 
+/// <summary>
+/// Class that represent constant Buffer (not used directly code but acts as an abstract class)
+/// </summary>
+/// <typeparam name="C"> Constant Buffer parameters - struct </typeparam>
 template<typename C>
 class ConstantBuffer : public Bindable
 {
@@ -55,6 +61,10 @@ protected:
 	UINT slot;
 };
 
+/// <summary>
+/// Class that represents vertex constant buffer
+/// </summary>
+/// <typeparam name="C"> Constant Buffer parameters - struct </typeparam>
 template<typename C>
 class VertexConstantBuffer : public ConstantBuffer<C>
 {
@@ -64,10 +74,12 @@ class VertexConstantBuffer : public ConstantBuffer<C>
 
 public:
 	using ConstantBuffer<C>::ConstantBuffer;
+	// Binding to the pipeline
 	void Bind(Graphics& gfx) noexcept override
 	{
 		GetContext(gfx)->VSSetConstantBuffers(slot, 1u, pConstantBuffer.GetAddressOf());
 	}
+	// Bindable codex implementation stuff... 
 	static std::shared_ptr<VertexConstantBuffer> Resolve(Graphics& gfx, const C& consts, UINT slot = 0)
 	{
 		return Codex::Resolve<VertexConstantBuffer>(gfx, consts, slot);
@@ -92,7 +104,10 @@ public:
 };
 
 
-
+/// <summary>
+/// Class that represents geometry constant buffer. Similar to vertex constant buffer
+/// </summary>
+/// <typeparam name="C"> Constant Buffer parameters - struct </typeparam>
 template<typename C>
 class GeometryConstantBuffer : public ConstantBuffer<C>
 {
@@ -129,6 +144,12 @@ public:
 	}
 };
 
+
+
+/// <summary>
+/// Class that represents pixel constant buffer. Similar to vertex constant buffer
+/// </summary>
+/// <typeparam name="C"> Constant Buffer parameters - struct </typeparam>
 
 template<typename C>
 class PixelConstantBuffer : public ConstantBuffer<C>

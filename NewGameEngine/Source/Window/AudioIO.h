@@ -8,12 +8,6 @@
 #include "../Common/AudioConst.h"
 
 
-
-
-
-
-
-
 /// <summary>
 /// Class represents Audio driver with additional functionality that handles FFT transform.
 /// Singleton implementation written in https://stackoverflow.com/questions/1008019/c-singleton-design-pattern/1008289.

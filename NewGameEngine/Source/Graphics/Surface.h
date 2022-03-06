@@ -1,17 +1,24 @@
+/// CODE was written with help by ChiliTomatoNoodle (https://www.youtube.com/c/ChiliTomatoNoodle) (https://github.com/planetchili/hw3d)
+
 #pragma once
 #include "../Common/EWin.h"
 #include <string>
 #include <assert.h>
 #include <memory>
 
-
+/// <summary>
+/// Surface class thta allows drawing pixels. Used to load pictures in the application.
+/// </summary>
 class Surface
 {
 public:
+	/// <summary>
+	/// A single pixel.
+	/// </summary>
 	class Color
 	{
 	public:
-		unsigned int dword;
+		unsigned int dword; // RGBA encoded in UINT 
 	public:
 		constexpr Color() noexcept : dword()
 		{}
@@ -40,6 +47,7 @@ public:
 			dword = color.dword;
 			return *this;
 		}
+		// Getters and Setters for RGBA values, using encoding/decoding techniques.
 		constexpr unsigned char GetX() const noexcept
 		{
 			return dword >> 24u;
@@ -83,6 +91,7 @@ public:
 	};
 
 public:
+
 	Surface(unsigned long long width, unsigned long long height) noexcept;
 	Surface(Surface&& source) noexcept;
 	Surface(Surface&) = delete;
@@ -104,8 +113,8 @@ public:
 private:
 	Surface(unsigned int width, unsigned int height, std::unique_ptr<Color[]> pBufferParam, bool alphaLoaded = false) noexcept;
 private:
-	std::unique_ptr<Color[]> pBuffer;
-	unsigned long long width;
-	unsigned long long height;
-	bool alphaLoaded = false;
+	std::unique_ptr<Color[]> pBuffer;		// Array of pixels on the surface.
+	unsigned long long width;				// Width of the picture
+	unsigned long long height;				// Height of the picture
+	bool alphaLoaded = false;				// checks whether a single pixel contains alpha value.
 };

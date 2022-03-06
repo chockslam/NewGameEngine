@@ -1,14 +1,20 @@
+/// CODE was written with help by ChiliTomatoNoodle (https://www.youtube.com/c/ChiliTomatoNoodle) (https://github.com/planetchili/hw3d)
+
 #pragma once
 #include "Bindable.h"
 
-//#include "../Vertex.h"
+/// <summary>
+/// Vertex layout contains position and normal.
+/// </summary>
 struct Vertex
 {
 	DirectX::XMFLOAT3 pos;
 	DirectX::XMFLOAT3 n;
-	//DirectX::XMFLOAT3 color;*/
 };
 
+/// <summary>
+/// Class that represents Vertex Buffer D3D resoruce.
+/// </summary>
 class VertexBuffer : public Bindable
 {
 public:
@@ -27,7 +33,7 @@ private:
 	static std::string GenerateUID_(const std::string& tag);
 protected:
 	
-	std::string tag;
-	UINT stride;
+	std::string tag;											// tag uniquely identifies an object in the Bindable Codex
+	UINT stride;												// Size of the elements in the vertex buffer
 	Microsoft::WRL::ComPtr<ID3D11Buffer> pVertexBuffer;
 };

@@ -1,3 +1,4 @@
+/// CODE was written with help by ChiliTomatoNoodle (https://www.youtube.com/c/ChiliTomatoNoodle) (https://github.com/planetchili/hw3d)
 #include "Graphics.h"
 #include <sstream>
 #include <d3dcompiler.h>
@@ -34,7 +35,7 @@ Graphics::Graphics(HWND hWnd)
 	sd.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
 	sd.Flags = 0;
 
-	UINT swapCreateFlags = 0u;//For future stuff
+	UINT swapCreateFlags = 0u;
 
 	//creating swapChain + device
 	D3D11CreateDeviceAndSwapChain(
@@ -115,22 +116,23 @@ Graphics::~Graphics()
 
 void Graphics::EndFrame()
 {
-
+	// Render InGui
 	ImGui::Render();
 	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
-	
+	// Present back buffer to the screen.
 	pSwap->Present(1u, 0u);
 }
 
 void Graphics::BeginFrame(float red, float green, float blue) noexcept
 {
 	
+	// Imgui new frame
 	ImGui_ImplDX11_NewFrame();
 	ImGui_ImplWin32_NewFrame();
 	ImGui::NewFrame();
 
 
-
+	// Reset Render Target View and Dept Stencil View (z-buffer)
 	const float color[] = { red,green,blue,1.0f };
 	pContext->ClearRenderTargetView(pTarget.Get(), color);
 	pContext->ClearDepthStencilView(pDSV.Get(), D3D11_CLEAR_DEPTH, 1.0f, 0u);
@@ -143,26 +145,27 @@ void Graphics::DrawIndexed(UINT count) noexcept
 
 void Graphics::SetProjection(DirectX::FXMMATRIX proj) noexcept
 {
-	projection = proj;
+	projection = proj;					// Set projection matrix.
 }
 
 DirectX::XMMATRIX Graphics::GetProjection() const noexcept
 {
-	return projection;
+	return projection;					// Get projection matrix
 }
 
 void Graphics::SetCamera(DirectX::FXMMATRIX cam) noexcept
 {
-	camera = cam;
+	camera = cam;						// Set camera matrix (view matrix)
 }
 
 DirectX::XMMATRIX Graphics::GetCamera() const noexcept
 {
-	return camera;
+	return camera;						// Get camera matrix.
 }
 
 void Graphics::initImgui(HWND hwnd) noexcept
 {
+	// Initialize Imgui.
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	ImPlot::CreateContext();

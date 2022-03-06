@@ -1,3 +1,5 @@
+/// CODE was written with help by ChiliTomatoNoodle (https://www.youtube.com/c/ChiliTomatoNoodle) (https://github.com/planetchili/hw3d)
+
 #include "Texture.h"
 #include "../Surface.h"
 #include "BindableCodex.h"
@@ -47,7 +49,7 @@ Texture::Texture(Graphics& gfx, const std::string& path, unsigned int slot)
 
 void Texture::Bind(Graphics& gfx) noexcept
 {
-	GetContext(gfx)->PSSetShaderResources(slot, 1u, pTextureView.GetAddressOf());
+	GetContext(gfx)->PSSetShaderResources(slot, 1u, pTextureView.GetAddressOf());						
 }
 
 std::shared_ptr<Texture> Texture::Resolve(Graphics& gfx, const std::string& path, UINT slot)

@@ -4,23 +4,18 @@ struct GSOut
     float3 vNormal : NORMAL;
 };
 
-
+// Transforms
 cbuffer TransformCBuf
 {
     matrix modelView;
     matrix modelViewProj;
 };
 
+// Music params
 cbuffer CBuf
 {
     float3 params;
 };
-
-float4 explode(float4 position, float3 normal, float3 mus)
-{
-    float3 direction = normal * ((5 * sin(mus.x) + 1.0) * 10);
-    return position + float4(direction, 1.0);
-}
 
 
 [maxvertexcount(12)]
@@ -29,14 +24,14 @@ void main(triangle GSOut input[3] : SV_POSITION, inout TriangleStream<GSOut> Out
     GSOut gsout1;
     
     float3 MusParams = params;
-    
+    // Optimize
     if (params.x == 0.0)
         MusParams.x = 0.1;
     if (params.y == 0.0)
         MusParams.y = 0.1;
     if (params.z == 0.0)
         MusParams.z = 0.1;
-    
+    // Make parameters ranging from 0.0 to 1.0
     MusParams = normalize(MusParams);
     
     
@@ -45,11 +40,11 @@ void main(triangle GSOut input[3] : SV_POSITION, inout TriangleStream<GSOut> Out
     float4 surfaceNormal = float4(normalize(cross(float3(vector0.x, vector0.y, vector0.z), float3(vector1.x, vector1.y, vector1.z))), 0.0f);
     
   //------ Generate a new face along the direction of the face normal
-  // only if diff_len is not too small.
-  //
+  // only if diff_len is not too small
     if (length(surfaceNormal) > 0.1)
     {
         int i;
+        // Algorithm of explion by https://www.geeks3d.com/20140625/mesh-exploder-with-geometry-shaders/
         for (i = 0; i < 3; i++)
         {
             gsout1.pos = input[i].pos;
@@ -62,9 +57,8 @@ void main(triangle GSOut input[3] : SV_POSITION, inout TriangleStream<GSOut> Out
 
         }
         
+        // Make new mesh for MidRange
         OutputStream.RestartStrip();
-        
-        
         for (i = 0; i < 3; i++)
         {
             gsout1.pos = input[i].pos + float4(7.5,0.0,0.0,0.0);
@@ -77,6 +71,7 @@ void main(triangle GSOut input[3] : SV_POSITION, inout TriangleStream<GSOut> Out
 
         }
         
+        // Make new mesh for Treble effect
         OutputStream.RestartStrip();
         for (i = 0; i < 3; i++)
         {
@@ -86,7 +81,6 @@ void main(triangle GSOut input[3] : SV_POSITION, inout TriangleStream<GSOut> Out
             float scale = 3.0 + 7 * cos(3 + (MusParams.z * 6.28) * 0.1 + len * 2);
         
             gsout1.pos = float4(gsout1.pos + (surfaceNormal * length(surfaceNormal) * scale)) + float4(float3(surfaceNormal.x, surfaceNormal.y, surfaceNormal.z) * float3(0.05, 0.05, 0.05), 1.0);
-           
             gsout1.pos = mul(gsout1.pos, modelViewProj);
             gsout1.vNormal = input[i].vNormal;
             OutputStream.Append(gsout1);
@@ -94,32 +88,7 @@ void main(triangle GSOut input[3] : SV_POSITION, inout TriangleStream<GSOut> Out
         }
         
         OutputStream.RestartStrip();
-        
-        
-        //for (i = 0; i < 3; i++)
-        //{
-        //    gsout1.pos = input[i].pos;
-        //    float len = sqrt(input[i].pos.x * input[i].pos.x + input[i].pos.z * input[i].pos.z);
-        //    float scale = 2.0 + 1.0 * cos(MusParams.y * 2.0 + len);
-        //    gsout1.pos = float4(gsout1.pos + (surfaceNormal * length(surfaceNormal) * scale)) + float4(float3(surfaceNormal.x, surfaceNormal.y, surfaceNormal.z) * float3(0.05, 0.05, 0.05), 1.0);
-        //    gsout1.pos = mul(gsout1.pos, modelViewProj);
-        //    gsout1.vNormal = input[i].vNormal;
-        //    OutputStream.Append(gsout1);
-        //}
-        //
-        //OutputStream.RestartStrip();
-        //for (i = 0; i < 3; i++)
-        //{
-        //    gsout1.pos = input[i].pos;
-        //    float len = sqrt(input[i].pos.x * input[i].pos.x + input[i].pos.z * input[i].pos.z);
-        //    float scale = 2.0 + 1.0 * cos(MusParams.z * 1.0 + len);
-        //    gsout1.pos = float4(gsout1.pos + (surfaceNormal * length(surfaceNormal) * scale)) + float4(float3(surfaceNormal.x, surfaceNormal.y, surfaceNormal.z) * float3(0.05, 0.05, 0.05), 1.0);
-        //    gsout1.pos = mul(gsout1.pos, modelViewProj);
-        //    gsout1.vNormal = input[i].vNormal;
-        //    OutputStream.Append(gsout1);
-        //}
-        //
-        //OutputStream.RestartStrip();
+       
     }
     
 

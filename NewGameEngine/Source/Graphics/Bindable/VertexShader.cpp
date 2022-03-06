@@ -1,3 +1,4 @@
+/// CODE was written with help by ChiliTomatoNoodle (https://www.youtube.com/c/ChiliTomatoNoodle) (https://github.com/planetchili/hw3d)
 #include "VertexShader.h"
 #include "BindableCodex.h"
 #include <typeinfo>
@@ -7,7 +8,7 @@ VertexShader::VertexShader(Graphics& gfx, const std::string& path)
 	:
 	path(path)
 {
-	
+	//read .cso file
 	D3DReadFileToBlob(std::wstring{ path.begin(),path.end() }.c_str(), &pBytecodeBlob);
 	GetDevice(gfx)->CreateVertexShader(
 		pBytecodeBlob->GetBufferPointer(),
@@ -24,7 +25,7 @@ void VertexShader::Bind(Graphics& gfx) noexcept
 
 ID3DBlob* VertexShader::GetBytecode() const noexcept
 {
-	return pBytecodeBlob.Get();
+	return pBytecodeBlob.Get();									// get byte code of the .cso file
 }
 
 std::shared_ptr<VertexShader> VertexShader::Resolve(Graphics& gfx, const std::string& path)

@@ -137,7 +137,7 @@ double AudioIO::Get16bitAudioSample(Uint8* bytebuffer, SDL_AudioFormat format)
 /// <summary>
 ///		callback function needed for SDL implementation
 /// </summary>
-/// <param name="userData"> Audio Data is passed as a parameter </param>
+/// <param name="userData"> pointer to Audio Data is passed as a parameter </param>
 /// <param name="stream"> audio stream </param>
 /// <param name="len"> length of the </param>
 void AudioIO::myCallback(void* userData, Uint8* stream, int len)
