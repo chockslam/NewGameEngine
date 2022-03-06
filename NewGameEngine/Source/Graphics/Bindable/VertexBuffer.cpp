@@ -1,3 +1,4 @@
+/// CODE was written with help by ChiliTomatoNoodle (https://www.youtube.com/c/ChiliTomatoNoodle) (https://github.com/planetchili/hw3d)
 #include "VertexBuffer.h"
 #include "BindableCodex.h"
 
@@ -6,6 +7,7 @@ VertexBuffer::VertexBuffer(Graphics& gfx, const std::string& tag, const std::vec
 	stride(sizeof(Vertex)),
 	tag(tag)
 {
+	// Set up Vertex Buffer
 	D3D11_BUFFER_DESC bd = {};
 	bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 	bd.Usage = D3D11_USAGE_DEFAULT;

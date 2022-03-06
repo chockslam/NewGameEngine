@@ -1,14 +1,15 @@
-cbuffer CBuf
+//Transformations
+cbuffer CBuf    
 {
     matrix modelView;
     matrix modelViewProj;
 };
-
+//output structure
 struct GSOut
 {
     float4 pos : SV_POSITION;
 };
-
+// Just passes data to the pixel shader
 [maxvertexcount(4)]
 void main(triangle GSOut input[3] : SV_POSITION, inout TriangleStream<GSOut> OutputStream)
 {

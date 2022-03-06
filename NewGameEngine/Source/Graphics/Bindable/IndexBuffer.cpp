@@ -1,3 +1,4 @@
+/// CODE was written with help by ChiliTomatoNoodle (https://www.youtube.com/c/ChiliTomatoNoodle) (https://github.com/planetchili/hw3d)
 #include "IndexBuffer.h"
 #include "BindableCodex.h"
 
@@ -11,7 +12,7 @@ IndexBuffer::IndexBuffer(Graphics& gfx, std::string tag, const std::vector<unsig
 	tag(tag),
 	count((UINT)indices.size())
 {
-
+	// Configure index buffer
 	D3D11_BUFFER_DESC ibd = {};
 	ibd.BindFlags = D3D11_BIND_INDEX_BUFFER;
 	ibd.Usage = D3D11_USAGE_DEFAULT;

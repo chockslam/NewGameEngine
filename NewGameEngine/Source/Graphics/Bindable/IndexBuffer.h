@@ -1,6 +1,11 @@
+/// CODE was written with help by ChiliTomatoNoodle (https://www.youtube.com/c/ChiliTomatoNoodle) (https://github.com/planetchili/hw3d)
+
 #pragma once
 #include "Bindable.h"
 
+/// <summary>
+/// Class represents Index Buffer resource.
+/// </summary>
 class IndexBuffer : public Bindable
 {
 public:
@@ -20,7 +25,7 @@ public:
 private:
 	static std::string GenerateUID_(const std::string& tag);
 protected:
-	std::string tag;
-	UINT count;
+	std::string tag;												// tag is used to uniquely identify a resource in the Bindable Codex.
+	UINT count;														// Number of indices.
 	Microsoft::WRL::ComPtr<ID3D11Buffer> pIndexBuffer;
 };

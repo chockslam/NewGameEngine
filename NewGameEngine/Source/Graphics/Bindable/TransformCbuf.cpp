@@ -1,3 +1,4 @@
+/// CODE was written with help by ChiliTomatoNoodle (https://www.youtube.com/c/ChiliTomatoNoodle) (https://github.com/planetchili/hw3d)
 #include "TransformCbuf.h"
 
 
@@ -17,13 +18,15 @@ void TransformCbuf::Bind(Graphics& gfx) noexcept
 
 void TransformCbuf::UpdateBindImpl(Graphics& gfx, const Transforms& tf) noexcept
 {
+	//Update and bind transformCBuf every frame.
 	pGcbuf->Update(gfx, tf);
 	pGcbuf->Bind(gfx);
 }
 
 TransformCbuf::Transforms TransformCbuf::GetTransforms(Graphics& gfx) noexcept
 {
-	const auto modelView = parent.GetTransformXM() * gfx.GetCamera();
+	const auto modelView = parent.GetTransformXM() * gfx.GetCamera();// Calculate modelView matrix
+	// Return modelView and modelViewProjection matrices.
 	return {
 		DirectX::XMMatrixTranspose(modelView),
 		DirectX::XMMatrixTranspose(

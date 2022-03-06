@@ -1,8 +1,11 @@
+/// CODE was written with help by ChiliTomatoNoodle (https://www.youtube.com/c/ChiliTomatoNoodle) (https://github.com/planetchili/hw3d)
+
 #pragma once
 #include "Bindable.h"
-//#include "../Vertex.h"
 
-
+/// <summary>
+/// Class that represnts Vertex Shader
+/// </summary>
 class VertexShader : public Bindable
 {
 public:
@@ -14,6 +17,6 @@ public:
 	std::string GetUID() const noexcept override;
 protected:
 	std::string path;
-	Microsoft::WRL::ComPtr<ID3DBlob> pBytecodeBlob;
+	Microsoft::WRL::ComPtr<ID3DBlob> pBytecodeBlob;					// Bytecode of the shader needed in the constructor of Input layout.
 	Microsoft::WRL::ComPtr<ID3D11VertexShader> pVertexShader;
 };

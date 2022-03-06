@@ -1,6 +1,9 @@
+/// CODE was written with help by ChiliTomatoNoodle (https://www.youtube.com/c/ChiliTomatoNoodle) (https://github.com/planetchili/hw3d)
 #pragma once
 #include "Bindable.h"
-
+/// <summary>
+/// Class that represents Pixel Shader.
+/// </summary>
 class PixelShader : public Bindable
 {
 public:
@@ -10,6 +13,6 @@ public:
 	static std::string GenerateUID(const std::string& path);
 	std::string GetUID() const noexcept override;
 protected:
-	std::string path;
+	std::string path;													// path to .cso file
 	Microsoft::WRL::ComPtr<ID3D11PixelShader> pPixelShader;
 };

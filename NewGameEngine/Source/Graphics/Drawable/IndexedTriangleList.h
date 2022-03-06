@@ -1,12 +1,12 @@
+/// CODE was written with help by ChiliTomatoNoodle (https://www.youtube.com/c/ChiliTomatoNoodle) (https://github.com/planetchili/hw3d)
 #pragma once
 #include <vector>
 #include <DirectXMath.h>
 
-//struct Vertex
-//{
-//	DirectX::XMFLOAT3 pos;
-//};
-
+/// <summary>
+/// IndexTriangleList represents any shape in the program that is supposed be drawn via DrawIndexed function.
+/// Stores indices and vertices
+/// </summary>
 class IndexedTriangleList
 {
 public:
@@ -54,6 +54,6 @@ public:
 	}
 
 public:
-	std::vector<Vertex> vertices;
-	std::vector<unsigned short> indices;
+	std::vector<Vertex> vertices;									// Vertices
+	std::vector<unsigned short> indices;							// Indices
 };

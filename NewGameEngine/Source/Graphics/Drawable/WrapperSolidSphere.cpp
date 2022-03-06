@@ -27,24 +27,11 @@ void WrapperSolidSphere::Reset() noexcept
 
 void WrapperSolidSphere::Draw(Graphics& gfx) const noexcept
 {
+	// Set new position and draw
 	mesh.SetPos(this->pos);
 	mesh.Draw(gfx);
 }
 
-void WrapperSolidSphere::SetColor(DirectX::XMFLOAT3 color) noexcept
-{
-}
-
-void WrapperSolidSphere::SpawnControlWindow() noexcept
-{
-
-	SpawnTestFreqPlot();
-}
-
-void WrapperSolidSphere::SpawnTestFreqPlot() noexcept
-{
-	
-}
 
 
 void WrapperSolidSphere::Bind(Graphics& gfx, DirectX::FXMMATRIX view, float musParams[3]) const noexcept
@@ -53,10 +40,12 @@ void WrapperSolidSphere::Bind(Graphics& gfx, DirectX::FXMMATRIX view, float musP
 	DirectX::XMVECTOR color = { musParams[0], musParams[1], musParams[2] };
 	//const auto pos = DirectX::XMLoadFloat3(pos);
 	DirectX::XMStoreFloat3(&dataCopy.color, color);
-	//DirectX::XMStoreFloat3(&dataCopy.pos, DirectX::XMVector3Transform(pos, view));
+
+	// Update pixel constant buffer amd geometry constant buffer with audio data.
 	cbuf.Update(gfx, dataCopy);
 	cbufG.Update(gfx, dataCopy);
 
+	// Bind constant buffers to the pipeline
 	cbuf.Bind(gfx);
 	cbufG.Bind(gfx);
 }

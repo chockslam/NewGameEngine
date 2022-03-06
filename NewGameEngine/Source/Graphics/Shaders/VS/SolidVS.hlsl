@@ -9,6 +9,7 @@
 //    float3 musparams;
 //};
 
+// Just passing data to the Geometry shader without applying any transformation 
 struct VSOut
 {
     float4 viewPos : SV_Position;

@@ -35,7 +35,7 @@ Application::Application()
 	
 
 	// Geometry + Pixel Shader visualization
-	sphereSolidGS = std::make_unique<WrapperSolidSphere>(wnd.Gfx(), 4.0f, 4,8, "SolidVS.cso", "Solid_RGBeqBMT_PS.cso", new float[3]{ -70.0f, -2.0f, 15.0f }, "PrettyExplodeGS.cso");
+	sphereSolidGS = std::make_unique<WrapperSolidSphere>(wnd.Gfx(), 0.4f, 20, 90, "SolidVS.cso", "Solid_RGBeqBMT_PS.cso", new float[3]{ -70.0f, -2.0f, 15.0f }, "PrettyExplodeGS.cso");
 
 	// Loads Picutres in GUI.
 	gui.CreateTexture(wnd.Gfx());

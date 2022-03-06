@@ -1,3 +1,5 @@
+/// CODE was written with help by ChiliTomatoNoodle (https://www.youtube.com/c/ChiliTomatoNoodle) (https://github.com/planetchili/hw3d)
+
 #define FULL_WINTARD
 #include "Surface.h"
 #include <algorithm>
