@@ -9,6 +9,11 @@
 #include <memory>
 #include <random>
 
+#include <imgui.h>
+#include <imgui_impl_win32.h>
+#include <imgui_impl_dx11.h>
+#include <implot.h>
+
 
 /// <summary>
 /// Class that represents D3D core graphics.
@@ -39,7 +44,8 @@ private:
 	Microsoft::WRL::ComPtr<ID3D11DeviceContext> pContext;					// Context. Used to draw objects and manipulate D3D resources.
 	Microsoft::WRL::ComPtr<ID3D11RenderTargetView> pTarget;					// Target. Targets a specific platform. Windows in the case of this implememtaion.
 	Microsoft::WRL::ComPtr<ID3D11DepthStencilView> pDSV;					// Stencil view. Used as a Depth Checker, i.e. Z-buffer.
-
+	ImGuiContext* imgCont;
+	ImPlotContext* impCont;
 
 
 };

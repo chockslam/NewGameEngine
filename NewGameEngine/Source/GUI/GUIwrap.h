@@ -15,6 +15,7 @@ public:
     }
 private:
     GUIwrap();
+    ~GUIwrap();
 
     //};            // Constructor? (the {} brackets) are needed here.
     // C++ 11

@@ -67,7 +67,7 @@ int Application::Go()
 
 Application::~Application()
 {
-
+	Codex::ResetAll();
 }
 
 void Application::DoFrame()
@@ -81,6 +81,7 @@ void Application::DoFrame()
 		
 		ToggleCursor();
 
+		// Musparams update.
 		musParams[0] = static_cast<float>(audio.audio->averageB) * weightOfParams[0];
 		musParams[1] = static_cast<float>(audio.audio->averageM) * weightOfParams[1];
 		musParams[2] = static_cast<float>(audio.audio->averageT) * weightOfParams[2];
@@ -193,6 +194,10 @@ void Application::FillSpheresAlgorithm(float offset[3], int size, std::string sh
 		}
 		max--;
 		start++;
+	}
+	if (offset) {
+		delete[] offset;
+		offset = nullptr;
 	}
 }
 

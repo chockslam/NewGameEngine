@@ -20,17 +20,28 @@ AudioIO::~AudioIO()
 	
 	//Clean up memory if data in the audio buffer exists.
 	if (audio->m_haveData) {
-		// Free WAV buffer.
+		// Free WAV buffer.f
 		SDL_FreeWAV(m_buffer);
-
+		SDL_CloseAudioDevice(m_deviceId);
+		SDL_QuitSubSystem(SDL_INIT_AUDIO);
+		SDL_Quit();
 		audio->m_haveData = false;
+		if (audio->in) {
+			fftw_free(audio->in);
+		}
+		if (audio->out) {
+			fftw_free(audio->out);
+		}
 		// clean up after fftw.
 		fftw_destroy_plan(audio->plan);
 		fftw_cleanup();
 
+
+
 		// delete audio object and stop pointing to the object.
 		delete audio;
 		audio = nullptr;
+		
 	}
 
 }
@@ -53,10 +64,22 @@ bool AudioIO::OpenFile(std::string fileName)
 		m_dataType.samples = SAMPLE_NUM;
 
 		// init fftw input and output arrays 
+		if (audio->in) {
+			fftw_free(audio->in);
+		}
+		if (audio->out) {
+			fftw_free(audio->out);
+		}
+
 		audio->in = (fftw_complex*)fftw_malloc(sizeof(fftw_complex) * SAMPLE_NUM);
 		audio->out = (fftw_complex*)fftw_malloc(sizeof(fftw_complex) * SAMPLE_NUM);
 
 		// Initialize plan of fftw
+		if (audio->plan)
+			fftw_destroy_plan(audio->plan);
+
+		fftw_cleanup();
+
 		audio->plan = fftw_plan_dft_1d(SAMPLE_NUM, audio->in, audio->out, FFTW_FORWARD, FFTW_MEASURE);
 		// User Data passed to SDL audio function 
 		m_dataType.userdata = audio;
@@ -165,6 +188,8 @@ void AudioIO::myCallback(void* userData, Uint8* stream, int len)
 
 	audio->position += length;
 	audio->length -= length;
+
+	
 	
 }
 
@@ -243,5 +268,4 @@ void AudioIO::output(struct wrapper arg)
 	wrap.audio->averageB = avB;
 	wrap.audio->averageM = avM;
 	wrap.audio->averageT = avT;
-
 }

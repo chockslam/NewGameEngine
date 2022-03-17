@@ -1,13 +1,4 @@
-//cbuffer CBuf
-//{
-//	matrix modelView;
-//	matrix modelViewProj;
-//};
 
-//cbuffer musData
-//{
-//    float3 musparams;
-//};
 
 // Just passing data to the Geometry shader without applying any transformation 
 struct VSOut

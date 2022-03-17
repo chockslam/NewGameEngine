@@ -12,6 +12,14 @@ GUIwrap::GUIwrap():
 {
 	this->makeStyle();
 }
+GUIwrap::~GUIwrap()
+{
+	playTexture.reset();
+	pauseTexture.reset();
+	BassTexture.reset();
+	MidTexture.reset();
+	TrebleTexture.reset();
+}
 std::string GUIwrap::getUpdatedWavFile()
 {
 	return filename;
