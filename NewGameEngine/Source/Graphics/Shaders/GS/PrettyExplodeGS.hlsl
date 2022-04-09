@@ -44,7 +44,7 @@ void main(triangle GSOut input[3] : SV_POSITION, inout TriangleStream<GSOut> Out
     if (length(surfaceNormal) > 0.1)
     {
         int i;
-        // Algorithm of explion by https://www.geeks3d.com/20140625/mesh-exploder-with-geometry-shaders/
+        // Algorithm of explosion by https://www.geeks3d.com/20140625/mesh-exploder-with-geometry-shaders/
         for (i = 0; i < 3; i++)
         {
             gsout1.pos = input[i].pos;

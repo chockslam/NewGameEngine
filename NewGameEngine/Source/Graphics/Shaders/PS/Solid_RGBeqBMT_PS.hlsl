@@ -6,7 +6,7 @@ cbuffer CBuf
 
 float4 main() : SV_Target
 {
-    //output musparams as RGB colors
+    //output musparams as RGB colors 
     return float4(normalize(color), 1.0f);
 }
 
