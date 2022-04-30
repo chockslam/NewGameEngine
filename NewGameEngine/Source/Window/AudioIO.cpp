@@ -7,8 +7,6 @@
 
 
 AudioIO::AudioIO()
-	//:
-	//playing(false)
 {
 	SDL_Init(SDL_INIT_AUDIO);
 }
@@ -18,7 +16,7 @@ AudioIO::~AudioIO()
 	// Stop Audio Thread before cleaning up memory
 	SDL_LockAudioDevice(m_deviceId);
 	
-	//Clean up memory if data in the audio buffer exists.
+	// Clean up memory if data in the audio buffer exists.
 	if (audio->m_haveData) {
 		// Free WAV buffer.f
 		SDL_FreeWAV(m_buffer);
@@ -35,9 +33,6 @@ AudioIO::~AudioIO()
 		// clean up after fftw.
 		fftw_destroy_plan(audio->plan);
 		fftw_cleanup();
-
-
-
 		// delete audio object and stop pointing to the object.
 		delete audio;
 		audio = nullptr;
@@ -70,7 +65,6 @@ bool AudioIO::OpenFile(std::string fileName)
 		if (audio->out) {
 			fftw_free(audio->out);
 		}
-
 		audio->in = (fftw_complex*)fftw_malloc(sizeof(fftw_complex) * SAMPLE_NUM);
 		audio->out = (fftw_complex*)fftw_malloc(sizeof(fftw_complex) * SAMPLE_NUM);
 
@@ -81,9 +75,9 @@ bool AudioIO::OpenFile(std::string fileName)
 		fftw_cleanup();
 
 		audio->plan = fftw_plan_dft_1d(SAMPLE_NUM, audio->in, audio->out, FFTW_FORWARD, FFTW_MEASURE);
-		// User Data passed to SDL audio function 
+		// User Data (AudioData*) passed to SDL audio function 
 		m_dataType.userdata = audio;
-		// Assign callback function 
+		// Assign callback function (function pointer)
 		m_dataType.callback = myCallback;
 		
 		// Other audio parameters
@@ -157,6 +151,8 @@ double AudioIO::Get16bitAudioSample(Uint8* bytebuffer, SDL_AudioFormat format)
 
 	return val / 65535.0;
 }
+
+
 /// <summary>
 ///		callback function needed for SDL implementation
 /// </summary>

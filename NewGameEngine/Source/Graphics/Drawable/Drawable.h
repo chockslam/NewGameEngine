@@ -6,7 +6,9 @@
 
 class Bindable;
 
-// Abstract Class that represents a drawable object.
+/// <summary>
+/// Abstract Class that represents a drawable object.
+/// </summary>
 class Drawable
 {
 public:

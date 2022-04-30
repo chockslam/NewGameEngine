@@ -72,7 +72,11 @@ private:
 	std::unique_ptr<WrapperSolidSphere> sphereSolidGS;
 
 
-	// Lists of spheres that utilizes pixels shaders as means to visualizations. 
+	// Lists of spheres that utilizes pixels shaders as means to visualizations.
+	// Lists were chosen over vectors due to the nature of its utilization in the Draw(),
+	// i.e. traverse and call functions on every object function,
+	// AND the fact that lists implement Linkind List data structure,
+	// which facilitates a faster traversal time then array
 	std::list<std::unique_ptr<WrapperSolidSphere>> spheresWsolidPS_R;
 	std::list<std::unique_ptr<WrapperSolidSphere>> spheresWsolidPS_G;
 	std::list<std::unique_ptr<WrapperSolidSphere>> spheresWsolidPS_B;

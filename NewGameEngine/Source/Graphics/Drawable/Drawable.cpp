@@ -15,6 +15,7 @@ void Drawable::Draw(Graphics& gfx) const noexcept
 	
 }
 
+
 void Drawable::AddBind(std::shared_ptr<Bindable> bind) noexcept
 {
 	// special case for index buffer

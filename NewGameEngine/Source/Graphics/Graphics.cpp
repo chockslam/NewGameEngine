@@ -162,7 +162,11 @@ DirectX::XMMATRIX Graphics::GetCamera() const noexcept
 {
 	return camera;						// Get camera matrix.
 }
-
+/// <summary>
+/// initialize imgui
+/// </summary>
+/// <param name="hwnd"> Window representation </param>
+/// <returns></returns>
 void Graphics::initImgui(HWND hwnd) noexcept
 {
 	// Initialize Imgui.
