@@ -13,6 +13,16 @@ WrapperSolidSphere::WrapperSolidSphere(Graphics& gfx, float radius, int latDiv, 
 	this->initPos[1] = pos[1];
 	this->initPos[2] = pos[2];
 	Reset();
+
+	if (pos) {
+		delete[] pos;
+		pos = nullptr;
+	}
+}
+
+WrapperSolidSphere::~WrapperSolidSphere()
+{
+	
 }
 
 void WrapperSolidSphere::Reset() noexcept

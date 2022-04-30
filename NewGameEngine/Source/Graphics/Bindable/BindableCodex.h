@@ -14,7 +14,12 @@
 class Codex
 {
 public:
-
+	static void ResetAll() {
+		auto& c = Get();
+		for (auto& bind : c.binds) {
+			bind.second.reset();
+		}
+	}
 	// Public Template function that resolves Bindable using its ID
 	template<class T, typename...Params>
 	static std::shared_ptr<T> Resolve(Graphics& gfx, Params&&...p)

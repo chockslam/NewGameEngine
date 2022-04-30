@@ -4,10 +4,7 @@
 #include <d3dcompiler.h>
 #include <cmath>
 #include <DirectXMath.h>
-#include <imgui.h>
-#include <imgui_impl_win32.h>
-#include <imgui_impl_dx11.h>
-#include <implot.h>
+
 #include "../Common/WNDconst.h"
 
 namespace wrl = Microsoft::WRL;
@@ -112,6 +109,9 @@ Graphics::Graphics(HWND hWnd)
 
 Graphics::~Graphics()
 {
+	ImGui_ImplDX11_Shutdown();
+	ImGui::DestroyContext(imgCont);
+	ImPlot::DestroyContext(impCont);
 }
 
 void Graphics::EndFrame()
@@ -162,13 +162,17 @@ DirectX::XMMATRIX Graphics::GetCamera() const noexcept
 {
 	return camera;						// Get camera matrix.
 }
-
+/// <summary>
+/// initialize imgui
+/// </summary>
+/// <param name="hwnd"> Window representation </param>
+/// <returns></returns>
 void Graphics::initImgui(HWND hwnd) noexcept
 {
 	// Initialize Imgui.
 	IMGUI_CHECKVERSION();
-	ImGui::CreateContext();
-	ImPlot::CreateContext();
+	imgCont = ImGui::CreateContext();
+	impCont = ImPlot::CreateContext();
 	
 	ImGui_ImplWin32_Init(hwnd);
 	ImGui_ImplDX11_Init(pDevice.Get(), pContext.Get());

@@ -149,6 +149,9 @@
     <ClCompile Include="Source\Application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Graphics\Bindable\BindableCodex.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Window\SubObject.h">
@@ -294,6 +297,7 @@
     <ClInclude Include="Source\Common\WNDconst.h">
       <Filter>Source Files\Common\Public</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
     <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
   </ItemGroup>
   <ItemGroup>

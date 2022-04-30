@@ -14,7 +14,7 @@ SolidSphere::SolidSphere(Graphics& gfx, float radius, int latDiv, int longDiv, c
 	model.Transform(dx::XMMatrixScaling(radius, radius, radius));
 	// Uniqueness of the VertexBuffer and IndexBuffer are determined by the existance of the geometry shader (or its name). It needed solely for the purposes of the implememntation of the size and long/lat divisions of the sphere.
 	// It saves resources of the application. 
-	// Not suitable for the use in any other case.s
+	// Not suitable for the use in any other case.
 	std::string GS_St;
 	if (gs)
 		GS_St = gs;

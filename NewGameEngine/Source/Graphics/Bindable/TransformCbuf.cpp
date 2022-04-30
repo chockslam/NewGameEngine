@@ -37,4 +37,4 @@ TransformCbuf::Transforms TransformCbuf::GetTransforms(Graphics& gfx) noexcept
 }
 
 
-std::unique_ptr<GeometryConstantBuffer<TransformCbuf::Transforms>> TransformCbuf::pGcbuf;
+//std::unique_ptr<GeometryConstantBuffer<TransformCbuf::Transforms>> TransformCbuf::pGcbuf;

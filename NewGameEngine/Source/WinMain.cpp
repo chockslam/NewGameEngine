@@ -15,6 +15,7 @@ int CALLBACK WinMain(
 		MessageBox(0, "Something Went Horribly Wrong", 0, 0);
 	}
 
-	
+
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	return -1;
 }

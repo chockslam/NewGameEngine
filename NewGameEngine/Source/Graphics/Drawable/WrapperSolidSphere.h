@@ -13,6 +13,7 @@ class WrapperSolidSphere
 {
 public:
 	WrapperSolidSphere(Graphics& gfx, float radius,int latDiv,int longDiv, const char* vs, const char* ps, float pos[3], const char* gs = nullptr);
+	~WrapperSolidSphere();
 	void Reset() noexcept;
 	void Draw(Graphics& gfx) const noexcept;
 	void Bind(Graphics& gfx, DirectX::FXMMATRIX view, float musParams[3]) const noexcept;

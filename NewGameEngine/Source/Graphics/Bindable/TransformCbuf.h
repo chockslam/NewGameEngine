@@ -27,6 +27,6 @@ protected:
 	void UpdateBindImpl(Graphics& gfx, const Transforms& tf) noexcept;						// Updates Buffer and bind it to the pipeline.
 	Transforms GetTransforms(Graphics& gfx) noexcept;
 private:
-	static std::unique_ptr<GeometryConstantBuffer<Transforms>> pGcbuf;						
+	std::unique_ptr<GeometryConstantBuffer<Transforms>> pGcbuf;						
 	const Drawable& parent;																	// Drawable that the shader is used by.
 };

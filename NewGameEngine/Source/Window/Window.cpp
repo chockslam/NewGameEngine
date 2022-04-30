@@ -12,6 +12,8 @@ Window::Window(std::string WindowName,HICON icon, INT width, INT height)
 Window::~Window()
 {
 	ImGui_ImplWin32_Shutdown();
+	
+
 }
 
 VOID Window::Initialize(UINT type)

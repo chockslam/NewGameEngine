@@ -95,6 +95,7 @@
     <ClCompile Include="Source\Common\GDIPlusManager.cpp" />
     <ClCompile Include="Source\FileDialog\ImGuiFileDialog.cpp" />
     <ClCompile Include="Source\Graphics\Bindable\Bindable.cpp" />
+    <ClCompile Include="Source\Graphics\Bindable\BindableCodex.cpp" />
     <ClCompile Include="Source\Graphics\Bindable\GeometryShader.cpp" />
     <ClCompile Include="Source\Graphics\Bindable\IndexBuffer.cpp" />
     <ClCompile Include="Source\Graphics\Bindable\InputLayout.cpp" />
