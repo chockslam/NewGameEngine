@@ -91,6 +91,10 @@
     <FxCompile />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ObjectFactory.cpp" />
+    <ClCompile Include="ObjectManager.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="SceneObject.cpp" />
     <ClCompile Include="Source\Application.cpp" />
     <ClCompile Include="Source\Common\GDIPlusManager.cpp" />
     <ClCompile Include="Source\FileDialog\ImGuiFileDialog.cpp" />
@@ -120,7 +124,11 @@
     <ClCompile Include="Source\WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ObjectFactory.h" />
+    <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="SceneObject.h" />
     <ClInclude Include="Source\Application.h" />
     <ClInclude Include="Source\Common\AudioConst.h" />
     <ClInclude Include="Source\Common\EWin.h" />

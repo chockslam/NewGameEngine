@@ -255,7 +255,7 @@ void AudioIO::output(struct wrapper arg)
 		   avT = cumT / countT;
 	
 	// If average equals to 0, set to default
-	if (avB == 0.0 && avM == 0.0 && avT == 0.0) {
+	if (avB == 0.0 && avM == 0.0 && avT == 0.0) { 
 		avB = 0.75;
 		avM = 0.5;
 		avT = 0.1;
