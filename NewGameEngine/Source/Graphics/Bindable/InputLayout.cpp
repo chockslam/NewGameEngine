@@ -16,7 +16,7 @@ InputLayout::InputLayout(Graphics& gfx,
 		&pInputLayout
 	);
 }
-void InputLayout::Bind(Graphics& gfx) noexcept
+void InputLayout::Bind(Graphics& gfx) 
 {
 	GetContext(gfx)->IASetInputLayout(pInputLayout.Get());
 }
@@ -39,7 +39,7 @@ std::string InputLayout::GenerateUID(const std::vector<D3D11_INPUT_ELEMENT_DESC>
 	return typeid(InputLayout).name() + "#"s + str;
 }
 
-std::string InputLayout::GetUID() const noexcept
+std::string InputLayout::GetUID() const 
 {
 	return GenerateUID(thisDesc);
 }

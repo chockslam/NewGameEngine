@@ -27,14 +27,14 @@ public:
 	Graphics& operator=(const Graphics&) = delete;
 	~Graphics();
 	void EndFrame();														
-	void BeginFrame(float red, float green, float blue) noexcept;			// Called every frame in the beginning 	
-	void DrawIndexed(UINT count) noexcept;									// Wrapper around pContext->DrawIndexed().
-	void SetProjection(DirectX::FXMMATRIX proj) noexcept;					
-	DirectX::XMMATRIX GetProjection() const noexcept;						
-	void SetCamera(DirectX::FXMMATRIX cam) noexcept;						// Set camera transform.
-	DirectX::XMMATRIX GetCamera() const noexcept;							// Get camera transform.
+	void BeginFrame(float red, float green, float blue) ;			// Called every frame in the beginning 	
+	void DrawIndexed(UINT count) ;									// Wrapper around pContext->DrawIndexed().
+	void SetProjection(DirectX::FXMMATRIX proj) ;					
+	DirectX::XMMATRIX GetProjection() const ;						
+	void SetCamera(DirectX::FXMMATRIX cam) ;						// Set camera transform.
+	DirectX::XMMATRIX GetCamera() const ;							// Get camera transform.
 private:
-	void initImgui(HWND hwnd) noexcept;
+	void initImgui(HWND hwnd) ;
 private:
 	DirectX::XMMATRIX projection;											// Matrix that represents projection.
 	DirectX::XMMATRIX camera;												// Matrix that represent camera transform (used to display object relatively to cameras position (See class TransformCBuf)).

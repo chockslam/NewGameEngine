@@ -57,13 +57,10 @@ SolidSphere::SolidSphere(Graphics& gfx, float radius, int latDiv, int longDiv, c
 	AddBind(std::make_shared<TransformCbuf>(gfx, *this));
 }
 
-void SolidSphere::SetPos(DirectX::XMFLOAT3 pos) noexcept
-{
-	this->pos = pos;
-}
 
 
-DirectX::XMMATRIX SolidSphere::GetTransformXM() const noexcept
+
+DirectX::XMMATRIX SolidSphere::GetTransformXM() const 
 {
 	return DirectX::XMMatrixTranslation(pos.x, pos.y, pos.z);		// Returns model transformation matrix in world space
 }

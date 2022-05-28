@@ -5,7 +5,7 @@
 #include <typeinfo>
 #include <iostream>
 
-void Drawable::Draw(Graphics& gfx) const noexcept
+void Drawable::Draw(Graphics& gfx) const 
 {
 	for (auto& b : binds)
 	{
@@ -16,7 +16,7 @@ void Drawable::Draw(Graphics& gfx) const noexcept
 }
 
 
-void Drawable::AddBind(std::shared_ptr<Bindable> bind) noexcept
+void Drawable::AddBind(std::shared_ptr<Bindable> bind) 
 {
 	// special case for index buffer
 	if (typeid(*bind) == typeid(IndexBuffer))
@@ -26,3 +26,4 @@ void Drawable::AddBind(std::shared_ptr<Bindable> bind) noexcept
 	}
 	binds.push_back(std::move(bind));																		// move pointer to the bindable to the vector of all Bindables every frame.
 }
+

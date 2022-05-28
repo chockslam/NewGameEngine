@@ -11,7 +11,7 @@ GeometryShader::GeometryShader(Graphics& gfx, const std::string& path)
 	GetDevice(gfx)->CreateGeometryShader(pBlob->GetBufferPointer(), pBlob->GetBufferSize(), nullptr, &pGeometryShader);
 }
 
-void GeometryShader::Bind(Graphics& gfx) noexcept
+void GeometryShader::Bind(Graphics& gfx) 
 {
 	GetContext(gfx)->GSSetShader(pGeometryShader.Get(), nullptr, 0u);
 }
@@ -27,7 +27,7 @@ std::string GeometryShader::GenerateUID(const std::string& path)
 	return typeid(GeometryShader).name() + "#"s + path;
 }
 
-std::string GeometryShader::GetUID() const noexcept
+std::string GeometryShader::GetUID() const 
 {
 	return GenerateUID(path);
 }

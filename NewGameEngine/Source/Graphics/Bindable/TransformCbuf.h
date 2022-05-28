@@ -22,10 +22,10 @@ protected:
 	};
 public:
 	TransformCbuf(Graphics& gfx, const Drawable& parent, UINT slot = 0);
-	void Bind(Graphics& gfx) noexcept override;
+	void Bind(Graphics& gfx)  override;
 protected:
-	void UpdateBindImpl(Graphics& gfx, const Transforms& tf) noexcept;						// Updates Buffer and bind it to the pipeline.
-	Transforms GetTransforms(Graphics& gfx) noexcept;
+	void UpdateBindImpl(Graphics& gfx, const Transforms& tf) ;						// Updates Buffer and bind it to the pipeline.
+	Transforms GetTransforms(Graphics& gfx) ;
 private:
 	std::unique_ptr<GeometryConstantBuffer<Transforms>> pGcbuf;						
 	const Drawable& parent;																	// Drawable that the shader is used by.

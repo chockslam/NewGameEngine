@@ -27,7 +27,7 @@ VertexBuffer::VertexBuffer(Graphics& gfx, const std::vector<Vertex>& vertices)
 
 }
 
-void VertexBuffer::Bind(Graphics& gfx) noexcept
+void VertexBuffer::Bind(Graphics& gfx) 
 {
 	const UINT offset = 0u;
 	GetContext(gfx)->IASetVertexBuffers(0u, 1u, pVertexBuffer.GetAddressOf(), &stride, &offset);
@@ -39,7 +39,7 @@ std::shared_ptr<VertexBuffer> VertexBuffer::Resolve(Graphics& gfx, const std::st
 	return Codex::Resolve<VertexBuffer>(gfx, tag, vertices);
 }
 
-std::string VertexBuffer::GetUID() const noexcept
+std::string VertexBuffer::GetUID() const 
 {
 	return GenerateUID( tag );
 }

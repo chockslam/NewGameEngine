@@ -273,7 +273,7 @@ Graphics& Window::Gfx()
 	return *pGfx;
 }
 
-std::optional<int> Window::ProcessMessages() noexcept
+std::optional<int> Window::ProcessMessages() 
 {
 	MSG msg;
 	// while queue has messages, remove and dispatch them (but do not block on empty queue)

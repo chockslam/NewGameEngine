@@ -91,10 +91,6 @@
     <FxCompile />
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ObjectFactory.cpp" />
-    <ClCompile Include="ObjectManager.cpp" />
-    <ClCompile Include="SceneManager.cpp" />
-    <ClCompile Include="SceneObject.cpp" />
     <ClCompile Include="Source\Application.cpp" />
     <ClCompile Include="Source\Common\GDIPlusManager.cpp" />
     <ClCompile Include="Source\FileDialog\ImGuiFileDialog.cpp" />
@@ -116,6 +112,10 @@
     <ClCompile Include="Source\Graphics\NewCamera.cpp" />
     <ClCompile Include="Source\Graphics\Surface.cpp" />
     <ClCompile Include="Source\GUI\GUIwrap.cpp" />
+    <ClCompile Include="Source\ObjectFactory.cpp" />
+    <ClCompile Include="Source\ObjectManager.cpp" />
+    <ClCompile Include="Source\SceneManager.cpp" />
+    <ClCompile Include="Source\SceneObject.cpp" />
     <ClCompile Include="Source\Window\AudioIO.cpp" />
     <ClCompile Include="Source\Window\Keyboard.cpp" />
     <ClCompile Include="Source\Window\Mouse.cpp" />
@@ -124,11 +124,7 @@
     <ClCompile Include="Source\WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ObjectFactory.h" />
-    <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="SceneManager.h" />
-    <ClInclude Include="SceneObject.h" />
     <ClInclude Include="Source\Application.h" />
     <ClInclude Include="Source\Common\AudioConst.h" />
     <ClInclude Include="Source\Common\EWin.h" />
@@ -162,6 +158,11 @@
     <ClInclude Include="Source\Graphics\NewCamera.h" />
     <ClInclude Include="Source\Graphics\Surface.h" />
     <ClInclude Include="Source\GUI\GUIwrap.h" />
+    <ClInclude Include="Source\ObjectFactory.h" />
+    <ClInclude Include="Source\ObjectManager.h" />
+    <ClInclude Include="Source\ObjectType.h" />
+    <ClInclude Include="Source\SceneManager.h" />
+    <ClInclude Include="Source\SceneObject.h" />
     <ClInclude Include="Source\Window\AudioIO.h" />
     <ClInclude Include="Source\Window\Keyboard.h" />
     <ClInclude Include="Source\Window\Mouse.h" />

@@ -123,7 +123,7 @@ void Graphics::EndFrame()
 	pSwap->Present(1u, 0u);
 }
 
-void Graphics::BeginFrame(float red, float green, float blue) noexcept
+void Graphics::BeginFrame(float red, float green, float blue) 
 {
 	
 	// Imgui new frame
@@ -138,27 +138,27 @@ void Graphics::BeginFrame(float red, float green, float blue) noexcept
 	pContext->ClearDepthStencilView(pDSV.Get(), D3D11_CLEAR_DEPTH, 1.0f, 0u);
 }
 
-void Graphics::DrawIndexed(UINT count) noexcept
+void Graphics::DrawIndexed(UINT count) 
 {
 	pContext->DrawIndexed(count, 0u, 0u);
 }
 
-void Graphics::SetProjection(DirectX::FXMMATRIX proj) noexcept
+void Graphics::SetProjection(DirectX::FXMMATRIX proj) 
 {
 	projection = proj;					// Set projection matrix.
 }
 
-DirectX::XMMATRIX Graphics::GetProjection() const noexcept
+DirectX::XMMATRIX Graphics::GetProjection() const 
 {
 	return projection;					// Get projection matrix
 }
 
-void Graphics::SetCamera(DirectX::FXMMATRIX cam) noexcept
+void Graphics::SetCamera(DirectX::FXMMATRIX cam) 
 {
 	camera = cam;						// Set camera matrix (view matrix)
 }
 
-DirectX::XMMATRIX Graphics::GetCamera() const noexcept
+DirectX::XMMATRIX Graphics::GetCamera() const 
 {
 	return camera;						// Get camera matrix.
 }
@@ -167,7 +167,7 @@ DirectX::XMMATRIX Graphics::GetCamera() const noexcept
 /// </summary>
 /// <param name="hwnd"> Window representation </param>
 /// <returns></returns>
-void Graphics::initImgui(HWND hwnd) noexcept
+void Graphics::initImgui(HWND hwnd) 
 {
 	// Initialize Imgui.
 	IMGUI_CHECKVERSION();

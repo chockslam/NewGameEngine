@@ -5,8 +5,9 @@
 #include "Graphics/Drawable/WrapperSolidSphere.h"
 #include "Window/AudioIO.h"
 #include "GUI/GUIwrap.h"
+#include "ObjectManager.h"
 #include "../resource.h"
-#include ""
+//#include ""
 
 
 /// <summary>
@@ -20,7 +21,6 @@ public:
 	~Application();
 private:
 	void DoFrame(); // Executes every frame
-	void FillSpheresAlgorithm(float offset[3], int size, std::string shader_1, std::string shader_2, std::list<std::unique_ptr<WrapperSolidSphere>>& dest, std::string gs = nullptr ); // Original algroithm to create a square of speheres. 
 	void MoveAround(); // Move Camera around
 	void LookAround(); // Implements look around functionality for camera.
 	void Control(); // Encapsulates MoveAround and LookAround
@@ -70,7 +70,7 @@ private:
 	int ViewIndicator;
 
 	// Sphere that utilizes both geometry and pixel shaders.
-	std::unique_ptr<WrapperSolidSphere> sphereSolidGS;
+	// std::unique_ptr<WrapperSolidSphere> sphereSolidGS;
 
 
 	// Lists of spheres that utilizes pixels shaders as means to visualizations.
@@ -78,9 +78,10 @@ private:
 	// i.e. traverse and call functions on every object function,
 	// AND the fact that lists implement Linkind List data structure,
 	// which facilitates a faster traversal time then array
-	std::list<std::unique_ptr<WrapperSolidSphere>> spheresWsolidPS_R;
-	std::list<std::unique_ptr<WrapperSolidSphere>> spheresWsolidPS_G;
-	std::list<std::unique_ptr<WrapperSolidSphere>> spheresWsolidPS_B;
+	// std::list<std::unique_ptr<WrapperSolidSphere>> spheresWsolidPS_R;
+	// std::list<std::unique_ptr<WrapperSolidSphere>> spheresWsolidPS_G;
+	// std::list<std::unique_ptr<WrapperSolidSphere>> spheresWsolidPS_B;
+	std::shared_ptr<ObjectManager> om;
 
 	// Constants reflect position and rotation of camera for each view. 
 	const DirectX::XMVECTOR BothViewRot = { 0.07f,0.44999f,0.0f };

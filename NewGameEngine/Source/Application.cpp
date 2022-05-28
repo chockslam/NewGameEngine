@@ -5,6 +5,7 @@
 #include <iterator>
 #include "Common/GDIPlusManager.h"
 #include "Common/WNDconst.h"
+#include "ObjectFactory.h"
 
 GDIPlusManager gdipm;
 
@@ -28,21 +29,6 @@ Application::Application()
 
 	this->ViewOne(); // Start with the first view.
 
-	// Create 3 sphere-filled squares. Pixel Shader visualization.
-	FillSpheresAlgorithm( new float[]{-57.0f, -10.0f, 15.0f}, 10, "Solid_RGBeqBMT_PS.cso", "Solid_RGBeqBTM_PS.cso", spheresWsolidPS_R, "");
-	FillSpheresAlgorithm(new float[] {-47.0f, -10.0f, 15.0f}, 10, "Solid_RGBeqMTB_PS.cso", "Solid_RGBeqTMB_PS.cso", spheresWsolidPS_B, "");
-	FillSpheresAlgorithm( new float[]{-37.0f, -10.0f, 15.0f}, 10, "Solid_RGBeqMBT_PS.cso", "Solid_RGBeqTBM_PS.cso", spheresWsolidPS_G, "");
-	
-
-	// Geometry + Pixel Shader visualization
-	sphereSolidGS = std::make_unique<WrapperSolidSphere>(
-															wnd.Gfx(),
-															0.4f, 20, 90, "SolidVS.cso",
-															"Solid_RGBeqBMT_PS.cso",
-															new float[3]{ -70.0f, -2.0f, 15.0f },
-															"PrettyExplodeGS.cso"
-														);
-
 	// Loads Picutres in GUI.
 	gui.CreateTexture(wnd.Gfx());
 	
@@ -53,6 +39,11 @@ Application::Application()
 	else {
 		MessageBox(0, "Failed to Load Audio", 0, 0);
 	}
+
+	this->om = std::make_shared<ObjectManager>();
+	ObjectFactory::getInstance().SetUpObjectManager(om);
+	this->om->startScene(wnd.Gfx(), "Scene_1");
+	
 }
 
 
@@ -119,27 +110,8 @@ void Application::DoFrame()
 
 		}
 
-
-		
-		// Render Objects In The Scene.
-		
-		sphereSolidGS->Bind(wnd.Gfx(), cam.GetViewMatrix(), musParams);
-		sphereSolidGS->Draw(wnd.Gfx());
-		
-		for (auto& sph : spheresWsolidPS_R) {
-			sph->Bind(wnd.Gfx(), cam.GetViewMatrix(), musParams);
-			sph->Draw(wnd.Gfx());
-		}
-
-		for (auto& sph : spheresWsolidPS_G) {
-			sph->Bind(wnd.Gfx(), cam.GetViewMatrix(), musParams);
-			sph->Draw(wnd.Gfx());
-		}
-
-		for (auto& sph : spheresWsolidPS_B) {
-			sph->Bind(wnd.Gfx(), cam.GetViewMatrix(), musParams);
-			sph->Draw(wnd.Gfx());
-		}
+		this->om->UpdateAll(wnd.Gfx(), cam.GetViewMatrix(), musParams);
+		this->om->RenderAll(wnd.Gfx());
 
 		// Play New .wav file if it was chosen from file dialog.
 		if (!gui.getUpdatedWavFile().empty() && gui.getUpdatedWavFile() != wavFileName) {
@@ -153,114 +125,6 @@ void Application::DoFrame()
 		}
 	
 	wnd.Gfx().EndFrame();
-}
-
-/// <summary>
-/// Special way of construction music visualization that utilizes 2 pixel shaders for different types of spheres.
-/// </summary>
-/// <param name="offset">Position of the array of spheres</param>
-/// <param name="size">size of the spheres (NOT WORKING PROPERLY)</param>
-/// <param name="shader_1"> Name of the first shader </param>
-/// <param name="shader_2"> Name of the second shader</param>
-/// <param name="dest"> destination array, which is passed by reference, stores unique pointers to sphere objects</param>
-/// <param name="gs">Optional geometry shader</param>
-void Application::FillSpheresAlgorithm(float offset[3],
-	int size,
-	std::string shader_1,
-	std::string shader_2,
-	std::list<std::unique_ptr<WrapperSolidSphere>>& dest ,
-	std::string gs)
-{
-	
-	int start = 1;
-	int max = size;
-	const char* gs_c = nullptr;
-	if (!gs.empty())
-		gs_c = gs.c_str();
-	while (start <= max) {
-		std::string shader;
-		if (start%2==0) {
-			shader = shader_1;
-		}
-		else
-		{
-			shader = shader_2;
-		}
-		for (int i = start; i <= max; i++) {
-			for (int j = start; j <= max; j++) {
-				if (i == start || i == max) {
-					if(gs_c)
-						dest.push_back(std::make_unique<WrapperSolidSphere>(
-																				wnd.Gfx(), 
-																				0.4f,
-																				12, 24,
-																				"SolidVS.cso",
-																				shader.c_str(),
-																				new float[3]{ 
-																					offset[0] + 1.0f * j,
-																					offset[1] + 1.0f * i,
-																					offset[2] 
-																				},
-																				gs_c
-																			)
-									   );
-					else
-						dest.push_back(std::make_unique<WrapperSolidSphere>(
-																				wnd.Gfx(),
-																				0.4f,
-																				12,24,
-																				"SolidVS.cso",
-																				shader.c_str(),
-																				new float[3]{ 
-																					offset[0] + 1.0f * j,
-																					offset[1] + 1.0f * i,
-																					offset[2]
-																				}
-																			)
-						               );
-				}else {
-					if (j == start || j == max) {
-						if (gs_c)
-							dest.push_back(std::make_unique<WrapperSolidSphere>(
-																					wnd.Gfx(),
-																					0.4f,
-																					12, 24,
-																					"SolidVS.cso",
-																					shader.c_str(),
-																					new float[3]{ 
-																						offset[0] + 1.0f * j,
-																						offset[1] + 1.0f * i,
-																						offset[2] 
-																					},
-																					gs_c	
-																				)
-										  );
-						else
-							dest.push_back(std::make_unique<WrapperSolidSphere>(
-																					wnd.Gfx(),
-																					0.4f,
-																					12, 24,
-																					"SolidVS.cso",
-																					shader.c_str(),
-																					new float[3]{ 
-																						offset[0] + 1.0f * j,
-																						offset[1] + 1.0f * i,
-																						offset[2] 
-																					}
-																				)
-										   );
-
-					}
-				}
-			}
-		}
-		max--;
-		start++;
-	}
-	if (offset) {
-		delete[] offset;
-		offset = nullptr;
-	}
 }
 
 void Application::MoveAround()

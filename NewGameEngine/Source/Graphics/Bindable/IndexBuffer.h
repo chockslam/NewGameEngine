@@ -11,8 +11,8 @@ class IndexBuffer : public Bindable
 public:
 	IndexBuffer(Graphics& gfx, const std::vector<unsigned short>& indices);
 	IndexBuffer(Graphics& gfx, std::string tag, const std::vector<unsigned short>& indices);
-	void Bind(Graphics& gfx) noexcept override;
-	UINT GetCount() const noexcept;
+	void Bind(Graphics& gfx)  override;
+	UINT GetCount() const ;
 
 	static std::shared_ptr<IndexBuffer> Resolve(Graphics& gfx, const std::string& tag,
 		const std::vector<unsigned short>& indices);
@@ -21,7 +21,7 @@ public:
 	{
 		return GenerateUID_(tag);
 	}
-	std::string GetUID() const noexcept override;
+	std::string GetUID() const  override;
 private:
 	static std::string GenerateUID_(const std::string& tag);
 protected:

@@ -11,19 +11,19 @@ TransformCbuf::TransformCbuf(Graphics& gfx, const Drawable& parent, UINT slot)
 	}
 }
 
-void TransformCbuf::Bind(Graphics& gfx) noexcept
+void TransformCbuf::Bind(Graphics& gfx) 
 {
 	UpdateBindImpl(gfx, GetTransforms(gfx));
 }
 
-void TransformCbuf::UpdateBindImpl(Graphics& gfx, const Transforms& tf) noexcept
+void TransformCbuf::UpdateBindImpl(Graphics& gfx, const Transforms& tf) 
 {
 	//Update and bind transformCBuf every frame.
 	pGcbuf->Update(gfx, tf);
 	pGcbuf->Bind(gfx);
 }
 
-TransformCbuf::Transforms TransformCbuf::GetTransforms(Graphics& gfx) noexcept
+TransformCbuf::Transforms TransformCbuf::GetTransforms(Graphics& gfx) 
 {
 	const auto modelView = parent.GetTransformXM() * gfx.GetCamera();// Calculate modelView matrix
 	// Return modelView and modelViewProjection matrices.

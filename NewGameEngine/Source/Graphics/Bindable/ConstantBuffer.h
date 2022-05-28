@@ -75,7 +75,7 @@ class VertexConstantBuffer : public ConstantBuffer<C>
 public:
 	using ConstantBuffer<C>::ConstantBuffer;
 	// Binding to the pipeline
-	void Bind(Graphics& gfx) noexcept override
+	void Bind(Graphics& gfx)  override
 	{
 		GetContext(gfx)->VSSetConstantBuffers(slot, 1u, pConstantBuffer.GetAddressOf());
 	}
@@ -97,7 +97,7 @@ public:
 		using namespace std::string_literals;
 		return typeid(VertexConstantBuffer).name() + "#"s + std::to_string(slot);
 	}
-	std::string GetUID() const noexcept override
+	std::string GetUID() const  override
 	{
 		return GenerateUID(slot);
 	}
@@ -117,7 +117,7 @@ class GeometryConstantBuffer : public ConstantBuffer<C>
 
 public:
 	using ConstantBuffer<C>::ConstantBuffer;
-	void Bind(Graphics& gfx) noexcept override
+	void Bind(Graphics& gfx)  override
 	{
 		GetContext(gfx)->GSSetConstantBuffers(slot, 1u, pConstantBuffer.GetAddressOf());
 	}
@@ -138,7 +138,7 @@ public:
 		using namespace std::string_literals;
 		return typeid(GeometryConstantBuffer).name() + "#"s + std::to_string(slot);
 	}
-	std::string GetUID() const noexcept override
+	std::string GetUID() const  override
 	{
 		return GenerateUID(slot);
 	}
@@ -159,7 +159,7 @@ class PixelConstantBuffer : public ConstantBuffer<C>
 	using Bindable::GetContext;
 public:
 	using ConstantBuffer<C>::ConstantBuffer;
-	void Bind(Graphics& gfx) noexcept override
+	void Bind(Graphics& gfx)  override
 	{
 		GetContext(gfx)->PSSetConstantBuffers(slot, 1u, pConstantBuffer.GetAddressOf());
 	}
@@ -180,7 +180,7 @@ public:
 		using namespace std::string_literals;
 		return typeid(PixelConstantBuffer).name() + "#"s + std::to_string(slot);
 	}
-	std::string GetUID() const noexcept override
+	std::string GetUID() const  override
 	{
 		return GenerateUID(slot);
 	}

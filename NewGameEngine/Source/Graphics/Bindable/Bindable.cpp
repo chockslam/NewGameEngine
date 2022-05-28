@@ -4,7 +4,7 @@
 ///  Get raw pointer to the content from graphics reference
 /// </summary>
 /// <param name="gfx">reference to graphics object</param>
-ID3D11DeviceContext* Bindable::GetContext(Graphics& gfx) noexcept
+ID3D11DeviceContext* Bindable::GetContext(Graphics& gfx) 
 {
 	return gfx.pContext.Get(); 
 }
@@ -12,7 +12,7 @@ ID3D11DeviceContext* Bindable::GetContext(Graphics& gfx) noexcept
 ///  Get raw pointer to the device from graphics reference
 /// </summary>
 /// <param name="gfx">reference to graphics object</param>
-ID3D11Device* Bindable::GetDevice(Graphics& gfx) noexcept
+ID3D11Device* Bindable::GetDevice(Graphics& gfx) 
 {
 	return gfx.pDevice.Get(); 
 }

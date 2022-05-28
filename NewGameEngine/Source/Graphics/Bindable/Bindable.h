@@ -9,13 +9,13 @@
 class Bindable
 {
 public:
-	virtual void Bind(Graphics& gfx) noexcept = 0;                // Abstract function which concrete implementation should bind a resource to the graphics pipeline.
+	virtual void Bind(Graphics& gfx)  = 0;                // Abstract function which concrete implementation should bind a resource to the graphics pipeline.
 	virtual ~Bindable() = default;								  
-	virtual std::string GetUID() const noexcept {				  // Needs for Implementation of Bindable Codex.
+	virtual std::string GetUID() const  {				  // Needs for Implementation of Bindable Codex.
 		assert(false);
 		return "";
 	}
 protected:
-	static ID3D11DeviceContext* GetContext(Graphics& gfx) noexcept;			// Returns a pointer to the Context (D3D resource that is responsible for talking to DirectX)
-	static ID3D11Device* GetDevice(Graphics& gfx) noexcept;					// Returns a pointer to the representation of the device.
+	static ID3D11DeviceContext* GetContext(Graphics& gfx) ;			// Returns a pointer to the Context (D3D resource that is responsible for talking to DirectX)
+	static ID3D11Device* GetDevice(Graphics& gfx) ;					// Returns a pointer to the representation of the device.
 };

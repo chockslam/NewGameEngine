@@ -10,11 +10,11 @@ class GeometryShader : public Bindable
 public:
 	GeometryShader(Graphics& gfx, const std::string& path);
 	// Bind function. Invoked every frame.
-	void Bind(Graphics& gfx) noexcept override;
+	void Bind(Graphics& gfx)  override;
 	// Bindable Codex stuff
 	static std::shared_ptr<GeometryShader> Resolve(Graphics& gfx, const std::string& path);
 	static std::string GenerateUID(const std::string& path);
-	std::string GetUID() const noexcept override;
+	std::string GetUID() const  override;
 protected:
 	std::string path;														// Path to the shader (.cso)
 	Microsoft::WRL::ComPtr<ID3D11GeometryShader> pGeometryShader;			// pointer to D3D resource

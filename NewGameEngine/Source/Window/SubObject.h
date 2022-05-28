@@ -25,7 +25,7 @@ protected:
 	virtual LRESULT			 MessageHandler(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) = 0;  // Abstract message handler
 	virtual VOID RegisterNewClass();
 
-	//static std::optional<int> ProcessMessages() noexcept;
+	//static std::optional<int> ProcessMessages() ;
 private:
 	virtual VOID Initialize(UINT type) = 0;
 protected:

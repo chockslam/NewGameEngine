@@ -43,7 +43,7 @@ public:
 		int x;
 		int y;
 	public:
-		Event(Type type, const Mouse& parent) noexcept
+		Event(Type type, const Mouse& parent) 
 			:
 			type(type),
 			leftIsPressed(parent.leftIsPressed),
@@ -51,27 +51,27 @@ public:
 			x(parent.x),
 			y(parent.y)
 		{}
-		Type GetType() const noexcept
+		Type GetType() const 
 		{
 			return type;
 		}
-		std::pair<int, int> GetPos() const noexcept
+		std::pair<int, int> GetPos() const 
 		{
 			return{ x,y };
 		}
-		int GetPosX() const noexcept
+		int GetPosX() const 
 		{
 			return x;
 		}
-		int GetPosY() const noexcept
+		int GetPosY() const 
 		{
 			return y;
 		}
-		bool LeftIsPressed() const noexcept
+		bool LeftIsPressed() const 
 		{
 			return leftIsPressed;
 		}
-		bool RightIsPressed() const noexcept
+		bool RightIsPressed() const 
 		{
 			return rightIsPressed;
 		}
@@ -81,46 +81,46 @@ public:
 	Mouse(const Mouse&) = delete;
 	Mouse& operator=(const Mouse&) = delete;
 	// Get position of the mouse in the windows
-	std::pair<int, int> GetPos() const noexcept;
-	int GetPosX() const noexcept;
-	int GetPosY() const noexcept;
+	std::pair<int, int> GetPos() const ;
+	int GetPosX() const ;
+	int GetPosY() const ;
 	// Get Delta position
-	std::optional<RawDelta> ReadRawDelta() noexcept;
+	std::optional<RawDelta> ReadRawDelta() ;
 	// Check whether the mouse in the window
-	bool IsInWindow() const noexcept;
-	bool LeftIsPressed() const noexcept;
-	bool RightIsPressed() const noexcept;
+	bool IsInWindow() const ;
+	bool LeftIsPressed() const ;
+	bool RightIsPressed() const ;
 	// Read event and delete it from the queue
-	std::optional<Mouse::Event> Read() noexcept;
-	bool IsEmpty() const noexcept
+	std::optional<Mouse::Event> Read() ;
+	bool IsEmpty() const 
 	{
 		return buffer.empty();
 	}
-	bool IsRawEmpty() const noexcept
+	bool IsRawEmpty() const 
 	{
 		return rawDeltaBuffer.empty();
 	}
-	void Flush() noexcept;
+	void Flush() ;
 	// Enable/Disable delta mouse
-	void EnableRaw() noexcept;
-	void DisableRaw() noexcept;
-	bool RawEnabled() const noexcept;
+	void EnableRaw() ;
+	void DisableRaw() ;
+	bool RawEnabled() const ;
 private:
 	// Actions on mouse eventss
-	void OnMouseMove(int x, int y) noexcept;
-	void OnMouseMoveRaw(int xR, int yR) noexcept;
-	void OnMouseLeave() noexcept;
-	void OnMouseEnter() noexcept;
-	void OnLeftPressed(int x, int y) noexcept;
-	void OnLeftReleased(int x, int y) noexcept;
-	void OnRightPressed(int x, int y) noexcept;
-	void OnRightReleased(int x, int y) noexcept;
-	void OnWheelUp(int x, int y) noexcept;
-	void OnWheelDown(int x, int y) noexcept;
-	void TrimBuffer() noexcept;
+	void OnMouseMove(int x, int y) ;
+	void OnMouseMoveRaw(int xR, int yR) ;
+	void OnMouseLeave() ;
+	void OnMouseEnter() ;
+	void OnLeftPressed(int x, int y) ;
+	void OnLeftReleased(int x, int y) ;
+	void OnRightPressed(int x, int y) ;
+	void OnRightReleased(int x, int y) ;
+	void OnWheelUp(int x, int y) ;
+	void OnWheelDown(int x, int y) ;
+	void TrimBuffer() ;
 	// If buffer overflow happens, trim it.
-	void TrimRawInputBuffer() noexcept;
-	void OnWheelDelta(int x, int y, int delta) noexcept;
+	void TrimRawInputBuffer() ;
+	void OnWheelDelta(int x, int y, int delta) ;
 private:
 	static constexpr unsigned int bufferSize = 32u;
 	int x;

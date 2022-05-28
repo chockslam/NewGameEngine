@@ -18,12 +18,12 @@ VertexShader::VertexShader(Graphics& gfx, const std::string& path)
 	);
 }
 
-void VertexShader::Bind(Graphics& gfx) noexcept
+void VertexShader::Bind(Graphics& gfx) 
 {
 	GetContext(gfx)->VSSetShader(pVertexShader.Get(), nullptr, 0u);
 }
 
-ID3DBlob* VertexShader::GetBytecode() const noexcept
+ID3DBlob* VertexShader::GetBytecode() const 
 {
 	return pBytecodeBlob.Get();									// get byte code of the .cso file
 }
@@ -39,7 +39,7 @@ std::string VertexShader::GenerateUID(const std::string& path)
 	return typeid(VertexShader).name() + "#"s + path;
 }
 
-std::string VertexShader::GetUID() const noexcept 
+std::string VertexShader::GetUID() const  
 {
 	return GenerateUID(path);
 }

@@ -4,20 +4,14 @@
 
 WrapperSolidSphere::WrapperSolidSphere(Graphics& gfx, float radius, int latDiv, int longDiv, const char* vs, const char* ps, float pos[3], const char* gs)
 	:
-	mesh(gfx, radius,latDiv,longDiv, vs, ps, gs),
+	//mesh(gfx, radius,latDiv,longDiv, vs, ps, gs),
+	SceneObject(gfx, vs, ps, pos, gs),
 	cbuf(gfx),
 	cbufG(gfx, 1u)
 {
-	//cbufG = GeometryConstantBuffer::Reso
-	this->initPos[0] = pos[0];
-	this->initPos[1] = pos[1];
-	this->initPos[2] = pos[2];
-	Reset();
-
-	if (pos) {
-		delete[] pos;
-		pos = nullptr;
-	}
+	
+	auto mesh = std::make_shared<SolidSphere>(gfx, radius, latDiv, longDiv, vs, ps, gs);
+	this->meshes.push_back(std::move(mesh));
 }
 
 WrapperSolidSphere::~WrapperSolidSphere()
@@ -25,37 +19,39 @@ WrapperSolidSphere::~WrapperSolidSphere()
 	
 }
 
-void WrapperSolidSphere::Reset() noexcept
+void WrapperSolidSphere::Reset()
 {
+	SceneObject::Reset();
+	this->_Reset();
+}
 
-	this->pos = { this->initPos[0], this->initPos[1], this->initPos[2] };
-	cbData = {
+
+
+
+
+
+void WrapperSolidSphere::Bind(Graphics& gfx, DirectX::FXMMATRIX view, float musParams[3]) const 
+{
+	if (this->active) {
+		auto dataCopy = cbData;
+		DirectX::XMVECTOR color = { musParams[0], musParams[1], musParams[2] };
+		//const auto pos = DirectX::XMLoadFloat3(pos);
+		DirectX::XMStoreFloat3(&dataCopy.color, color);
+
+		// Update pixel constant buffer amd geometry constant buffer with audio data.
+		cbuf.Update(gfx, dataCopy);
+		cbufG.Update(gfx, dataCopy);
+
+		// Bind constant buffers to the pipeline
+		cbuf.Bind(gfx);
+		cbufG.Bind(gfx);
+	}
+	
+}
+
+void WrapperSolidSphere::_Reset()
+{
+	this->cbData = {
 		{ 0.4f,0.4f,0.4f },
 	};
-}
-
-
-void WrapperSolidSphere::Draw(Graphics& gfx) const noexcept
-{
-	// Set new position and draw
-	mesh.SetPos(this->pos);
-	mesh.Draw(gfx);
-}
-
-
-
-void WrapperSolidSphere::Bind(Graphics& gfx, DirectX::FXMMATRIX view, float musParams[3]) const noexcept
-{
-	auto dataCopy = cbData;
-	DirectX::XMVECTOR color = { musParams[0], musParams[1], musParams[2] };
-	//const auto pos = DirectX::XMLoadFloat3(pos);
-	DirectX::XMStoreFloat3(&dataCopy.color, color);
-
-	// Update pixel constant buffer amd geometry constant buffer with audio data.
-	cbuf.Update(gfx, dataCopy);
-	cbufG.Update(gfx, dataCopy);
-
-	// Bind constant buffers to the pipeline
-	cbuf.Bind(gfx);
-	cbufG.Bind(gfx);
 }

@@ -15,7 +15,7 @@ namespace Gdiplus
 #pragma comment( lib,"gdiplus.lib" )
 
 
-Surface::Surface(unsigned long long width, unsigned long long height) noexcept
+Surface::Surface(unsigned long long width, unsigned long long height) 
 	:
 	pBuffer(std::make_unique<Color[]>(width* height)),
 	width(width),
@@ -23,7 +23,7 @@ Surface::Surface(unsigned long long width, unsigned long long height) noexcept
 {
 }
 
-Surface& Surface::operator=(Surface&& donor) noexcept
+Surface& Surface::operator=(Surface&& donor) 
 {
 	width = donor.width;
 	height = donor.height;
@@ -32,7 +32,7 @@ Surface& Surface::operator=(Surface&& donor) noexcept
 	return *this;
 }
 
-Surface::Surface(Surface&& source) noexcept
+Surface::Surface(Surface&& source) 
 	:
 	pBuffer(std::move(source.pBuffer)),
 	width(source.width),
@@ -42,7 +42,7 @@ Surface::Surface(Surface&& source) noexcept
 Surface::~Surface()
 {}
 
-void Surface::Clear(Color fillValue) noexcept
+void Surface::Clear(Color fillValue) 
 {
 	memset(pBuffer.get(), fillValue.dword, width * height * sizeof(Color));
 }
@@ -65,27 +65,27 @@ Surface::Color Surface::GetPixel(unsigned int x, unsigned int y) const
 	return pBuffer[y * width + x];
 }
 
-unsigned int Surface::GetWidth() const noexcept
+unsigned int Surface::GetWidth() const 
 {
 	return width;
 }
 
-unsigned int Surface::GetHeight() const noexcept
+unsigned int Surface::GetHeight() const 
 {
 	return height;
 }
 
-Surface::Color* Surface::GetBufferPtr() noexcept
+Surface::Color* Surface::GetBufferPtr() 
 {
 	return pBuffer.get();
 }
 
-const Surface::Color* Surface::GetBufferPtr() const noexcept
+const Surface::Color* Surface::GetBufferPtr() const 
 {
 	return pBuffer.get();
 }
 
-const Surface::Color* Surface::GetBufferPtrConst() const noexcept
+const Surface::Color* Surface::GetBufferPtrConst() const 
 {
 	return pBuffer.get();
 }
@@ -197,12 +197,12 @@ void Surface::Copy(const Surface& src)
 	memcpy(pBuffer.get(), src.pBuffer.get(), width * height * sizeof(Color));
 }
 
-bool Surface::AlphaLoaded() const noexcept
+bool Surface::AlphaLoaded() const 
 {
 	return alphaLoaded;
 }
 
-Surface::Surface(unsigned int width, unsigned int height, std::unique_ptr<Color[]> pBufferParam, bool alphaLoaded) noexcept
+Surface::Surface(unsigned int width, unsigned int height, std::unique_ptr<Color[]> pBufferParam, bool alphaLoaded) 
 	:
 	width(width),
 	height(height),

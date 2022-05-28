@@ -22,7 +22,7 @@ public:
 	virtual VOID Initialize(UINT type) override;																// Initialize window.
 	virtual LRESULT			 MessageHandler(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) override;	// Message Loop.
 	Graphics& Gfx();																							// Returns pointer to graphics object.
-	static std::optional<int> ProcessMessages() noexcept;
+	static std::optional<int> ProcessMessages() ;
 	void EnableCursor();
 	void DisableCursor();
 private:

@@ -12,7 +12,7 @@ PixelShader::PixelShader(Graphics& gfx, const std::string& path)
 	GetDevice(gfx)->CreatePixelShader(pBlob->GetBufferPointer(), pBlob->GetBufferSize(), nullptr, &pPixelShader);
 }
 
-void PixelShader::Bind(Graphics& gfx) noexcept
+void PixelShader::Bind(Graphics& gfx) 
 {
 	GetContext(gfx)->PSSetShader(pPixelShader.Get(), nullptr, 0u);
 }
@@ -28,7 +28,7 @@ std::string PixelShader::GenerateUID(const std::string& path)
 	return typeid(PixelShader).name() + "#"s + path;
 }
 
-std::string PixelShader::GetUID() const noexcept
+std::string PixelShader::GetUID() const 
 {
 	return GenerateUID(path);
 }

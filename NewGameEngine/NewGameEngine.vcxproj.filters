@@ -152,17 +152,17 @@
     <ClCompile Include="Source\Graphics\Bindable\BindableCodex.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ObjectFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjectManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneObject.cpp">
+    <ClCompile Include="Source\ObjectFactory.cpp">
       <Filter>Source Files\Graphics\Private</Filter>
     </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Source\ObjectManager.cpp">
+      <Filter>Source Files\Graphics\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SceneManager.cpp">
+      <Filter>Source Files\Graphics\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SceneObject.cpp">
+      <Filter>Source Files\Graphics\Private</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -227,9 +227,6 @@
       <Filter>Source Files\Win32\Classes</Filter>
     </ClInclude>
     <ClInclude Include="Source\Graphics\NewCamera.h">
-      <Filter>Source Files\Graphics\Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Graphics\Drawable\SolidSphere.h">
       <Filter>Source Files\Graphics\Classes</Filter>
     </ClInclude>
     <ClInclude Include="Source\Graphics\Drawable\Sphere.h">
@@ -312,18 +309,25 @@
     <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
     <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
     <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
-    <ClInclude Include="ObjectFactory.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjectManager.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneObject.h">
+    <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
+    <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
+    <ClInclude Include="Source\ObjectFactory.h">
       <Filter>Source Files\Graphics\Classes</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
-    <ClInclude Include="SceneManager.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="Source\ObjectManager.h">
+      <Filter>Source Files\Graphics\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ObjectType.h">
+      <Filter>Source Files\Graphics\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SceneManager.h">
+      <Filter>Source Files\Graphics\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SceneObject.h">
+      <Filter>Source Files\Graphics\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Drawable\SolidSphere.h">
+      <Filter>Source Files\Graphics\Classes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

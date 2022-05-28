@@ -47,7 +47,7 @@ Texture::Texture(Graphics& gfx, const std::string& path, unsigned int slot)
 	);
 }
 
-void Texture::Bind(Graphics& gfx) noexcept
+void Texture::Bind(Graphics& gfx) 
 {
 	GetContext(gfx)->PSSetShaderResources(slot, 1u, pTextureView.GetAddressOf());						
 }
@@ -63,17 +63,17 @@ std::string Texture::GenerateUID(const std::string& path, UINT slot)
 	return typeid(Texture).name() + "#"s + path + "#" + std::to_string(slot);
 }
 
-std::string Texture::GetUID() const noexcept
+std::string Texture::GetUID() const 
 {
 	return GenerateUID(path, slot);
 }
 
-bool Texture::HasAlpha() const noexcept
+bool Texture::HasAlpha() const 
 {
 	return hasAlpha;
 }
 
-Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> Texture::GetTexture() const noexcept
+Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> Texture::GetTexture() const 
 {
 	return pTextureView;
 }

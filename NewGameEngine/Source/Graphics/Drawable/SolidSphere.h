@@ -10,8 +10,7 @@ class SolidSphere : public Drawable
 {
 public:
 	SolidSphere(Graphics& gfx, float radius, int latDiv, int longDiv, const char* vs, const char* ps, const char* gs = nullptr);
-	void SetPos(DirectX::XMFLOAT3 pos) noexcept;																						// set position for the sphere
-	DirectX::XMMATRIX GetTransformXM() const noexcept override;																			// Used by TransformCBuf to get Transformation Matrix.
-private:
-	DirectX::XMFLOAT3 pos = { 1.0f,1.0f,1.0f };
+	//void SetPos(DirectX::XMFLOAT3 pos) ;																						// set position for the sphere
+	DirectX::XMMATRIX GetTransformXM() const  override;																			// Used by TransformCBuf to get Transformation Matrix.
+	//virtual void SetPos(DirectX::XMFLOAT3 pos)  override;
 };

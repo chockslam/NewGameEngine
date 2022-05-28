@@ -25,13 +25,13 @@ IndexBuffer::IndexBuffer(Graphics& gfx, std::string tag, const std::vector<unsig
 	GetDevice(gfx)->CreateBuffer(&ibd, &isd, &pIndexBuffer);
 }
 
-void IndexBuffer::Bind(Graphics& gfx) noexcept
+void IndexBuffer::Bind(Graphics& gfx) 
 {
 	GetContext(gfx)->IASetIndexBuffer(pIndexBuffer.Get(), DXGI_FORMAT_R16_UINT, 0u);
 }
 
 
-UINT IndexBuffer::GetCount() const noexcept
+UINT IndexBuffer::GetCount() const 
 {
 	return count;
 }
@@ -42,7 +42,7 @@ std::shared_ptr<IndexBuffer> IndexBuffer::Resolve(Graphics& gfx, const std::stri
 	return Codex::Resolve<IndexBuffer>(gfx, tag, indices);
 }
 
-std::string IndexBuffer::GetUID() const noexcept
+std::string IndexBuffer::GetUID() const 
 {
 	return GenerateUID(tag);
 }

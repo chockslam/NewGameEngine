@@ -7,7 +7,7 @@ Topology::Topology(Graphics& gfx, D3D11_PRIMITIVE_TOPOLOGY type)
 	type(type)
 {}
 
-void Topology::Bind(Graphics& gfx) noexcept
+void Topology::Bind(Graphics& gfx) 
 {
 	GetContext(gfx)->IASetPrimitiveTopology(type);
 }
@@ -23,7 +23,7 @@ std::string Topology::GenerateUID(D3D11_PRIMITIVE_TOPOLOGY type)
 	return typeid(Topology).name() + "#"s + std::to_string(type);
 }
 
-std::string Topology::GetUID() const noexcept
+std::string Topology::GetUID() const 
 {
 	return GenerateUID(type);
 }

@@ -21,11 +21,9 @@ public:
     ObjectFactory(ObjectFactory const&) = delete;
     void operator=(ObjectFactory const&) = delete;
 
-    // Note: Scott Meyers mentions in his Effective Modern
-    //       C++ book, that deleted functions should generally
-    //       be public as it results in better error messages
-    //       due to the compilers behavior to check accessibility
-    //       before deleted status
+    void SetUpObjectManager(std::shared_ptr<ObjectManager> om);
+    void SetUpLevelManager();
+    void AddSphere(Graphics& gfx, float pos[3], float radius, float latDiv, float longDiv, const char* vs, const char* ps, const char* gs = nullptr);
 public:
     
     
