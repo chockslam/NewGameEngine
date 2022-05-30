@@ -3,9 +3,10 @@
 #include "Graphics/NewCamera.h"
 #include "Common/GUIconst.h"
 #include "Graphics/Drawable/WrapperSolidSphere.h"
-#include "Window/AudioIO.h"
+#include "Audio/AudioIO.h"
 #include "GUI/GUIwrap.h"
 #include "ObjectManager.h"
+#include "GUI/GUImanager.h"
 #include "../resource.h"
 //#include ""
 
@@ -50,7 +51,7 @@ private:
 	// Reference to AudioIO singleton instance.
 	AudioIO& audio;
 
-	//Variable stores the name of the file to be played, after it changed. 
+	// Variable stores the name of the file to be played, after it changed. 
 	std::string wavFileName;
 
 	
@@ -69,19 +70,8 @@ private:
 	// Integer that represent the current view.
 	int ViewIndicator;
 
-	// Sphere that utilizes both geometry and pixel shaders.
-	// std::unique_ptr<WrapperSolidSphere> sphereSolidGS;
-
-
-	// Lists of spheres that utilizes pixels shaders as means to visualizations.
-	// Lists were chosen over vectors due to the nature of its utilization in the Draw(),
-	// i.e. traverse and call functions on every object function,
-	// AND the fact that lists implement Linkind List data structure,
-	// which facilitates a faster traversal time then array
-	// std::list<std::unique_ptr<WrapperSolidSphere>> spheresWsolidPS_R;
-	// std::list<std::unique_ptr<WrapperSolidSphere>> spheresWsolidPS_G;
-	// std::list<std::unique_ptr<WrapperSolidSphere>> spheresWsolidPS_B;
 	std::shared_ptr<ObjectManager> om;
+	std::shared_ptr<GUImanager> gm;
 
 	// Constants reflect position and rotation of camera for each view. 
 	const DirectX::XMVECTOR BothViewRot = { 0.07f,0.44999f,0.0f };

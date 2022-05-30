@@ -5,7 +5,7 @@
 #include "SolidSphere.h"
 #include "..\..\SceneObject.h"
 #include "../Bindable/ConstantBuffer.h"
-#include "..\..\Window\AudioIO.h"
+//#include "..\..\Window\AudioIO.h"
 
 /// <summary>
 /// Wrapper around a standard SolidSphere to make manipulation with the object easier.

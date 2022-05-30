@@ -69,6 +69,18 @@
     <Filter Include="Source Files\GUIwrap\Classes">
       <UniqueIdentifier>{eeba612c-f73b-4021-bbf9-cd1010ac6fe8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Audio">
+      <UniqueIdentifier>{9cb9fdb5-849c-4619-a4ff-1c621208cf62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Audio\Classes">
+      <UniqueIdentifier>{9b0c486e-5e16-4a00-b2c6-81cf53e03144}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Audio\Private">
+      <UniqueIdentifier>{8133adaf-f24d-4e3b-9ee3-6c267f089006}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Audio\Public">
+      <UniqueIdentifier>{1696a247-0d2a-4848-b12d-f8b4eee711e8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Window\Window.cpp">
@@ -131,9 +143,6 @@
     <ClCompile Include="Source\Common\GDIPlusManager.cpp">
       <Filter>Source Files\Common\Private</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Window\AudioIO.cpp">
-      <Filter>Source Files\Win32\Private</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Graphics\Drawable\WrapperSolidSphere.cpp">
       <Filter>Source Files\Graphics\Private</Filter>
     </ClCompile>
@@ -163,6 +172,12 @@
     </ClCompile>
     <ClCompile Include="Source\SceneObject.cpp">
       <Filter>Source Files\Graphics\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GUI\GUImanager.cpp">
+      <Filter>Source Files\GUIwrap\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Audio\AudioIO.cpp">
+      <Filter>Source Files\Audio\Private</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -250,9 +265,6 @@
     <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
     <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
     <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
-    <ClInclude Include="Source\Window\AudioIO.h">
-      <Filter>Source Files\Win32\Classes</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
     <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
     <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
@@ -328,6 +340,13 @@
     </ClInclude>
     <ClInclude Include="Source\Graphics\Drawable\SolidSphere.h">
       <Filter>Source Files\Graphics\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Drawable\IndexedTriangleList.h" />
+    <ClInclude Include="Source\GUI\GUImanager.h">
+      <Filter>Source Files\GUIwrap\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Audio\AudioIO.h">
+      <Filter>Source Files\Audio\Classes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -92,6 +92,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application.cpp" />
+    <ClCompile Include="Source\Audio\AudioIO.cpp" />
     <ClCompile Include="Source\Common\GDIPlusManager.cpp" />
     <ClCompile Include="Source\FileDialog\ImGuiFileDialog.cpp" />
     <ClCompile Include="Source\Graphics\Bindable\Bindable.cpp" />
@@ -111,12 +112,12 @@
     <ClCompile Include="Source\Graphics\Graphics.cpp" />
     <ClCompile Include="Source\Graphics\NewCamera.cpp" />
     <ClCompile Include="Source\Graphics\Surface.cpp" />
+    <ClCompile Include="Source\GUI\GUImanager.cpp" />
     <ClCompile Include="Source\GUI\GUIwrap.cpp" />
     <ClCompile Include="Source\ObjectFactory.cpp" />
     <ClCompile Include="Source\ObjectManager.cpp" />
     <ClCompile Include="Source\SceneManager.cpp" />
     <ClCompile Include="Source\SceneObject.cpp" />
-    <ClCompile Include="Source\Window\AudioIO.cpp" />
     <ClCompile Include="Source\Window\Keyboard.cpp" />
     <ClCompile Include="Source\Window\Mouse.cpp" />
     <ClCompile Include="Source\Window\SubObject.cpp" />
@@ -126,6 +127,7 @@
   <ItemGroup>
     <ClInclude Include="resource.h" />
     <ClInclude Include="Source\Application.h" />
+    <ClInclude Include="Source\Audio\AudioIO.h" />
     <ClInclude Include="Source\Common\AudioConst.h" />
     <ClInclude Include="Source\Common\EWin.h" />
     <ClInclude Include="Source\Common\GDIPlusManager.h" />
@@ -157,13 +159,13 @@
     <ClInclude Include="Source\Graphics\Graphics.h" />
     <ClInclude Include="Source\Graphics\NewCamera.h" />
     <ClInclude Include="Source\Graphics\Surface.h" />
+    <ClInclude Include="Source\GUI\GUImanager.h" />
     <ClInclude Include="Source\GUI\GUIwrap.h" />
     <ClInclude Include="Source\ObjectFactory.h" />
     <ClInclude Include="Source\ObjectManager.h" />
     <ClInclude Include="Source\ObjectType.h" />
     <ClInclude Include="Source\SceneManager.h" />
     <ClInclude Include="Source\SceneObject.h" />
-    <ClInclude Include="Source\Window\AudioIO.h" />
     <ClInclude Include="Source\Window\Keyboard.h" />
     <ClInclude Include="Source\Window\Mouse.h" />
     <ClInclude Include="Source\Window\SubObject.h" />

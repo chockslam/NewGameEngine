@@ -29,9 +29,6 @@ Application::Application()
 
 	this->ViewOne(); // Start with the first view.
 
-	// Loads Picutres in GUI.
-	gui.CreateTexture(wnd.Gfx());
-	
 	// Play Default Audio when program is started.
 	if (audio.OpenFile(WAV_FILE)) {
 		audio.PlayAudio();
@@ -43,6 +40,9 @@ Application::Application()
 	this->om = std::make_shared<ObjectManager>();
 	ObjectFactory::getInstance().SetUpObjectManager(om);
 	this->om->startScene(wnd.Gfx(), "Scene_1");
+
+	this->gm = std::make_shared<GUImanager>();
+	this->gm->LoadTextures(wnd.Gfx());
 	
 }
 
@@ -73,56 +73,17 @@ void Application::DoFrame()
 	// Begin Frame with background colour = rgb(0.07,0.0,0.12)
 	wnd.Gfx().BeginFrame(0.07f, 0.0f, 0.12f);
 
-		kdTimer = (kdTimer == COOL_DOWN) ? COOL_DOWN : kdTimer+1; // Handle "Cool Down for keyboard shortcuts" functionality.
 		wnd.Gfx().SetCamera(cam.GetViewMatrix()); // Update Projection with camera view.
 		
-		ToggleCursor();
 
 		// Musparams update.
 		musParams[0] = static_cast<float>(audio.audio->averageB) * weightOfParams[0];
 		musParams[1] = static_cast<float>(audio.audio->averageM) * weightOfParams[1];
 		musParams[2] = static_cast<float>(audio.audio->averageT) * weightOfParams[2];
 
-
-
-		AudioWasPlaying = AudioIsPlaying;
-
-		// If cursor enabled, handle GUI functionality and keyboard shortcut.
-		if (wnd.CursorEnabled) {
-			// Handle Keyboard shortcuts.
-			this->HandleViews();
-			this->HandlePauseViaKeyboard();
-			this->HandleActivatorsViaKeyboard();
-			// Draw GUI.
-			gui.DrawStatusBar(musParams, AudioIsPlaying,ViewIndicator, true,true,true,false,true);
-			gui.DrawSliders(weightOfParams);
-			gui.DrawFileDialog();
-
-			// Handle Play/Pause.
-			if (AudioToggled()) {
-				if (this->AudioIsPlaying) {
-					audio.PlayPausedAudio();
-				}
-				else {
-					audio.PauseAudio();
-				}
-			}
-
-		}
-
+		this->gm->Update(musParams, weightOfParams, wnd, cam);
 		this->om->UpdateAll(wnd.Gfx(), cam.GetViewMatrix(), musParams);
 		this->om->RenderAll(wnd.Gfx());
-
-		// Play New .wav file if it was chosen from file dialog.
-		if (!gui.getUpdatedWavFile().empty() && gui.getUpdatedWavFile() != wavFileName) {
-			playNewFile();
-		}
-
-		// if cursor is enabled then control camera via keyboard.
-		if (!wnd.CursorEnabled) {
-			ViewIndicator = 0;
-			Control();
-		}
 	
 	wnd.Gfx().EndFrame();
 }
