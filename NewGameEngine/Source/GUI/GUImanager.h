@@ -7,7 +7,6 @@ class GUImanager {
 public:
 	GUImanager();
 	void Update(float musParams[3], float weightOfParams[3], Window& wnd, Camera& cam);
-	//void setKeyBoard(Keyboard kbd) { this->kbd = kbd; };
 	void LoadTextures(Graphics& gfx);
 	bool AudioToggled();		// Checks whether the audio was toggled between "playing" and "paused"
 	void HandlePauseViaKeyboard(Keyboard& kbd);
